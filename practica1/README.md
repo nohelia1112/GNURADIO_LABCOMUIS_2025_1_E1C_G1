@@ -12,17 +12,17 @@ Al final de la plantilla encontrará algunos ejemplos para enriquecer su informe
 - Si emplea referencias disponibles en línea, agregue los hipervínculos respectivos.  
 
 ---
-# Práctica 1: TÍTULO PRÁCTICA
+# Práctica 1: MEDICIONES DE POTENCIA Y FRECUENCIA
 
 ### Integrantes
-- **PRIMER INTEGRANTE** - Código
-- **SEGUNDO INTEGRANTE** - Código
+- **NOHELIA AGUDELO CUERVO** - 2210413
+- **FABIÁN CAMILO CHACÓN VARGAS** - 2214192
 
 Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones  
 Universidad Industrial de Santander
 
 ### Fecha
-31 de diciembre de 2030
+28 de febrero de 2025
 
 ---
 
@@ -31,7 +31,7 @@ Los autores de este informe certifican que el contenido aquí presentado es orig
 
 Asimismo, los autores asumen plena responsabilidad por la información contenida en este documento. 
 
-Uso de IA: [Indicar si se usó IA y para qué aspectos específicos, por ejemplo: "Se utilizó ChatGPT para reformular secciones del texto y verificar gramática, pero el contenido técnico fue desarrollado íntegramente por los autores."]
+Uso de IA: Se utilizó ChatGPT para reformular secciones del texto y verificar gramática, pero el contenido técnico fue desarrollado íntegramente por los autores.
 
 ---
 ## Contenido
@@ -39,7 +39,7 @@ Uso de IA: [Indicar si se usó IA y para qué aspectos específicos, por ejemplo
 ### Resumen
 Descripción en no más de 150 palabras del contenido de la práctica. Debe ser conciso y brindar una idea clara sobre el trabajo realizado y sus conclusiones.
 
-**Palabras clave:** de 2 a 5 palabras clave. 
+**Palabras clave:** medición, potencia, frecuencia, transmisión, señales. 
 
 ### Introducción
 Cada práctica contará con preguntas orientadoras para la elaboración de la introducción. Por ejemplo: 
@@ -52,6 +52,22 @@ Cada práctica contará con preguntas orientadoras para la elaboración de la in
 - ¿Qué pasa cuando se asigna una frecuencia de muestreo inadecuada?
 
 ### Procedimiento
+
+#### Actividad 1
+
+Durante la práctica, se hizo uso de tres equipos de laboratorio: el osciloscopio R&S RTB2004, analizador de espectros R&S FPC1000 y radio USRP 2920. Así mismo, se hizo uso de software para simular señales llamado GNU Radio. Tras revisar los manuales de uso de los equipos de laboratorio, se consideraron las siguientes especificaciones como las más importantes:
+
+1. Osciloscopio R&S RTB2004
+
+2. Analizador de espectros R&S FPC1000
+
+3. Radio USRP 2920
+  
+   - Rango de frecuencia (frequency range)
+
+       Se trata del rango de frecuencias por el cual el radio puede transmitir o recibir señales. Tanto para el transmisor como el receptor, dicho rango es de 50[MHz] a 2.2 [GHz]. 
+
+
 Debe basarse en las acciones efectivamente realizadas durante el laboratorio, describiendo los procesos realizados y los resultados obtenidos. Para cada práctica se pueden brindar preguntas orientadoras o pasos a seguir para establecer lo que se espera lograr/estudiar/analizar/obtener/comparar. Por ejemplo:
 - Describa los procesos realizados en el laboratorio  y los resultados obtenidos.
 - ¿Cómo se alcanza el límite de Nyquist y que pasa cuando se disminuye de este?
