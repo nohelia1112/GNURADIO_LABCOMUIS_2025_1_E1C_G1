@@ -1,20 +1,11 @@
 # Laboratorio de Comunicaciones
+
 ## Universidad Industrial de Santander
 
-Utilice esta [plantilla](#integrantes) para presentar sus informes de laboratorio. 
-
-Al final de la plantilla encontrará algunos ejemplos para enriquecer su informe, incluyendo cómo insertar imágenes, tablas y ecuaciones, así como generar hipervínculos a su repositorio o al propio informe. Ir a [ejemplos en Markdown](#ejemplos-usando-markdown)
-
-### Importante
-
-- En caso de utilizar herramientas de Inteligencia Artificial para asistencia en la redacción, análisis o cualquier otra tarea, de debe especificar en la sección de **Declaración de Originalidad y Responsabilidad** aclarando el alcance y propósito de su uso.
-- Cualquier omisión en la declaración del uso de IA o la presentación de contenido plagiado será penalizado con nota de 0.0 y reporte a la coordinación del programa.
-- Si emplea referencias disponibles en línea, agregue los hipervínculos respectivos.  
-
----
 # Práctica 1: MEDICIONES DE POTENCIA Y FRECUENCIA
 
 ### Integrantes
+
 - **NOHELIA AGUDELO CUERVO** - 2210413
 - **FABIÁN CAMILO CHACÓN VARGAS** - 2214192
 
@@ -22,103 +13,121 @@ Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones
 Universidad Industrial de Santander
 
 ### Fecha
+
 28 de febrero de 2025
 
 ---
 
 ## Declaración de Originalidad y Responsabilidad
+
 Los autores de este informe certifican que el contenido aquí presentado es original y ha sido elaborado de manera independiente. Se han utilizado fuentes externas únicamente como referencia y han sido debidamente citadas.
 
-Asimismo, los autores asumen plena responsabilidad por la información contenida en este documento. 
+Asimismo, los autores asumen plena responsabilidad por la información contenida en este documento.
 
 Uso de IA: Se utilizó ChatGPT para reformular secciones del texto y verificar gramática, pero el contenido técnico fue desarrollado íntegramente por los autores.
 
 ---
+
 ## Contenido
 
 ### Resumen
-Descripción en no más de 150 palabras del contenido de la práctica. Debe ser conciso y brindar una idea clara sobre el trabajo realizado y sus conclusiones.
 
-**Palabras clave:** medición, potencia, frecuencia, transmisión, señales. 
+
+**Palabras clave:** medición, potencia, frecuencia, transmisión, señales.
 
 ### Introducción
-Cada práctica contará con preguntas orientadoras para la elaboración de la introducción. Por ejemplo: 
-- ¿Qué tan importante es la teoría de muestreo en el procesamiento de señales?
-- ¿Cuáles son los principales potenciales de GNURADIO en el laboratorio de comunicaciones?
-- ¿Qué pasa cuando se alcanza el límite de Nyquist?
-- ¿Qué tan alta debe ser la relación entre la frecuencia de muestreo y la frecuencia de la señal para visualizar la señal correctamente?
-- ¿Cuándo es importante interpolar una señal?
-- ¿Cuándo es importante diezmar una señal?
-- ¿Qué pasa cuando se asigna una frecuencia de muestreo inadecuada?
+Durante la práctica, se hizo uso de tres equipos de laboratorio: el osciloscopio R&S RTB2004, analizador de espectros R&S FPC1000 y radio USRP 2920. Así mismo, se hizo uso de software para simular señales llamado GNU Radio
 
 ### Procedimiento
 
-#### Actividad 1
+#### Actividad 1: Revisión de Especificaciones de los Equipos
 
-Durante la práctica, se hizo uso de tres equipos de laboratorio: el osciloscopio R&S RTB2004, analizador de espectros R&S FPC1000 y radio USRP 2920. Así mismo, se hizo uso de software para simular señales llamado GNU Radio. Tras revisar los manuales de uso de los equipos de laboratorio, se consideraron las siguientes especificaciones como las más importantes:
+ Tras revisar los manuales de uso de los equipos de laboratorio, se consideraron las siguientes especificaciones como las más importantes:
 
-1. Osciloscopio R&S RTB2004
+**1. Osciloscopio R&S RTB2004**
 
-2. Analizador de espectros R&S FPC1000
+**2. Analizador de espectros R&S FPC1000**
 
-3. Radio USRP 2920
+**3. Radio USRP 2920**
   
-   - Rango de frecuencia (frequency range)
+  - *Rango de frecuencia:*
 
-       Se trata del rango de frecuencias por el cual el radio puede transmitir o recibir señales. Tanto para el transmisor como el receptor, dicho rango es de 50[MHz] a 2.2 [GHz]. 
+       - Se trata del rango de frecuencias por el cual el radio puede transmitir o recibir señales. Tanto para el transmisor como el receptor, dicho rango es de 50[MHz] a 2.2 [GHz].
 
+#### Preguntas Orientadoras Actividad 1 //responder , no colocar xd
 
-Debe basarse en las acciones efectivamente realizadas durante el laboratorio, describiendo los procesos realizados y los resultados obtenidos. Para cada práctica se pueden brindar preguntas orientadoras o pasos a seguir para establecer lo que se espera lograr/estudiar/analizar/obtener/comparar. Por ejemplo:
-- Describa los procesos realizados en el laboratorio  y los resultados obtenidos.
-- ¿Cómo se alcanza el límite de Nyquist y que pasa cuando se disminuye de este?
-- ¿Por qué al interpolar una señal en GNURADIO su frecuencia disminuye?
-- ¿Por qué al diezmar una señal en GNURADIO su frecuencia aumenta?
-- ¿Cómo se puede determinar la frecuencia máxima de una señal desde lo experimental?
-- ¿Qué le sucede a una señal de audio cuando no se respeta el teorema de Nyquist?
-- Describa las funciones logradas con el Ecualizador desarrollado con GNURadio.
+1. ¿Cuál es el rango de frecuencia del USRP 2920 y cómo se compara con el del analizador de espectros?
+2. ¿Qué parámetros del USRP 2920 se deben configurar para transmitir una señal en una frecuencia específica?
+3. ¿Cómo se configura el osciloscopio para medir la amplitud y la frecuencia de una señal?
+4. ¿Qué diferencia hay entre medir una señal en el dominio del tiempo (osciloscopio) y en el dominio de la frecuencia (analizador de espectros)?
+5. ¿Cómo se mide el piso de ruido en el analizador de espectros? ¿Cómo afecta la frecuencia central, SPAN y RBW la medida de piso de ruido? ¿Por qué?
 
+#### Actividad 2: Simulación de Señales en GNU Radio
+
+#### Preguntas Orientadoras Actividad 2 //responder , no colocar xd
+
+1. ¿Cómo se puede explicar matemáticamente la diferencia entre una fuente de tipo flotante y una de tipo complejo?
+2. ¿Cómo afecta la forma de onda a la distribución de energía (potencia) en el dominio de la frecuencia?
+3. ¿Qué sucede con la señal en el dominio del tiempo y la frecuencia si se modifican los diferentes parámetros de la fuente? ¿Lo observado corresponde a lo esperado teóricamente?
+4. ¿Cómo se relaciona la amplitud de la señal con la potencia observada en el dominio de la frecuencia?
+5. ¿Qué diferencias se observan entre una señal senoidal y una señal cuadrada en el dominio de la frecuencia?
+6. 
 ### Conclusiones
-Se sintetizan los principales aportes y puntos relevantes de la práctica, evitando repetir lo ya consignado en las otras secciones del informe. 
+
+Se sintetizan los principales aportes y puntos relevantes de la práctica, evitando repetir lo ya consignado en las otras secciones del informe.
 
 ### Referencias
+
 Ejemplo de referencia:
 
 - [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 164-165, 346. Chapter 5 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
 
 ---
+
 # Ejemplos usando Markdown
 
 Volver al [INICIO](#laboratorio-de-comunicaciones)
 
 ## Inclusión de Imágenes
-### Imagen de referencia dentro del repositorio:
+
+### Imagen de referencia dentro del repositorio
+
 ![Networking](my%20file/test.png)
 
 ### Imagen de fuente externa
+
 ![GNU Radio logo](https://kb.ettus.com/images/thumb/5/50/gnuradio.png/600px-gnuradio.png)
 
 ### Uso de html para cambiar escala de la imagen
+
 <img src="https://kb.ettus.com/images/thumb/5/50/gnuradio.png/600px-gnuradio.png" alt="GNU Radio Logo" width="300">
 
-## Creación de hipevínculos 
+## Creación de hipevínculos
+
 - [Aprende Markdown](https://markdown.es/)
 - [Más acerca de Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 - [Abrir documento en el repositorio](my%20file/test_file.txt). Si hay espacios en la ruta de su archivo, reemplácelos por `%20`.
 - Ir a una sección de este documento. Por ejemplo: [Ir a Contenido](#contenido) Tenga en cuenta escribir el título de la sección en minúsculas y los espacios reemplazarlos por guiones.
+
 ## Uso de Expresiones Matemáticas
+
 Se pueden incluir ecuaciones en el archivo `README.md` utilizando sintaxis similar a [LaTeX](https://manualdelatex.com/tutoriales/ecuaciones):
 
 ### Ecuaciones en Línea
+
 ```
 La energía de una señal exponencial es $E = \int_0^\infty A^2 e^{-2t/\tau} dt$.
 ```
+
 **Salida renderizada:**
 La energía de una señal exponencial es $E = \int_0^\infty A^2 e^{-2t/\tau} dt$.
 
 ### Ecuaciones en Bloque
+
 ```
 $$E = \int_0^\infty A^2 e^{-2t/\tau} dt = \frac{A^2 \tau}{2}$$
 ```
+
 **Salida renderizada**
 $$E = \int_0^\infty A^2 e^{-2t/\tau} dt = \frac{A^2 \tau}{2}$$
 
