@@ -38,12 +38,15 @@ Durante la práctica, se hizo uso de tres equipos de laboratorio: el osciloscopi
 ### Introducción
 La teoría de muestreo es fundamental en el procesamiento de señales, ya que establece las bases para digitalizar y reconstruir señales analógicas sin perder información. El teorema de Nyquist, que exige una frecuencia de muestreo al menos el doble de la frecuencia máxima de la señal, es crucial para evitar el ‘aliasing’, fenómeno que distorsiona la señal cuando se muestrea a una frecuencia inadecuada. Además, el uso de técnicas como la interpolación y el diezmado son esenciales; la primera aumenta la resolución de la señal, mientras que la segunda reduce la cantidad de datos, optimizando el procesamiento y almacenamiento.
 Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puesto que permiten simular señales de manera flexible para facilitar así la comprensión y análisis de conceptos teóricos vistos en clase.
-> [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+>[!CAUTION]
+> Enformar el tema de la introduccion, los aportes realizados estan bien, concatenar los temas para que el lector tenga seguimiento de lo que busca trabajar el informe .
 
 ### Procedimiento
 
 #### Actividad 1: Revisión de Especificaciones de los Equipos
+
+> [!WARNING]
+> Considero que hay mucho texto en algunas caracteristicas de los equipos, es importante que estas caracteristicas ayuden a responder las preguntas orientadoras, tambien agregar las caracteristicas para no limitar al usuario a buscarlas en el manual sino que en nuestro informe sea suficiente para conocer las caracteristicas que deseamos presentar.
 
   Tras revisar los manuales de uso de los equipos de laboratorio, se consideraron las siguientes especificaciones como las más importantes:
 
