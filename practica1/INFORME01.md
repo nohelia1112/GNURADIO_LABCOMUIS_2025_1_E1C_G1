@@ -38,7 +38,8 @@ Durante la práctica, se hizo uso de tres equipos de laboratorio: el osciloscopi
 ### Introducción
 La teoría de muestreo es fundamental en el procesamiento de señales, ya que establece las bases para digitalizar y reconstruir señales analógicas sin perder información. El teorema de Nyquist, que exige una frecuencia de muestreo al menos el doble de la frecuencia máxima de la señal, es crucial para evitar el ‘aliasing’, fenómeno que distorsiona la señal cuando se muestrea a una frecuencia inadecuada. Además, el uso de técnicas como la interpolación y el diezmado son esenciales; la primera aumenta la resolución de la señal, mientras que la segunda reduce la cantidad de datos, optimizando el procesamiento y almacenamiento.
 Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puesto que permiten simular señales de manera flexible para facilitar así la comprensión y análisis de conceptos teóricos vistos en clase.
-
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
 
 ### Procedimiento
 
@@ -51,19 +52,19 @@ Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puest
     <img src="./4.Fotos_informe/Osciloscopio.png" alt="Osciloscopio" width="300" />
 </div>
 
-- ***Configuración de la forma de onda***
+- ***Configuración de la forma de onda:***
   Las opciones que tiene este osciloscopio para configurar la forma de onda de las señales de entrada y salida son muchas, permitiendo así un mejor tratamiento según el análisis necesario. En su manual, explican desde cómo conectar y configurar sondas, hasta ajustar la configuración horizontal y vertical de las señales, y controlar la adquisición.
 
-- ***Configuración del trigger***
+- ***Configuración del trigger:***
   Esta opción va muy de la mano con la anterior especificación, puesto que gracias al ‘trigger’, se pueden capturar partes de interés de las formas de onda para lograr así una obtención de datos más precisa.
 
-- ***Análisis de la forma de onda***
+- ***Análisis de la forma de onda:***
   Dentro de este apartado presentado en el manual, la especificación que más resalta es el zoom, ya que como su nombre lo infiere, amplía una parte de la forma de onda para conocer más detalles. Las formas de onda se muestran con una escala de tiempo más corta mientras que la escala vertical permanece sin cambios.
 
-- ***Medidas***
+- ***Medidas:***
   Este osciloscopio proporciona muchos tipos de medidas para conocer características de tiempo y amplitud, y para contar pulsos y flancos. Por ejemplo: la frecuencia, ciclos de trabajo, top level, entre otros. Dichas mediciones se muestran en una línea debajo de la cuadrícula.
 
-- ***Diseño de la pantalla***
+- ***Diseño de la pantalla:***
   En cuanto a algo diferente a las facilidades ya platicadas anteriormente de este osciloscopio, es innegable la comodidad del uso de su pantalla táctil y buena calidad, a comparación de otros osciloscopios que poseen los laboratorios de la Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones de la UIS. Se puede mostrar más datos de interés en las señales tratadas.
 
 **2.	Analizador de espectros R&S FPC1000**
@@ -97,9 +98,15 @@ Se trata del rango de frecuencias por el cual el radio puede transmitir o recibi
 Indica el nivel máximo de potencia que puede emitir el transmisor, lo cual es importante para garantizar que la señal pueda llegar al destino previsto con suficiente fuerza. Posee dos rangos: 50 [M*Hz*] a 1.2 [G*Hz*], para 50 [m*W*] a 100 [m*W*] (17 [dBm] a 20 [dBm]) y 1.2 [G*Hz*] a 2.2 [G*Hz*], para 30 [m*W*] a 70 [m*W*] (15 [dBm] a 18 [dBm]).
 
 - ***Rango de ganancia***
-Es fundamental para ajustar la intensidad de la señal a niveles óptimos, garantizando una comunicación clara y confiable entre el transmisor y el receptor. Para el primero, 
+Es fundamental para ajustar la intensidad de la señal a niveles óptimos, garantizando una comunicación clara y confiable entre el transmisor y el receptor. Para el primero, dicho rango es de 0 [dB] a 31 [dB], y el segundo, de 0 [dB] a 31.5 [dB].
 
+-	***Ancho de banda máximo instantáneo en tiempo real***
+Especifica el ancho de banda máximo que el dispositivo puede manejar en tiempo real, lo que es esencial para aplicaciones que requieren altas velocidades de datos o señales de banda ancha. El ancho de banda instantáneo depende de muchos factores, entre ellos, la configuración de la red y el rendimiento del equipo host. Así mismo, el rendimiento real de los datos puede depender del chipset. 
 
+    Para un ancho de muestra de 16 bits, el ancho de banda máximo es de 20 [MHz] y para uno de 8 bits, de 40[MHz].
+
+-	***Precisión de la frecuencia***
+Se utiliza para garantizar que las señales transmitidas y recibidas estén exactamente en la frecuencia prevista. Tanto para el transmisor como el receptor, dicho valor es de 2.5 [ppm].
 
 ##### Preguntas Orientadoras Actividad 1 //responder , no colocar xd
 
