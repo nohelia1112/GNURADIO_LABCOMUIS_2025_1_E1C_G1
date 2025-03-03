@@ -67,7 +67,7 @@ class simple_flowgraph(gr.top_block, Qt.QWidget):
         ##################################################
         self.waveform = waveform = 102
         self.source_type = source_type = 1
-        self.samp_rate = samp_rate = 20e3
+        self.samp_rate = samp_rate = 1024
         self.phase = phase = 0
         self.offset = offset = 0
         self.noise = noise = 0
@@ -303,7 +303,7 @@ class simple_flowgraph(gr.top_block, Qt.QWidget):
             taps=[1.0],
             noise_seed=0,
             block_tags=False)
-        self.blocks_throttle2_0 = blocks.throttle( gr.sizeof_gr_complex*1, samp_rate, True, 0 if "auto" == "auto" else max( int(float(0.1) * samp_rate) if "auto" == "time" else int(0.1), 1) )
+        self.blocks_throttle2_0 = blocks.throttle( gr.sizeof_gr_complex*1, samp_rate, True, 0 if "time" == "auto" else max( int(float(0.1) * samp_rate) if "time" == "time" else int(0.1), 1) )
         self.blocks_selector_0 = blocks.selector(gr.sizeof_gr_complex*1,source_type,0)
         self.blocks_selector_0.set_enabled(True)
         self.blocks_float_to_complex_0 = blocks.float_to_complex(1)

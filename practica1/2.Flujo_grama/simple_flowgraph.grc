@@ -185,7 +185,7 @@ blocks:
   parameters:
     comment: "Bloque usado para configurar \nvalores de variables que no se\nvan a\
       \ actualizar durante la ejecuci\xF3n"
-    value: 20e3
+    value: '1024'
   states:
     bus_sink: false
     bus_source: false
@@ -348,7 +348,7 @@ blocks:
 
       el flujo de datos de las fuentes'
     ignoretag: 'True'
-    limit: auto
+    limit: time
     maximum: '0.1'
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -1007,4 +1007,4 @@ connections:
 
 metadata:
   file_format: 1
-  grc_version: v3.10.11.0-89-ga17f69e7
+  grc_version: 3.10.10.0

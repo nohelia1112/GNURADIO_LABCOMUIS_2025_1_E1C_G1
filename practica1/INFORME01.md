@@ -38,14 +38,14 @@ Durante la práctica, se hizo uso de tres equipos de laboratorio: el osciloscopi
 ### Introducción
 La teoría de muestreo es fundamental en el procesamiento de señales, ya que establece las bases para digitalizar y reconstruir señales analógicas sin perder información. El teorema de Nyquist, que exige una frecuencia de muestreo al menos el doble de la frecuencia máxima de la señal, es crucial para evitar el ‘aliasing’, fenómeno que distorsiona la señal cuando se muestrea a una frecuencia inadecuada. Además, el uso de técnicas como la interpolación y el diezmado son esenciales; la primera aumenta la resolución de la señal, mientras que la segunda reduce la cantidad de datos, optimizando el procesamiento y almacenamiento.
 Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puesto que permiten simular señales de manera flexible para facilitar así la comprensión y análisis de conceptos teóricos vistos en clase.
->[!CAUTION]
+>[!WARNING]
 > Enfocar el tema de la introduccion, los aportes realizados estan bien, concatenar los temas para que el lector tenga seguimiento de lo que busca trabajar el informe .
 
 ### Procedimiento
 
 #### Actividad 1: Revisión de Especificaciones de los Equipos
 
-> [!WARNING]
+> [!CAUTION]
 > Considero que hay mucho texto en algunas caracteristicas de los equipos, es importante que estas caracteristicas ayuden a responder las preguntas orientadoras *(no hay que responder todas)*, tambien agregar las caracteristicas para no limitar al usuario a buscarlas en el manual sino que en nuestro informe sea suficiente para conocer las caracteristicas que deseamos presentar.
 
   Tras revisar los manuales de uso de los equipos de laboratorio, se consideraron las siguientes especificaciones como las más importantes:
@@ -113,22 +113,45 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 
 ##### Preguntas Orientadoras Actividad 1 //responder , no colocar xd
 
-1. ¿Cuál es el rango de frecuencia del USRP 2920 y cómo se compara con el del analizador de espectros?
-2. ¿Qué parámetros del USRP 2920 se deben configurar para transmitir una señal en una frecuencia específica?
-3. ¿Cómo se configura el osciloscopio para medir la amplitud y la frecuencia de una señal?
-4. ¿Qué diferencia hay entre medir una señal en el dominio del tiempo (osciloscopio) y en el dominio de la frecuencia (analizador de espectros)?
-5. ¿Cómo se mide el piso de ruido en el analizador de espectros? ¿Cómo afecta la frecuencia central, SPAN y RBW la medida de piso de ruido? ¿Por qué?
+- [x] 1. ¿Cuál es el rango de frecuencia del USRP 2920 y cómo se compara con el del analizador de espectros?
+   
+- [ ] 2. ¿Qué parámetros del USRP 2920 se deben configurar para transmitir una señal en una frecuencia específica?
+- [ ] 3. ¿Cómo se configura el osciloscopio para medir la amplitud y la frecuencia de una señal?
+- [ ] 4. ¿Qué diferencia hay entre medir una señal en el dominio del tiempo (osciloscopio) y en el dominio de la frecuencia (analizador de espectros)?
+- [x] 5. ¿Cómo se mide el piso de ruido en el analizador de espectros? ¿Cómo afecta la frecuencia central, SPAN y RBW la medida de piso de ruido? ¿Por qué?
 
 #### Actividad 2: Simulación de Señales en GNU Radio
 
+
+
 #### Preguntas Orientadoras Actividad 2 //responder , no colocar xd
 
-1. ¿Cómo se puede explicar matemáticamente la diferencia entre una fuente de tipo flotante y una de tipo complejo?
-2. ¿Cómo afecta la forma de onda a la distribución de energía (potencia) en el dominio de la frecuencia?
-3. ¿Qué sucede con la señal en el dominio del tiempo y la frecuencia si se modifican los diferentes parámetros de la fuente? ¿Lo observado corresponde a lo esperado teóricamente?
-4. ¿Cómo se relaciona la amplitud de la señal con la potencia observada en el dominio de la frecuencia?
-5. ¿Qué diferencias se observan entre una señal senoidal y una señal cuadrada en el dominio de la frecuencia?
-  
+- [ ] 1. ¿Cómo se puede explicar matemáticamente la diferencia entre una fuente de tipo flotante y una de tipo complejo?
+- [ ] 2. ¿Cómo afecta la forma de onda a la distribución de energía (potencia) en el dominio de la frecuencia?
+- [ ] 3. ¿Qué sucede con la señal en el dominio del tiempo y la frecuencia si se modifican los diferentes parámetros de la fuente? ¿Lo observado corresponde a lo esperado teóricamente?
+- [ ] 4. ¿Cómo se relaciona la amplitud de la señal con la potencia observada en el dominio de la frecuencia?
+- [ ] 5. ¿Qué diferencias se observan entre una señal senoidal y una señal cuadrada en el dominio de la frecuencia?
+
+#### Actividad 3: Transmisión y Medición de Señales con el USRP 2920
+#### Preguntas Orientadoras Actividad 3 //responder , no colocar xd
+
+- [ ] 1. ¿Cómo se configura el USRP 2920 para transmitir una señal en una frecuencia específica?
+- [ ] 2. ¿Qué parámetros del flujograma afectan la potencia de la señal transmitida?
+- [ ] 3. ¿Cómo se mide el ancho de banda de la señal transmitida en el analizador de espectros?
+- [ ] 4. ¿Cómo se calcula la relación señal a ruido (SNR) a partir de las mediciones de potencia y piso de ruido?
+- [ ] 5.¿Qué diferencias se observan en las mediciones de potencia cuando se varía la ganancia del USRP?
+- [ ] 6. ¿Es posible medir o estimar la potencia de la señal observada en el osciloscopio? ¿Por qué?  
+
+#### Actividad 4: Análisis de Resultados y Conclusiones
+#### Preguntas Orientadoras Actividad 4 //responder , no colocar xd
+- [ ] 1. ¿Qué conclusiones se pueden obtener sobre la relación entre la potencia de la señal y la calidad de la comunicación?
+- [ ] 2. ¿Cómo afecta el piso de ruido a la capacidad de detectar señales débiles?
+- [ ] 3. ¿Qué limitaciones tienen los equipos utilizados en términos de ancho de banda y precisión en las mediciones?
+- [ ] 4. ¿Cómo se pueden mejorar las mediciones de señal en un entorno con alto nivel de ruido?
+- [ ] 5. ¿Qué aplicaciones prácticas tienen las mediciones de potencia y ancho de banda en sistemas de comunicaciones reales?
+- [ ] 6. ¿Cómo se puede medir la respuesta en frecuencia de un canal alámbrico?
+- [ ] 7. ¿Cómo se puede obtener un modelo sencillo de las pérdidas (_pathloss_) en un canal inalámbrico?
+
 ### Conclusiones
 
 Se sintetizan los principales aportes y puntos relevantes de la práctica, evitando repetir lo ya consignado en las otras secciones del informe.
