@@ -185,7 +185,7 @@ blocks:
   parameters:
     comment: "Bloque usado para configurar \nvalores de variables que no se\nvan a\
       \ actualizar durante la ejecuci\xF3n"
-    value: '1024'
+    value: 1e6
   states:
     bus_sink: false
     bus_source: false
