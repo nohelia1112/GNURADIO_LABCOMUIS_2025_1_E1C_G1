@@ -67,7 +67,7 @@ class simple_flowgraph(gr.top_block, Qt.QWidget):
         ##################################################
         self.waveform = waveform = 102
         self.source_type = source_type = 1
-        self.samp_rate = samp_rate = 1024
+        self.samp_rate = samp_rate = 1e6
         self.phase = phase = 0
         self.offset = offset = 0
         self.noise = noise = 0
