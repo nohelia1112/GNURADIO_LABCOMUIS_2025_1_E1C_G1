@@ -36,17 +36,14 @@ Durante la práctica, se hizo uso de tres equipos de laboratorio: el osciloscopi
 **Palabras clave:** medición, potencia, frecuencia, transmisión, señales.
 
 ### Introducción
-La teoría de muestreo es fundamental en el procesamiento de señales, ya que establece las bases para digitalizar y reconstruir señales analógicas sin perder información. El teorema de Nyquist, que exige una frecuencia de muestreo al menos el doble de la frecuencia máxima de la señal, es crucial para evitar el ‘aliasing’, fenómeno que distorsiona la señal cuando se muestrea a una frecuencia inadecuada. Además, el uso de técnicas como la interpolación y el diezmado son esenciales; la primera aumenta la resolución de la señal, mientras que la segunda reduce la cantidad de datos, optimizando el procesamiento y almacenamiento.
-Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puesto que permiten simular señales de manera flexible para facilitar así la comprensión y análisis de conceptos teóricos vistos en clase.
->[!WARNING]
-> Enfocar el tema de la introduccion, los aportes realizados estan bien, concatenar los temas para que el lector tenga seguimiento de lo que busca trabajar el informe .
+La teoría de muestreo es fundamental en el procesamiento de señales, ya que establece las bases para digitalizar y reconstruir señales analógicas sin perder información. El teorema de Nyquist, que exige una frecuencia de muestreo al menos el doble de la frecuencia máxima de la señal, es crucial para evitar el ‘aliasing’. Además, el uso de técnicas como la interpolación y el diezmado son esenciales; la primera aumenta la resolución de la señal, mientras que la segunda reduce la cantidad de datos, optimizando el procesamiento y almacenamiento.
+
+Para aplicar y visualizar estos conceptos en la práctica, herramientas como GNU Radio, un osciloscopio como el R&S RTB2004 y un analizador de espectros R&S FPC1000 son fundamentales en un laboratorio de comunicaciones. GNU Radio es un software que permite simular señales de manera flexible y, gracias a su capacidad para integrarse con un analizador de espectros y un osciloscopio, posibilita observar en tiempo real tanto las características espectrales como las propiedades de la señal. Además, se incorpora un radio USRP 2920, que permite la transmisión y recepción de señales en tiempo real, ampliando las posibilidades de experimentación y análisis en el laboratorio.
+
 
 ### Procedimiento
 
 #### Actividad 1: Revisión de Especificaciones de los Equipos
-
-> [!CAUTION]
-> Considero que hay mucho texto en algunas caracteristicas de los equipos, es importante que estas caracteristicas ayuden a responder las preguntas orientadoras *(no hay que responder todas)*, tambien agregar las caracteristicas para no limitar al usuario a buscarlas en el manual sino que en nuestro informe sea suficiente para conocer las caracteristicas que deseamos presentar.
 
   Tras revisar los manuales de uso de los equipos de laboratorio, se consideraron las siguientes especificaciones como las más importantes:
 
@@ -68,7 +65,7 @@ Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puest
   Este osciloscopio proporciona muchos tipos de medidas para conocer características de tiempo y amplitud, y para contar pulsos y flancos. Por ejemplo: la frecuencia, ciclos de trabajo, top level, entre otros. Dichas mediciones se muestran en una línea debajo de la cuadrícula.
 
 - ***Diseño de la pantalla:***
-  En cuanto a algo diferente a las facilidades ya platicadas anteriormente de este osciloscopio, es innegable la comodidad del uso de su pantalla táctil y buena calidad, a comparación de otros osciloscopios que poseen los laboratorios de la Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones de la UIS. Se puede mostrar más datos de interés en las señales tratadas.
+  En cuanto a algo diferente a las facilidades ya platicadas anteriormente de este osciloscopio, es innegable la comodidad del uso de su pantalla táctil y buena calidad, a comparación de otros osciloscopios que poseen los laboratorios de la Escuela de E3T en la UIS. Se puede mostrar más datos de interés en las señales tratadas.
 
 **2.	Analizador de espectros R&S FPC1000**
 
@@ -77,17 +74,19 @@ Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puest
 </div>
 	
   - ***Aplicación del analizador de espectro:***
-	
+	Junto con las mediciones básicas de frecuencia y dominio temporal, también se incorporan diversas mediciones avanzadas, como la del ancho de banda ocupado (OBW). Asimismo, se dispone de una amplia variedad de configuraciones y herramientas para ajustar y analizar mediciones espectrales.
+
   - ***Aplicación del receptor de espectro:***
-	
+	La aplicación del receptor mide el nivel de potencia de una frecuencia específica o de un conjunto de frecuencias personalizado.
+
   - ***Demodulación analógica:***
-	
+	Se demodulan señales moduladas en amplitud (AM) y frecuencia (FM), y muestra algunos aspectos de la señal modulada y demodulada.
+
   - ***Demodulación digital:***
-   
+  Se demodulan señales moduladas con esquemas de modulación por desplazamiento de amplitud (ASK) y de frecuencia (FSK), y muestra algunos aspectos de la señal modulada y demodulada.
 
  - ***Diseño de la pantalla:***
-
-Similar a lo explicado con el osciloscopio, es importante resaltar también la importancia del diseño y distribución de los datos de interés en las señales tratadas en la pantalla.
+  Similar a lo explicado con el osciloscopio, es importante resaltar también la importancia del diseño y distribución de los datos de interés en las señales tratadas en la pantalla.
 
 **3.	Radio USRP 2920**
 <div style="text-align: center;">
@@ -104,9 +103,7 @@ Indica el nivel máximo de potencia que puede emitir el transmisor, lo cual es i
 Es fundamental para ajustar la intensidad de la señal a niveles óptimos, garantizando una comunicación clara y confiable entre el transmisor y el receptor. Para el primero, dicho rango es de 0 [dB] a 31 [dB], y el segundo, de 0 [dB] a 31.5 [dB].
 
 -	***Ancho de banda máximo instantáneo en tiempo real***
-Especifica el ancho de banda máximo que el dispositivo puede manejar en tiempo real, lo que es esencial para aplicaciones que requieren altas velocidades de datos o señales de banda ancha. El ancho de banda instantáneo depende de muchos factores, entre ellos, la configuración de la red y el rendimiento del equipo host. Así mismo, el rendimiento real de los datos puede depender del chipset. 
-
-    Para un ancho de muestra de 16 bits, el ancho de banda máximo es de 20 [MHz] y para uno de 8 bits, de 40[MHz].
+Especifica el ancho de banda máximo que el dispositivo puede manejar en tiempo real, lo que es esencial para aplicaciones que requieren altas velocidades de datos o señales de banda ancha. Para un ancho de muestra de 16 bits, el ancho de banda máximo es de 20 [MHz] y para uno de 8 bits, de 40[MHz].
 
 -	***Precisión de la frecuencia***
 Se utiliza para garantizar que las señales transmitidas y recibidas estén exactamente en la frecuencia prevista. Tanto para el transmisor como el receptor, dicho valor es de 2.5 [ppm].
@@ -115,17 +112,17 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 
 - [x] 1. ¿Cuál es el rango de frecuencia del USRP 2920 y cómo se compara con el del analizador de espectros?
    
-- [ ] 2. ¿Qué parámetros del USRP 2920 se deben configurar para transmitir una señal en una frecuencia específica?
+- [x] 2. ¿Qué parámetros del USRP 2920 se deben configurar para transmitir una señal en una frecuencia específica?
 - [ ] 3. ¿Cómo se configura el osciloscopio para medir la amplitud y la frecuencia de una señal?
 - [ ] 4. ¿Qué diferencia hay entre medir una señal en el dominio del tiempo (osciloscopio) y en el dominio de la frecuencia (analizador de espectros)?
 - [x] 5. ¿Cómo se mide el piso de ruido en el analizador de espectros? ¿Cómo afecta la frecuencia central, SPAN y RBW la medida de piso de ruido? ¿Por qué?
 
 #### Actividad 2: Simulación de Señales en GNU Radio
-Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [Flujo grama](1.Flujo_grama/simple_flowgraph.grc): 
+Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [flujograma](1.Flujo_grama/simple_flowgraph.grc): 
 - **Signal Source:**  
 - **Throttle:**  regula la tasa de muestreo de la señal para evitar que el simulador consuma demasiados recursos del sistema 
-- **QT GUI Time Sink:** Muestra la señal en el dominio del tiempo
-- **QT GUI Frequency Sink:** Muestra la señal en el dominio de la frecuencia
+- **QT GUI Time Sink:** muestra la señal en el dominio del tiempo
+- **QT GUI Frequency Sink:** muestra la señal en el dominio de la frecuencia
 
 
 
@@ -167,6 +164,12 @@ Se sintetizan los principales aportes y puntos relevantes de la práctica, evita
 ### Bibliografía
 
 - [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 95-100,132. Chapter 2.6 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
+
+- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®RTB2000 Digital Oscilloscope User Manual. 2017. p. 34-108.
+
+- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®FPC1000 Spectrum Analyzer User Manual. 2017. p. 36-148.
+
+- [NI, 2025] NATIONAL INSTRUMENTS CORP. USRP-2920 Specifications. 2025. p. 3-148.
 
 
 ### Recursos Digitales
