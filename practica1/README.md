@@ -52,7 +52,7 @@ Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puest
 
 **1.	 Osciloscopio R&S RTB2004**
 <div style="text-align: center;">
-    <img src="./4.Fotos_informe/Osciloscopio.png" alt="Osciloscopio" width="300" />
+    <img src="./2.Evidencias_Actividad1/Osciloscopio.png" alt="Osciloscopio" width="300" />
 </div>
 
 - ***Configuración de la forma de onda:***
@@ -73,7 +73,7 @@ Herramientas como GNU Radio son clave en un laboratorio de comunicaciones, puest
 **2.	Analizador de espectros R&S FPC1000**
 
 <div style="text-align: center;">
-    <img src="./4.Fotos_informe/Spectrum_Analyzer.png" alt="Spectrum_Analyzer" width="300" />
+    <img src="./2.Evidencias_Actividad1/Spectrum_Analyzer.png" alt="Spectrum_Analyzer" width="300" />
 </div>
 	
   - ***Aplicación del analizador de espectro:***
@@ -91,7 +91,7 @@ Similar a lo explicado con el osciloscopio, es importante resaltar también la i
 
 **3.	Radio USRP 2920**
 <div style="text-align: center;">
-    <img src="./4.Fotos_informe/USRP_2920.png" alt="USRP_2920" width="400" />
+    <img src="./2.Evidencias_Actividad1/USRP_2920.png" alt="USRP_2920" width="400" />
 </div>
 
 - ***Rango de frecuencia (frequency range):***
@@ -121,6 +121,11 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 - [x] 5. ¿Cómo se mide el piso de ruido en el analizador de espectros? ¿Cómo afecta la frecuencia central, SPAN y RBW la medida de piso de ruido? ¿Por qué?
 
 #### Actividad 2: Simulación de Señales en GNU Radio
+Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [Flujo grama](1.Flujo_grama/simple_flowgraph.grc): 
+- **Signal Source:**  
+- **Throttle:**  regula la tasa de muestreo de la señal para evitar que el simulador consuma demasiados recursos del sistema 
+- **QT GUI Time Sink:** Muestra la señal en el dominio del tiempo
+- **QT GUI Frequency Sink:** Muestra la señal en el dominio de la frecuencia
 
 
 
@@ -151,17 +156,27 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 - [ ] 5. ¿Qué aplicaciones prácticas tienen las mediciones de potencia y ancho de banda en sistemas de comunicaciones reales?
 - [ ] 6. ¿Cómo se puede medir la respuesta en frecuencia de un canal alámbrico?
 - [ ] 7. ¿Cómo se puede obtener un modelo sencillo de las pérdidas (_pathloss_) en un canal inalámbrico?
-
-### Conclusiones
+---
+## Conclusiones
 
 Se sintetizan los principales aportes y puntos relevantes de la práctica, evitando repetir lo ya consignado en las otras secciones del informe.
 
-### Referencias
+---
+## Referencias
 
-Ejemplo de referencia:
+### Bibliografía
 
-- [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 164-165, 346. Chapter 5 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
+- [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 95-100,132. Chapter 2.6 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
 
+
+### Recursos Digitales
+- Wikipedia. (s.f.). *Transformada de Hilbert*. Recuperado de https://es.wikipedia.org/wiki/Transformada_de_Hilbert  
+- Academia Lab. (s.f.). *Transformada de Hilbert*. Recuperado de https://academia-lab.com/enciclopedia/transformada-de-hilbert/  
+
+### Artículos de Interés
+- Carrick, J. (2011). *Design and Application of a Hilbert Transformer in a Digital Receiver*. [Abrir documento en el repositorio](7.ANEXOS/DESIGN_AND_APPLICATION_OF_A_HILBERT_TRANSFORMER_IN_A_DIGITAL_RECEIVER.pdf).  
+- Hasegawa, T., & Sugiura, H. (2022). *Filtered Integration Rules for Finite Weighted Hilbert Transforms*. [Abrir documento en el repositorio](7.ANEXOS/Filtered_integration_rules_for_finite_weighted_Hilbert.pdf).  
+  
 ---
 
 # Ejemplos usando Markdown
