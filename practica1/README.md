@@ -40,12 +40,7 @@ La teoría de muestreo es fundamental en el procesamiento de señales, ya que es
 
 
 Para aplicar y visualizar estos conceptos en la práctica, herramientas como GNU Radio, un osciloscopio como el R&S RTB2004 y un analizador de espectros R&S FPC1000 son fundamentales en un laboratorio de comunicaciones. GNU Radio es un software que permite simular señales de manera flexible y, gracias a su capacidad para integrarse con un analizador de espectros y un osciloscopio, posibilita observar en tiempo real tanto las características espectrales como las propiedades de la señal. Además, se incorpora un radio USRP 2920, que permite la transmisión y recepción de señales en tiempo real, ampliando las posibilidades de experimentación y análisis en el laboratorio.
-
-
-
 Para aplicar y visualizar estos conceptos en la práctica, herramientas como GNU Radio, un osciloscopio como el R&S RTB2004 y un analizador de espectros R&S FPC1000 son fundamentales en un laboratorio de comunicaciones. GNU Radio es un software que permite simular señales de manera flexible y, gracias a su capacidad para integrarse con un analizador de espectros y un osciloscopio, posibilita observar en tiempo real tanto las características espectrales como las propiedades de la señal. Además, se incorpora un radio USRP 2920, que permite la transmisión y recepción de señales en tiempo real, ampliando las posibilidades de experimentación y análisis en el laboratorio.
-
-
 
 
 ### Procedimiento
@@ -79,15 +74,15 @@ Para aplicar y visualizar estos conceptos en la práctica, herramientas como GNU
 <div style="text-align: center;">
     <img src="./2.Evidencias_Actividad1/Spectrum_Analyzer.png" alt="Spectrum_Analyzer" width="300" />
 </div>
-	
+  
   - ***Aplicación del analizador de espectro:***
-	Junto con las mediciones básicas de frecuencia y dominio temporal, también se incorporan diversas mediciones avanzadas, como la del ancho de banda ocupado (OBW). Asimismo, se dispone de una amplia variedad de configuraciones y herramientas para ajustar y analizar mediciones espectrales.
+  Junto con las mediciones básicas de frecuencia y dominio temporal, también se incorporan diversas mediciones avanzadas, como la del ancho de banda ocupado (OBW). Asimismo, se dispone de una amplia variedad de configuraciones y herramientas para ajustar y analizar mediciones espectrales.
 
   - ***Aplicación del receptor de espectro:***
-	La aplicación del receptor mide el nivel de potencia de una frecuencia específica o de un conjunto de frecuencias personalizado.
+  La aplicación del receptor mide el nivel de potencia de una frecuencia específica o de un conjunto de frecuencias personalizado.
 
   - ***Demodulación analógica:***
-	Se demodulan señales moduladas en amplitud (AM) y frecuencia (FM), y muestra algunos aspectos de la señal modulada y demodulada.
+  Se demodulan señales moduladas en amplitud (AM) y frecuencia (FM), y muestra algunos aspectos de la señal modulada y demodulada.
 
   - ***Demodulación digital:***
   Se demodulan señales moduladas con esquemas de modulación por desplazamiento de amplitud (ASK) y de frecuencia (FSK), y muestra algunos aspectos de la señal modulada y demodulada.
@@ -123,6 +118,7 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 - [ ] 3. ¿Cómo se configura el osciloscopio para medir la amplitud y la frecuencia de una señal?
 - [ ] 4. ¿Qué diferencia hay entre medir una señal en el dominio del tiempo (osciloscopio) y en el dominio de la frecuencia (analizador de espectros)?
 - [x] 5. ¿Cómo se mide el piso de ruido en el analizador de espectros? ¿Cómo afecta la frecuencia central, SPAN y RBW la medida de piso de ruido? ¿Por qué?
+
 
 #### Actividad 2: Simulación de Señales en GNU Radio
 
@@ -208,7 +204,7 @@ Se sintetizan los principales aportes y puntos relevantes de la práctica, evita
 ---
 ## Referencias
 
-## Bibliografía
+### Bibliografía
 
 - [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 95-100,132. Chapter 2.6 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
 
