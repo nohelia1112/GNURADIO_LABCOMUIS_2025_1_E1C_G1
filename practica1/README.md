@@ -195,11 +195,9 @@ Lo primero que se debe hacer es configurar en GNU Radio el flujograma otorgado e
 
 Las medidas de interés para el presente laboratorio son parámetros clave como potencia, ancho de banda, piso de ruido y relación señal a ruido (SNR). Para medir el ancho de banda de la señal transmitida, se utilizan marcadores en el analizador de espectro. El Marcador 1 se coloca en el pico de la señal, mientras que los Marcadores 2 y 3 se ubican en los puntos donde la amplitud disminuye 3[dB] a cada lado respecto al pico, y es la diferencia en frecuencia entre estos dos puntos lo define el ancho de banda de la señal. Otro parámetro importante es la relación señal a ruido (SNR), la cual se calcula a partir de las mediciones de potencia de la señal y del ruido obtenidas con los marcadores del analizador de espectro. Haciendo uso de la fórmula:
 
-\[
-SNR_{[dB]} = 10 \log_{10} \left( \frac{P_S}{P_N} \right)
-\]
+$SNR_{[dB]} = 10 \log_{10} \left( \frac{P_S}{P_N} \right)$
 
-Donde \( P_S \) es la potencia de la señal y \( P_N \) la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción. Finalmente, fue posible estimar algunas de estas características utilizando un osciloscopio, ya que este instrumento permite visualizar la amplitud de la señal en el dominio del tiempo, parámetro que también es de utilidad para calcular la potencia.
+Donde ($P_S$) es la potencia de la señal y ($P_N$) la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción. Finalmente, fue posible estimar algunas de estas características utilizando un osciloscopio, ya que este instrumento permite visualizar la amplitud de la señal en el dominio del tiempo, parámetro que también es de utilidad para calcular la potencia.
 
 
 ##### Preguntas Orientadoras Actividad 3 //responder , no colocar xd
