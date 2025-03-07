@@ -110,19 +110,15 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 
 Entre medir una señal en el dominio del tiempo (vista con el osciloscopio) y en el dominio de la frecuencia (vista con el analizador de espectros),evidentemente, se tienen dos diferentes formas de visualizar lo que son los parámetros de la señal, como lo son la potencia y la frecuencia de la señal. Se puede observar que en el espectro la información se encuentra más condensada, lo que permite recuperar parte de esa información con menores pérdidas.
 
-<div style="text-align: center;">
-    <img src="./2.Evidencias_Actividad1/Analizador_Sin.jpg" alt="Analizador_Sin" width="400" />
-</div>
-
-<div style="text-align: center;">
-    <img src="./2.Evidencias_Actividad1/Sin_osciloscopio.jpg" alt="sin_osciloscopio" width="400" />
-</div>
+| ![Analizador_Sin](./2.Evidencias_Actividad1/Analizador_Sin.jpg) | ![sin_osciloscopio](./2.Evidencias_Actividad1/Sin_osciloscopio.jpg) |
+|:---:|:---:|
+| **Analizador de espectro** | **Osciloscopio** |
 
 Teniendo en cuenta las especificaciones anteriores, se procedió a hallar la 
 potencia de ruido ($P_N$) y calcular el piso de ruido normalizado ($NF$):
 
 <div style="text-align: center;">
-    <img src="./2.Evidencias_Actividad1/Noisefloor_radio.png" alt="Noisefloor_radio" width="400" />
+    <img src="./2.Evidencias_Actividad1/Noisefloor_radio.png" alt="Noisefloor_radio" width="350" />
 </div>
 
 Donde se puede observar que:
