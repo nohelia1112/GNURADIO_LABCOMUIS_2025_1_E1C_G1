@@ -123,8 +123,8 @@ potencia de ruido ($P_N$) y calcular el piso de ruido normalizado ($NF$):
 
 Donde se puede observar que:
 
-  $RBW = 300[Hz] \\
-  P_Nref ≈ -100[dBm]$
+  $RBW = 300[Hz]$ \\
+  $P_Nref ≈ -100[dBm]$
 
 A continuación, se realiza el cálculo del piso de ruido:
 
