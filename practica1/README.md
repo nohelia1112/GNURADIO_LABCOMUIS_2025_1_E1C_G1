@@ -124,15 +124,6 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [Flujo grama](1.Flujo_grama/simple_flowgraph.grc): 
 
 
-Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [flujograma](1.Flujo_grama/simple_flowgraph.grc): 
-- **Signal Source:**  
-- **Throttle:**  regula la tasa de muestreo de la señal para evitar que el simulador consuma demasiados recursos del sistema 
-- **QT GUI Time Sink:** muestra la señal en el dominio del tiempo
-- **QT GUI Frequency Sink:** muestra la señal en el dominio de la frecuencia
-
-
-
-
 - **Signal Source:** Define los  parametros de la señal como el muestreo tanto en tiempo como frecuencia , la forma de onda, la frecuencia, la amplitud, el offset , la fase y el tipo de dato.
 - **Throttle:**  Regula la tasa de muestreo de la señal para evitar que el simulador consuma demasiados recursos del sistema 
 - **QT GUI Time Sink:** Define el numero de puntos que representan la señal en el dominio del tiempo.
