@@ -69,13 +69,9 @@ Para aplicar y visualizar estos conceptos en la práctica, herramientas como GNU
 
 **2.	Analizador de espectros R&S FPC1000**
 
-<div style="text-align: center;">
-    <img src="./2.Evidencias_Actividad1/Spectrum_Analyzer.png" alt="Spectrum_Analyzer" width="300" />
-</div>
-
-<div style="text-align: center;">
-    <img src="./2.Evidencias_Actividad1/diapo.png" alt="diapositiva" width="400" />
-</div>
+| ![Spectrum_Analyzer](./2.Evidencias_Actividad1/Spectrum_Analyzer.png) | ![diapositiva](./2.Evidencias_Actividad1/diapo.png) |
+|:---:|:---:|
+| **Spectrum Analyzer** | **Diapositiva** |
   
   - ***Aplicación del analizador de espectro:***
   Junto con las mediciones básicas de frecuencia y dominio temporal, también se incorporan diversas mediciones avanzadas, como la del ancho de banda ocupado (OBW). Asimismo, se dispone de una amplia variedad de configuraciones y herramientas para ajustar y analizar mediciones espectrales.
