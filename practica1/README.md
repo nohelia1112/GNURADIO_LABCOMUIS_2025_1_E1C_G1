@@ -138,20 +138,20 @@ Los tipos de señales "analogas" en el sistema son reales ***(float)*** y comple
 Donde $$\ \hat{x}(t) \$$ es la Transformada de Hilbert de $$\ x(t) \$$.
 
   <div style="text-align: center;">
-    <img src="./8.ECUACIONES/1.integral.png" alt="USTransformada_hilbert" width="200" />
+    <img src="./6.ECUACIONES/1.integral.png" alt="USTransformada_hilbert" width="200" />
 </div>
 
  La Transformada de Hilbert introduce un **desfase de $$\(-90^\circ\)$$** para las frecuencias positivas y un **desfase de $$\(+90^\circ\)$$** para las frecuencias negativas.
 
 **Transformada de Hilbert como filtro:**
 - Respuesta al impulso:
--  \[
+  \[
   x(t) = \frac{1}{\pi t}
   \]
 
 - Respuesta en frecuencia:
 <div style="text-align: center;">
-    <img src="./8.ECUACIONES/2.respuesta.png" alt="USTransformada_hilbert" width="200" />
+    <img src="./6.ECUACIONES/2.respuesta.png" alt="USTransformada_hilbert" width="250" />
 </div>
 
 
@@ -185,7 +185,10 @@ Donde $$\ \hat{x}(t) \$$ es la Transformada de Hilbert de $$\ x(t) \$$.
 ---
 ## Conclusiones
 
-Se sintetizan los principales aportes y puntos relevantes de la práctica, evitando repetir lo ya consignado en las otras secciones del informe.
+  - 1. La potencia de la señal es un factor clave en la calidad de la comunicación, pero no es el único elemento determinante. Para lograr una comunicación efectiva, es necesario equilibrar la potencia con aspectos como las interferencias causadas por el mal estado del medio de transmisión o la saturación de la señal debido a una potencia excesiva. En ese sentido, el piso de ruido juega un papel crucial, ya que establece el límite mínimo (inferior) para la detección de señales. Una señal solo puede ser identificada si su potencia supera este umbral, de lo contrario, se confunde con el ruido propio del ambiente. Si la señal es muy débil y se aproxima al piso de ruido, la relación señal-ruido será baja, dificultando su detección. Para solucionar este problema, se pueden emplear receptores con mayor sensibilidad o técnicas de mejora que permitan distinguir la señal del ruido, lo que resalta la importancia de considerar tanto el entorno como las capacidades de los equipos utilizados.
+  
+ - 2. Las limitaciones de los equipos, como el ancho de banda ya mencionado anteriormente del radio USRP 2920, impone restricciones en la cantidad de información que puede transmitirse o recibirse por unidad de tiempo y la imposibilidad de que este radio sea de utilidad en aplicaciones de banda ancha. Además, en entornos con alto nivel de ruido, las mediciones de una señal pueden mejorarse mediante el uso de filtros adaptados a las necesidades específicas y, en algunos casos, implementando blindajes para proteger la señal del ruido externo. Estas estrategias son esenciales para garantizar la precisión y fiabilidad de las mediciones en condiciones adversas para diferentes aplicaciones reales. Un ejemplo cotidiano es la radio FM, que opera en un ancho de banda de 87.5[MHz] a 108 [MHz], o incluso la radioastronomía, que abarca desde 300[MHz] hasta 300[GHz], dividiéndose en bandas como UHF, SHF y EHF. Estas aplicaciones ilustran la relevancia de comprender y optimizar estos parámetros para el funcionamiento eficiente de sistemas de comunicación en diferentes contextos. 
+
 
 ---
 ## Referencias
@@ -194,11 +197,11 @@ Se sintetizan los principales aportes y puntos relevantes de la práctica, evita
 
 - [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 95-100,132. Chapter 2.6 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
 
-- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®RTB2000 Digital Oscilloscope User Manual. 2017. p. 34-108.
+- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®RTB2000 Digital Oscilloscope User Manual. 2017. p. 34-108.[Abrir documento en el repositorio][Abrir manual del osciloscopio](../Equipos_de_laboratorio/Oscilloscope_RTB_UserManual_en.pdf).
 
-- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®FPC1000 Spectrum Analyzer User Manual. 2017. p. 36-148.
+- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®FPC1000 Spectrum Analyzer User Manual. 2017. p. 36-148.[Abrir manual del Analizador de espectros](../Equipos_de_laboratorio/Spectrum_Analyzer_FPC_XXX_ANL-EN.pdf)
 
-- [NI, 2025] NATIONAL INSTRUMENTS CORP. USRP-2920 Specifications. 2025. p. 3-148.
+- [NI, 2025] NATIONAL INSTRUMENTS CORP. USRP-2920 Specifications. 2025. p. 3-148.[Abrir manual del Radio](../Equipos_de_laboratorio/usrp-2920_specifications.pdf)
 
 
 ### Recursos Digitales
