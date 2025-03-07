@@ -123,7 +123,7 @@ Entre medir una señal en el dominio del tiempo (vista con el osciloscopio) y en
 </div>
 
 Teniendo en cuenta las especificaciones anteriores, se procedió a hallar la 
-potencia de ruido \( (P_N) \) y calcular el piso de ruido normalizado \( (NF) \):
+potencia de ruido ($P_N$) y calcular el piso de ruido normalizado ($NF$):
 
 <div style="text-align: center;">
     <img src="./2.Evidencias_Actividad1/Noisefloor_radio.png" alt="Noisefloor_radio" width="400" />
@@ -131,16 +131,15 @@ potencia de ruido \( (P_N) \) y calcular el piso de ruido normalizado \( (NF) \)
 
 Donde se puede observar que:
 
-  \[
-  RBW = 300[Hz] \\
-  P_Nref ≈ -100[dBm]
-  \]
+  $RBW = 300[Hz] \\
+  P_Nref ≈ -100[dBm]$
+
 A continuación, se realiza el cálculo del piso de ruido:
-  \[
-  NF[dBm/Hz]  = P_Nref[dBm] - 10 log(\frac{RBW}{1 [Hz]}) \\
-  NF = -100-10log(\frac{300}{1}) \\
-  NF = -124,771 [dBm/Hz]
-  \]
+
+  $NF[dBm/Hz]  = P_Nref[dBm] - 10 log(\frac{RBW}{1 [Hz]})$
+  $NF = -100-10log(\frac{300}{1})$
+  $NF = -124,771 [dBm/Hz]$
+
 
 
 #### Actividad 2: Simulación de Señales en GNU Radio
@@ -160,19 +159,19 @@ Los tipos de señales "análogas" en el sistema son reales ***(float)*** y compl
     <img src="./3.Evidencias_Actividad2/Transformada_hilbert.png" alt="USTransformada_hilbert" width="300" />
 </div>
 
-Donde \(\hat{x}(t)\) es la Transformada de Hilbert de\(\ x(t)\).
+Donde $\hat{x}(t)$ es la Transformada de Hilbert de $x(t)$.
 
   <div style="text-align: center;">
     <img src="./6.ECUACIONES/1.integral.png" alt="USTransformada_hilbert" width="200" />
 </div>
 
- La Transformada de Hilbert introduce un **desfase de \(-90^\circ\)** para las frecuencias positivas y un **desfase de \(+90^\circ\)** para las frecuencias negativas.
+ La Transformada de Hilbert introduce un **desfase de $-90^\circ$** para las frecuencias positivas y un **desfase de $+90^\circ$** para las frecuencias negativas.
 
 **Transformada de Hilbert como filtro:**
 - Respuesta al impulso:
-  \[
-  x(t) = \frac{1}{\pi t}
-  \]
+
+  $x(t) = \frac{1}{\pi t}$
+
 
 - Respuesta en frecuencia:
 <div style="text-align: center;">
