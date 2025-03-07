@@ -138,7 +138,7 @@ Los tipos de señales "analogas" en el sistema son reales ***(float)*** y comple
 Donde $$\( \hat{x}(t) \)$$ es la Transformada de Hilbert de $$\( x(t) \)$$.
 
   <div style="text-align: center;">
-    <img src="./8.ECUACIONES/integral.png" alt="USTransformada_hilbert" width="500" />
+    <img src="./8.ECUACIONES/1.integral.png" alt="USTransformada_hilbert" width="300" />
 </div>
 
  La Transformada de Hilbert introduce un **desfase de $$\(-90^\circ\)$$** para las frecuencias positivas y un **desfase de $$\(+90^\circ\)$$** para las frecuencias negativas.
@@ -150,8 +150,8 @@ Donde $$\( \hat{x}(t) \)$$ es la Transformada de Hilbert de $$\( x(t) \)$$.
   \]
 
 - Respuesta en frecuencia:
-- <div style="text-align: center;">
-    <img src="./8.ECUACIONES/respuesta.png" alt="USTransformada_hilbert" width="400" />
+<div style="text-align: center;">
+    <img src="./8.ECUACIONES/2.respuesta.png" alt="USTransformada_hilbert" width="300" />
 </div>
 
 
