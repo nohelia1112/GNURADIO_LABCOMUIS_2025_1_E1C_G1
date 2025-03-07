@@ -135,27 +135,27 @@ Los tipos de señales "analogas" en el sistema son reales ***(float)*** y comple
     <img src="./3.Evidencias_Actividad2/Transformada_hilbert.png" alt="USTransformada_hilbert" width="300" />
 </div>
 
-Donde \( \hat{x}(t) \) es la Transformada de Hilbert de \( x(t) \).
-\[
+Donde $\( \hat{x}(t) \)$ es la Transformada de Hilbert de $\( x(t) \)$.
+$\[
 \hat{x}(t) = \frac{1}{\pi} \int_{-\infty}^{\infty} \frac{x(\tau)}{t - \tau} \, d\tau
-\]
+\]$
 
- La Transformada de Hilbert introduce un **desfase de \(-90^\circ\)** para las frecuencias positivas y un **desfase de \(+90^\circ\)** para las frecuencias negativas.
+ La Transformada de Hilbert introduce un **desfase de $\(-90^\circ\)$** para las frecuencias positivas y un **desfase de $\(+90^\circ\)$** para las frecuencias negativas.
 
 **Transformada de Hilbert como filtro:**
 - Respuesta al impulso:
-  \[
+  $\[
   x(t) = \frac{1}{\pi t}
-  \]
+  \]$
 - Respuesta en frecuencia:
-\[
+$\[
 \text{X}(f) = 
 \begin{cases} 
 -j & \text{si } f > 0, \\
 j & \text{si } f < 0, \\
 0 & \text{si } f = 0
 \end{cases}
-\]
+\]$
 
 
 #### Preguntas Orientadoras Actividad 2 //responder , no colocar xd
