@@ -38,7 +38,14 @@ Durante la práctica, se hizo uso de tres equipos de laboratorio: el osciloscopi
 ### Introducción
 La teoría de muestreo es fundamental en el procesamiento de señales, ya que establece las bases para digitalizar y reconstruir señales analógicas sin perder información. El teorema de Nyquist, que exige una frecuencia de muestreo al menos el doble de la frecuencia máxima de la señal, es crucial para evitar el ‘aliasing’. Además, el uso de técnicas como la interpolación y el diezmado son esenciales; la primera aumenta la resolución de la señal, mientras que la segunda reduce la cantidad de datos, optimizando el procesamiento y almacenamiento.
 
+
 Para aplicar y visualizar estos conceptos en la práctica, herramientas como GNU Radio, un osciloscopio como el R&S RTB2004 y un analizador de espectros R&S FPC1000 son fundamentales en un laboratorio de comunicaciones. GNU Radio es un software que permite simular señales de manera flexible y, gracias a su capacidad para integrarse con un analizador de espectros y un osciloscopio, posibilita observar en tiempo real tanto las características espectrales como las propiedades de la señal. Además, se incorpora un radio USRP 2920, que permite la transmisión y recepción de señales en tiempo real, ampliando las posibilidades de experimentación y análisis en el laboratorio.
+
+
+
+Para aplicar y visualizar estos conceptos en la práctica, herramientas como GNU Radio, un osciloscopio como el R&S RTB2004 y un analizador de espectros R&S FPC1000 son fundamentales en un laboratorio de comunicaciones. GNU Radio es un software que permite simular señales de manera flexible y, gracias a su capacidad para integrarse con un analizador de espectros y un osciloscopio, posibilita observar en tiempo real tanto las características espectrales como las propiedades de la señal. Además, se incorpora un radio USRP 2920, que permite la transmisión y recepción de señales en tiempo real, ampliando las posibilidades de experimentación y análisis en el laboratorio.
+
+
 
 
 ### Procedimiento
@@ -118,6 +125,11 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 - [x] 5. ¿Cómo se mide el piso de ruido en el analizador de espectros? ¿Cómo afecta la frecuencia central, SPAN y RBW la medida de piso de ruido? ¿Por qué?
 
 #### Actividad 2: Simulación de Señales en GNU Radio
+
+
+Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [Flujo grama](1.Flujo_grama/simple_flowgraph.grc): 
+
+
 Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [flujograma](1.Flujo_grama/simple_flowgraph.grc): 
 - **Signal Source:**  
 - **Throttle:**  regula la tasa de muestreo de la señal para evitar que el simulador consuma demasiados recursos del sistema 
@@ -126,9 +138,44 @@ Comprender las bases de cómo procesa las señales un software como GNU Radio es
 
 
 
+
+- **Signal Source:** Define los  parametros de la señal como el muestreo tanto en tiempo como frecuencia , la forma de onda, la frecuencia, la amplitud, el offset , la fase y el tipo de dato.
+- **Throttle:**  Regula la tasa de muestreo de la señal para evitar que el simulador consuma demasiados recursos del sistema 
+- **QT GUI Time Sink:** Define el numero de puntos que representan la señal en el dominio del tiempo.
+- **QT GUI Frequency Sink:** Responsable de realizar el cambio de dominio del tiempo a el dominio de la frecuencia,definir el ancho de banda de la respuesta en frecuencia y permitirnos visualizar la magnitud en el espectro. 
+
+Los tipos de señales "analogas" en el sistema son reales ***(float)*** y complejas ***(complex)*** donde para generar la componente compleja hace uso ***Filtro de Hilbert*** [[1]](#bibliografía) , [[2]](#bibliografía)
+
+<div style="text-align: center;">
+    <img src="./3.Evidencias_Actividad2/Transformada_hilbert.png" alt="USTransformada_hilbert" width="300" />
+</div>
+
+Donde \( \hat{x}(t) \) es la Transformada de Hilbert de \( x(t) \).
+\[
+\hat{x}(t) = \frac{1}{\pi} \int_{-\infty}^{\infty} \frac{x(\tau)}{t - \tau} \, d\tau
+\]
+
+ La Transformada de Hilbert introduce un **desfase de \(-90^\circ\)** para las frecuencias positivas y un **desfase de \(+90^\circ\)** para las frecuencias negativas.
+
+**Transformada de Hilbert como filtro:**
+- Respuesta al impulso:
+  \[
+  x(t) = \frac{1}{\pi t}
+  \]
+- Respuesta en frecuencia:
+\[
+\text{X}(f) = 
+\begin{cases} 
+-j & \text{si } f > 0, \\
+j & \text{si } f < 0, \\
+0 & \text{si } f = 0
+\end{cases}
+\]
+
+
 #### Preguntas Orientadoras Actividad 2 //responder , no colocar xd
 
-- [ ] 1. ¿Cómo se puede explicar matemáticamente la diferencia entre una fuente de tipo flotante y una de tipo complejo?
+- [x] 1. ¿Cómo se puede explicar matemáticamente la diferencia entre una fuente de tipo flotante y una de tipo complejo?
 - [ ] 2. ¿Cómo afecta la forma de onda a la distribución de energía (potencia) en el dominio de la frecuencia?
 - [ ] 3. ¿Qué sucede con la señal en el dominio del tiempo y la frecuencia si se modifican los diferentes parámetros de la fuente? ¿Lo observado corresponde a lo esperado teóricamente?
 - [ ] 4. ¿Cómo se relaciona la amplitud de la señal con la potencia observada en el dominio de la frecuencia?
@@ -161,7 +208,7 @@ Se sintetizan los principales aportes y puntos relevantes de la práctica, evita
 ---
 ## Referencias
 
-### Bibliografía
+## Bibliografía
 
 - [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 95-100,132. Chapter 2.6 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
 
