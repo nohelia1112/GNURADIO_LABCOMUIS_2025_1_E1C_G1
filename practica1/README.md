@@ -119,7 +119,7 @@ Entre medir una señal en el dominio del tiempo (vista con el osciloscopio) y en
 </div>
 
 <div style="text-align: center;">
-    <img src="./2.Evidencias_Actividad1/sin_osciloscopio.jpg" alt="sin_osciloscopio" width="400" />
+    <img src="./2.Evidencias_Actividad1/Sin_osciloscopio.jpg" alt="sin_osciloscopio" width="400" />
 </div>
 
 Teniendo en cuenta las especificaciones anteriores, se procedió a hallar la 
@@ -139,7 +139,6 @@ A continuación, se realiza el cálculo del piso de ruido:
   $NF[dBm/Hz]  = P_Nref[dBm] - 10 log(\frac{RBW}{1 [Hz]})$
   $NF = -100-10log(\frac{300}{1})$
   $NF = -124,771 [dBm/Hz]$
-
 
 
 #### Actividad 2: Simulación de Señales en GNU Radio
