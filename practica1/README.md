@@ -123,14 +123,17 @@ potencia de ruido ($P_N$) y calcular el piso de ruido normalizado ($NF$):
 
 Donde se puede observar que:
 
-  $RBW = 300[Hz]$ \\
+  $RBW = 300[Hz]$
+  
   $P_Nref ≈ -100[dBm]$
 
 A continuación, se realiza el cálculo del piso de ruido:
 
-  $NF[dBm/Hz]  = P_Nref[dBm] - 10 log(\frac{RBW}{1 [Hz]})$ \\
-  $NF = -100-10log(\frac{300}{1})$ \\
-  $NF = -124,771 [dBm/Hz]$ \\
+  $NF[dBm/Hz]  = P_Nref[dBm] - 10 log(\frac{RBW}{1 [Hz]})$
+
+  $NF = -100-10log(\frac{300}{1})$
+
+  $NF = -124,771 [dBm/Hz]$
 
 
 #### Actividad 2: Simulación de Señales en GNU Radio
