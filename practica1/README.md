@@ -140,13 +140,16 @@ $$\[
 \hat{x}(t) = \frac{1}{\pi} \int_{-\infty}^{\infty} \frac{x(\tau)}{t - \tau} \, d\tau
 \]$$
 
+  <div style="text-align: center;">
+    <img src="./8.ECUACIONES/integral.png" alt="USTransformada_hilbert" width="500" />
+</div>
+
  La Transformada de Hilbert introduce un **desfase de $$\(-90^\circ\)$$** para las frecuencias positivas y un **desfase de $$\(+90^\circ\)$$** para las frecuencias negativas.
 
 **Transformada de Hilbert como filtro:**
 - Respuesta al impulso:
-  $$\[
   x(t) = \frac{1}{\pi t}
-  \]$$
+
 - Respuesta en frecuencia:
 $$\[
 \text{X}(f) = 
@@ -156,6 +159,9 @@ j & \text{si } f < 0, \\
 0 & \text{si } f = 0
 \end{cases}
 \]$$
+- <div style="text-align: center;">
+    <img src="./8.ECUACIONES/respuesta.png" alt="USTransformada_hilbert" width="400" />
+</div>
 
 
 #### Preguntas Orientadoras Actividad 2 //responder , no colocar xd
