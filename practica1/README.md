@@ -124,15 +124,6 @@ Se utiliza para garantizar que las señales transmitidas y recibidas estén exac
 Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [Flujo grama](1.Flujo_grama/simple_flowgraph.grc): 
 
 
-Comprender las bases de cómo procesa las señales un software como GNU Radio es fundamental para trazar un margen claro entre la teoría y lo que podemos observar en una simulación. En este contexto, exploraremos los bloques principales de un esquema de diseño del siguiente [flujograma](1.Flujo_grama/simple_flowgraph.grc): 
-- **Signal Source:**  
-- **Throttle:**  regula la tasa de muestreo de la señal para evitar que el simulador consuma demasiados recursos del sistema 
-- **QT GUI Time Sink:** muestra la señal en el dominio del tiempo
-- **QT GUI Frequency Sink:** muestra la señal en el dominio de la frecuencia
-
-
-
-
 - **Signal Source:** Define los  parametros de la señal como el muestreo tanto en tiempo como frecuencia , la forma de onda, la frecuencia, la amplitud, el offset , la fase y el tipo de dato.
 - **Throttle:**  Regula la tasa de muestreo de la señal para evitar que el simulador consuma demasiados recursos del sistema 
 - **QT GUI Time Sink:** Define el numero de puntos que representan la señal en el dominio del tiempo.
@@ -144,27 +135,24 @@ Los tipos de señales "analogas" en el sistema son reales ***(float)*** y comple
     <img src="./3.Evidencias_Actividad2/Transformada_hilbert.png" alt="USTransformada_hilbert" width="300" />
 </div>
 
-Donde \( \hat{x}(t) \) es la Transformada de Hilbert de \( x(t) \).
-\[
-\hat{x}(t) = \frac{1}{\pi} \int_{-\infty}^{\infty} \frac{x(\tau)}{t - \tau} \, d\tau
-\]
+Donde $$\ \hat{x}(t) \$$ es la Transformada de Hilbert de $$\ x(t) \$$.
 
- La Transformada de Hilbert introduce un **desfase de \(-90^\circ\)** para las frecuencias positivas y un **desfase de \(+90^\circ\)** para las frecuencias negativas.
+  <div style="text-align: center;">
+    <img src="./6.ECUACIONES/1.integral.png" alt="USTransformada_hilbert" width="200" />
+</div>
+
+ La Transformada de Hilbert introduce un **desfase de $$\(-90^\circ\)$$** para las frecuencias positivas y un **desfase de $$\(+90^\circ\)$$** para las frecuencias negativas.
 
 **Transformada de Hilbert como filtro:**
 - Respuesta al impulso:
   \[
   x(t) = \frac{1}{\pi t}
   \]
+
 - Respuesta en frecuencia:
-\[
-\text{X}(f) = 
-\begin{cases} 
--j & \text{si } f > 0, \\
-j & \text{si } f < 0, \\
-0 & \text{si } f = 0
-\end{cases}
-\]
+<div style="text-align: center;">
+    <img src="./6.ECUACIONES/2.respuesta.png" alt="USTransformada_hilbert" width="250" />
+</div>
 
 
 #### Preguntas Orientadoras Actividad 2 //responder , no colocar xd
@@ -197,7 +185,10 @@ j & \text{si } f < 0, \\
 ---
 ## Conclusiones
 
-Se sintetizan los principales aportes y puntos relevantes de la práctica, evitando repetir lo ya consignado en las otras secciones del informe.
+  - 1. La potencia de la señal es un factor clave en la calidad de la comunicación, pero no es el único elemento determinante. Para lograr una comunicación efectiva, es necesario equilibrar la potencia con aspectos como las interferencias causadas por el mal estado del medio de transmisión o la saturación de la señal debido a una potencia excesiva. En ese sentido, el piso de ruido juega un papel crucial, ya que establece el límite mínimo (inferior) para la detección de señales. Una señal solo puede ser identificada si su potencia supera este umbral, de lo contrario, se confunde con el ruido propio del ambiente. Si la señal es muy débil y se aproxima al piso de ruido, la relación señal-ruido será baja, dificultando su detección. Para solucionar este problema, se pueden emplear receptores con mayor sensibilidad o técnicas de mejora que permitan distinguir la señal del ruido, lo que resalta la importancia de considerar tanto el entorno como las capacidades de los equipos utilizados.
+  
+ - 2. Las limitaciones de los equipos, como el ancho de banda ya mencionado anteriormente del radio USRP 2920, impone restricciones en la cantidad de información que puede transmitirse o recibirse por unidad de tiempo y la imposibilidad de que este radio sea de utilidad en aplicaciones de banda ancha. Además, en entornos con alto nivel de ruido, las mediciones de una señal pueden mejorarse mediante el uso de filtros adaptados a las necesidades específicas y, en algunos casos, implementando blindajes para proteger la señal del ruido externo. Estas estrategias son esenciales para garantizar la precisión y fiabilidad de las mediciones en condiciones adversas para diferentes aplicaciones reales. Un ejemplo cotidiano es la radio FM, que opera en un ancho de banda de 87.5[MHz] a 108 [MHz], o incluso la radioastronomía, que abarca desde 300[MHz] hasta 300[GHz], dividiéndose en bandas como UHF, SHF y EHF. Estas aplicaciones ilustran la relevancia de comprender y optimizar estos parámetros para el funcionamiento eficiente de sistemas de comunicación en diferentes contextos. 
+
 
 ---
 ## Referencias
@@ -206,11 +197,11 @@ Se sintetizan los principales aportes y puntos relevantes de la práctica, evita
 
 - [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 95-100,132. Chapter 2.6 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
 
-- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®RTB2000 Digital Oscilloscope User Manual. 2017. p. 34-108.
+- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®RTB2000 Digital Oscilloscope User Manual. 2017. p. 34-108.[Abrir documento en el repositorio][Abrir manual del osciloscopio](../Equipos_de_laboratorio/Oscilloscope_RTB_UserManual_en.pdf).
 
-- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®FPC1000 Spectrum Analyzer User Manual. 2017. p. 36-148.
+- [R&S, 2017] Rohde & Schwarz GmbH & Co. R&S®FPC1000 Spectrum Analyzer User Manual. 2017. p. 36-148.[Abrir manual del Analizador de espectros](../Equipos_de_laboratorio/Spectrum_Analyzer_FPC_XXX_ANL-EN.pdf)
 
-- [NI, 2025] NATIONAL INSTRUMENTS CORP. USRP-2920 Specifications. 2025. p. 3-148.
+- [NI, 2025] NATIONAL INSTRUMENTS CORP. USRP-2920 Specifications. 2025. p. 3-148.[Abrir manual del Radio](../Equipos_de_laboratorio/usrp-2920_specifications.pdf)
 
 
 ### Recursos Digitales
