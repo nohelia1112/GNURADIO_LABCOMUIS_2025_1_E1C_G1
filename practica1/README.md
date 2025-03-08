@@ -225,7 +225,9 @@ $\text{SNR}{[\text{dB}]} = 10 \log{_{10}} \left( \frac{P_S}{P_N} \right) \quad \
 
 Donde $P_S$ es la potencia de la señal y $P_N$ la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción.
 
-#### Caso 1. Señal constante
+##### Señales Alambricas
+
+ **Caso 1. Señal constante**
 
 <div style="text-align: center;">
     <img src="./4.Evidencias_Actividad3/Constante_SNR.png" alt="GNUConstante" width="300" />
@@ -237,11 +239,11 @@ Donde $P_S$ es la potencia de la señal y $P_N$ la potencia de ruido, se determi
 |:---:|:---:|
 | **Potencia de la señal** | **Potencia de ruido** |
 
-$SNR_{[dB]} = 19.79[dB] - (-39.38) [dB]$
+$SNR_{[dBm]} = 19.79[dBm] - (-39.38) [dBm]$
 
-$SNR_{[dB]} = 59.17[dB]$
+$SNR_{[dBm]} = 59.17[dBm]$
 
-#### Caso 2. Señal ventana
+**Caso 2. Señal ventana**
 
 <div style="text-align: center;">
     <img src="./4.Evidencias_Actividad3/Z_NS_Cajas_SNR.png" alt="GNUVentana" width="300" />
@@ -252,11 +254,11 @@ $SNR_{[dB]} = 59.17[dB]$
 |:---:|:---:|
 | **Potencia de la señal** | **Potencia de ruido** |
 
-$SNR_{[dB]} = 13.64[dB] - (-48.43) [dB]$
+$SNR_{[dB]} \approx 13.64*5[dBm] - (-48.43) [dBm]$
 
-$SNR_{[dB]} = 62.07[dB]$
+$SNR_{[dB]} \approx 116.63[dBm]$
 
-#### Caso 3. Señal cosenoidal tipo complejo
+ **Caso 3. Señal cosenoidal tipo complejo**
 
 <div style="text-align: center;">
     <img src="./4.Evidencias_Actividad3/Coseno_Complejo_SNR.png" alt="GNUCos" width="300" />
@@ -267,25 +269,63 @@ $SNR_{[dB]} = 62.07[dB]$
 |:---:|:---:|
 | **Potencia de la señal** | **Potencia de ruido** |
 
-$SNR_{[dB]} = 18.8[dB] - (-47.93) [dB]$
+$SNR_{[dBm]} \approx 18.8*2[dBm] - (-47.93) [dBm]$
 
-$SNR_{[dB]} = 66.73[dB]$
+$SNR_{[dBm]} \approx 85.53[dBm]$
 
-
-Finalmente, se realizó el intento de estimar algunas de estas características utilizando un osciloscopio, ya que este instrumento permite visualizar la amplitud de la señal en el dominio del tiempo (parámetro que también es de utilidad para calcular la potencia).
-
-
-ancho de banda FM y luego ANTENA
+De igual manera, se realizó el intento de estimar algunas de estas características utilizando un osciloscopio, ya que este instrumento permite visualizar la amplitud de la señal en el dominio del tiempo y en el dominio de la frecuencia
 
 
-##### Preguntas Orientadoras Actividad 3 //responder , no colocar xd
+| ![Analizador_Coseno1](./4.Evidencias_Actividad3/Capturas_Analizador_Osciloscopio/Osciloscopio_tiempo.PNG) | ![Analizador_Coseno2](./4.Evidencias_Actividad3/Capturas_Analizador_Osciloscopio/FT_Osciloscopio.jpg) |
+|:---:|:---:|
+| **Señal en el tiempo** | **Espectro** |
 
-- [x] 1. ¿Cómo se configura el USRP 2920 para transmitir una señal en una frecuencia específica?
-- [x] 2. ¿Qué parámetros del flujograma afectan la potencia de la señal transmitida?
-- [x] 3. ¿Cómo se mide el ancho de banda de la señal transmitida en el analizador de espectros?
-- [x] 4. ¿Cómo se calcula la relación señal a ruido (SNR) a partir de las mediciones de potencia y piso de ruido?
-- [ ] 5.¿Qué diferencias se observan en las mediciones de potencia cuando se varía la ganancia del USRP?
-- [x] 6. ¿Es posible medir o estimar la potencia de la señal observada en el osciloscopio? ¿Por qué?  
+##### Señales inalambricas 
+
+<div style="text-align: center;">
+    <img src="./4.Evidencias_Actividad3/antena.jpg" alt="Analizadorantena" width="300" />
+    <p><b>Medida del espectro electromagnetico </b></p>
+</div>
+
+Para poder recibir señales inalambricas hace falta una antena , conocer la frecuencia y BW donde se esta transmitiendo la señal que queremos analizar para ello es importante revisar el uso del espectro.[[ANE]](#bibliografía)
+
+<div style="text-align: center;">
+    <img src="./4.Evidencias_Actividad3/Anchodebanda.jpg" alt="Analizadorantena" width="300" />
+    <p><b>Medida de ancho de banda</b></p>
+</div>
+
+Se realizo un muestreo de una señal de radio en los $95KHz$ , utilizando el método de ancho de banda de $x$  $dB$ consideramos un $x$ de $20dBm$ se hallo que el ancho de banda es de apoximadamente $Bw\approx 2,125MHz$
+
+
+**Caso 1. Señal constante**
+
+<div style="text-align: center;">
+    <img src="./5.ANTENA/Constante.png" alt="GNUConstante" width="300" />
+    <p><b>Señal constante vista en GNU Radio</b></p>
+</div>
+
+
+| ![Analizador_Constante1](./5.ANTENA/Antenta/ConstanteSNR2.png) | ![Analizador_Constante2](./5.ANTENA/Antenta/ConstanteSNR.png)|
+|:---:|:---:|
+| **Potencia de la señal** | **Potencia ruido** |
+
+$SNR_{[dBm]} = -44.43[dBm] - (-115.45) [dBm]$
+
+$SNR_{[dBm]} = 71.02[dBm]$
+
+
+**Caso 2. Señal triangular**
+<div style="text-align: center;">
+    <img src="./5.ANTENA/Triangular.png" alt="GNUConstante" width="300" />
+    <p><b>Señal constante vista en GNU Radio</b></p>
+</div>
+
+
+| ![Analizador_Constante1](./5.ANTENA/Antenta/Triangular_mejorspan_SNR.png) | ![Analizador_Constante2](./5.ANTENA/Antenta/Triangular_mejorspan_SNR2.png)|
+|:---:|:---:|
+| **Potencia de la señal** | **Potencia de ruido** |
+
+Se nota una gran diferencia entre las potencias en medios alambricos y inalambricos,de  apesar de que se manda la misma señal en los medios inalimbricos la potencia es mucho menor. ( [Ver video ](./5.ANTENA/Evidencia_antena_video.mp4) ) 
 
 #### Actividad 4: Análisis de Resultados y Conclusiones
 
@@ -335,7 +375,8 @@ Por otro lado, las limitaciones de los equipos, como el ancho de banda ya mencio
 - Academia Lab. (s.f.). *Transformada de Hilbert*. Recuperado de https://academia-lab.com/enciclopedia/transformada-de-hilbert/  
 - Reyes, Ó. (s.f.). *COMMUNICATION SYSTEMS. Lesson 1-3: The dB in Communications*. Recuperado de https://lms.uis.edu.co/ava/pluginfile.php/271940/mod_folder/content/0/Lesson_1_3_The_dB_in_communications.pdf
 - NATIONAL INSTRUMENTS CORP. (2015). *How to Measure the Noise Floor of Your Signal Analyzer*. Recuperado de https://www.youtube.com/watch?v=ujce9AzrqdY
--International Telecommunication Union (ITU), Spectrum Monitoring – Spectrum Occupancy Measurements, ITU-R Recommendation SM.328-11, May 2006. [Online]. Available: https://www.itu.int/rec/R-REC-SM.328-11-200605-I/en. [Accessed: (fecha de acceso)].
+- International Telecommunication Union (ITU), Spectrum Monitoring – Spectrum Occupancy Measurements, ITU-R Recommendation SM.328-11, May 2006. [Online]. Available: https://www.itu.int/rec/R-REC-SM.328-11-200605-I/en. [Accessed: (fecha de acceso)].
+- Agencia Nacional del Espectro (ANE), *CNABF Técnico*, [Online]. Available: [https://portalespectro.ane.gov.co/Style%20Library/ane_master/cnabf-tecnico.aspx](https://portalespectro.ane.gov.co/Style%20Library/ane_master/cnabf-tecnico.aspx). [Accessed: Oct. 10, 2023].
 
 ### Artículos de Interés
 
