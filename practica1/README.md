@@ -335,16 +335,6 @@ Al hacer los cálculos mencionados en la actividad 3 de la relación señal-ruid
   
 Por otro lado, las limitaciones de los equipos, como el ancho de banda ya mencionado anteriormente del radio USRP 2920, impone restricciones en la cantidad de información que puede transmitirse o recibirse por unidad de tiempo y la imposibilidad de que este radio sea de utilidad en aplicaciones de banda ancha. Además, en entornos con alto nivel de ruido, las mediciones de una señal pueden mejorarse mediante el uso de filtros adaptados a las necesidades específicas y, en algunos casos, implementando blindajes para proteger la señal del ruido externo. Estas estrategias son esenciales para garantizar la precisión y fiabilidad de las mediciones en condiciones adversas para diferentes aplicaciones reales. Un ejemplo cotidiano es la radio FM, que opera en un ancho de banda de 87.5[MHz] a 108 [MHz], o incluso la radioastronomía, que abarca desde 300[MHz] hasta 300[GHz], dividiéndose en bandas como UHF, SHF y EHF.
 
-##### Preguntas Orientadoras Actividad 4 //responder , no colocar xd
-
-- [x] 1. ¿Qué conclusiones se pueden obtener sobre la relación entre la potencia de la señal y la calidad de la comunicación?
-
-- [x] 2. ¿Cómo afecta el piso de ruido a la capacidad de detectar señales débiles?
-- [x] 3. ¿Qué limitaciones tienen los equipos utilizados en términos de ancho de banda y precisión en las mediciones?
-- [x] 4. ¿Cómo se pueden mejorar las mediciones de señal en un entorno con alto nivel de ruido?
-- [x] 5. ¿Qué aplicaciones prácticas tienen las mediciones de potencia y ancho de banda en sistemas de comunicaciones reales?
-- [ ] 6. ¿Cómo se puede medir la respuesta en frecuencia de un canal alámbrico?
-- [ ] 7. ¿Cómo se puede obtener un modelo sencillo de las pérdidas (_pathloss_) en un canal inalámbrico?
 ---
 ## Conclusiones
 
