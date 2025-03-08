@@ -171,7 +171,19 @@ Donde $\hat{x}(t)$ es la Transformada de Hilbert de $x(t)$.
 <div style="text-align: center;">
     <img src="./6.ECUACIONES/2.respuesta.png" alt="USTransformada_hilbert" width="250" />
 </div>
+**Resolución en frecuencia**:
 
+La resolucion en **GNURADIO** nos permite ver con mejor calidad la señal y poder realizar un analasis mas profundo de como trabajar con ella, esta dada por la siguiente expresion:
+\[  
+\text{Resolución en frecuencia} = \frac{f_s}{N}
+ \]
+Donde $f_s$ es el ***sample_rate*** , $N$ el numero de puntos de la ***trasnformada de fourier***. 
+
+Es importante tener claro los conceptos de muestro,como el ***teorema de Nyquist*** [[3]](#bibliografía) , ya que podriamos tener alissing si estamos muestreando mal una señal y esto nos puede llevar a un analisis incongruente. A continuacion se van a mostrar imagenes de algunas señales con alliasing  
+ 
+| ![Analizador_Sin](./3.Evidencias_Actividad2/ALIASSING_Cuadrado1024_ESPECTRO.png) | ![sin_osciloscopio](./3.Evidencias_Actividad2/ALIASSING_Sample_rate_y_FFT_1024_SIN_Ft.png) |
+|:---:|:---:|
+| **Onda cuadrada** | **Senosoidal** |
 
 ##### Preguntas Orientadoras Actividad 2 //responder , no colocar xd
 
@@ -188,9 +200,7 @@ Lo primero que se debe hacer es configurar en GNU Radio el flujograma otorgado e
 
 Las medidas de interés para el presente laboratorio son parámetros clave como potencia, ancho de banda, piso de ruido y relación señal a ruido (SNR). Para medir el ancho de banda de la señal transmitida, se utilizan marcadores en el analizador de espectro. El Marcador 1 se coloca en el pico de la señal, mientras que los Marcadores 2 y 3 se ubican en los puntos donde la amplitud disminuye 3[dB] a cada lado respecto al pico, y es la diferencia en frecuencia entre estos dos puntos lo define el ancho de banda de la señal. Otro parámetro importante es la relación señal a ruido (SNR), la cual se calcula a partir de las mediciones de potencia de la señal y del ruido obtenidas con los marcadores del analizador de espectro. Haciendo uso de la fórmula:
 
-$SNR_{[dB]} = 10 \log_{10} \left( \frac{P_S{[W]} }{P_N{[W]} } \right)$
-
-$SNR_{[dB]} = P_S {[dB]} - P_N {[dB]} $
+$\text{SNR}{[\text{dB}]} = 10 \log{10} \left( \frac{P_S}{P_N} \right) \quad \text{ó} \quad \text{SNR}_{[\text{dB}]} = P_s \, [\text{dB}] - P_n \, [\text{dB}]$
 
 Donde $P_S$ es la potencia de la señal y $P_N$ la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción.
 
@@ -261,7 +271,8 @@ Finalmente, fue posible estimar algunas de estas características utilizando un 
 
 
 ### Recursos Digitales
-- Wikipedia. (s.f.). *Transformada de Hilbert*. Recuperado de https://es.wikipedia.org/wiki/Transformada_de_Hilbert  
+- Wikipedia. (s.f.). *Transformada de Hilbert*. Recuperado de https://es.wikipedia.org/wiki/Transformada_de_Hilbert
+- Wikipedia. (s.f.). Teorema de muestreo de Nyquist-Shannon. Recuperado de https://es.wikipedia.org/wiki/Teorema_de_muestreo_de_Nyquist-Shannon   
 - Academia Lab. (s.f.). *Transformada de Hilbert*. Recuperado de https://academia-lab.com/enciclopedia/transformada-de-hilbert/  
 - Reyes, Ó. (s.f.). *COMMUNICATION SYSTEMS. Lesson 1-3: The dB in Communications*. Recuperado de https://lms.uis.edu.co/ava/pluginfile.php/271940/mod_folder/content/0/Lesson_1_3_The_dB_in_communications.pdf
 - NATIONAL INSTRUMENTS CORP. (2015). *How to Measure the Noise Floor of Your Signal Analyzer*. Recuperado de https://www.youtube.com/watch?v=ujce9AzrqdY
