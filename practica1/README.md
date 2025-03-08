@@ -185,24 +185,45 @@ Es importante tener claro los conceptos de muestro,como el ***teorema de Nyquist
 |:---:|:---:|
 | **Onda cuadrada** | **Senosoidal** |
 
-##### Preguntas Orientadoras Actividad 2 //responder , no colocar xd
+A simple vista no es observable( [Ver mas a detalle ](../3.Evidencias_Actividad2/ALIASSING_Sample_rate_y_FFT_1024_SIN_Ft.png) ), la frecuencia de muestreo para estos ejemplos fue de 1024 $Hz$ y la frecuencia de dichas señales es de 1 $KHz$ entonces por el teorema de Nyquist se conoce que estas señales fueron mal muestras. Este efecto genera cohecifientes en frecuencias no deseadas del especto cambiando y distribuyendo la potencia de la señal en la frecuencia de forma inadecuada.
 
-- [x] 1. ¿Cómo se puede explicar matemáticamente la diferencia entre una fuente de tipo flotante y una de tipo complejo?
-- [ ] 2. ¿Cómo afecta la forma de onda a la distribución de energía (potencia) en el dominio de la frecuencia?
-- [ ] 3. ¿Qué sucede con la señal en el dominio del tiempo y la frecuencia si se modifican los diferentes parámetros de la fuente? ¿Lo observado corresponde a lo esperado teóricamente?
-- [ ] 4. ¿Cómo se relaciona la amplitud de la señal con la potencia observada en el dominio de la frecuencia?
-- [ ] 5. ¿Qué diferencias se observan entre una señal senoidal y una señal cuadrada en el dominio de la frecuencia?
+La distribucion de la potencia de las señales en el dominio de la frecuencia dependen directamente de dos factores.
+
+| ![Potencia de una señal](./6.ECUACIONES/potencia.png) | ![Transformada de fourier](./6.ECUACIONES/fourier.png) |
+|:---:|:---:|
+| **Potencia de una señal** | **Transformada de fourier** |
+
+La ***$TF$ (trasnformada de fourier)*** la cual es la responsable de dar la forma del espectro y la distribucion de potencia en el dominio de la frecuencia y la ***potencia*** de la señal que es una caracteristica dependiente de la forma de onda de la señal en el tiempo o en la frecuencia.
+
+Se ilustratan estos conceptos con unos ejemplos:
+
+| ![Analizador_Sin](./3.Evidencias_Actividad2/P_SIN.png) | ![sin_osciloscopio](./3.Evidencias_Actividad2/Triangular_Compleja_Potencia.png) |
+|:---:|:---:|
+| **Potencia Seno** | **Potencia Triangular compleja** |
+
+La potencia de una senosoidal es $P = \frac{A^2}{2}$ , esta potencia se divide en la cantidad de armonicos que observamos en el espectro en este solo son dos debio a la TF, por lo que puede comprobarse que  $10 \log{_{10}} \left( \frac{A^2}{2*2} \right)$.
+Para el caso de la triangular su potencia es de $P = \frac{A^2}{3}$ esta potencia tiene que dividirse en todo el espectro la triangular
+ <div style="text-align: center;">
+    <img src="./3.Evidencias_Actividad2/image.png" alt="GNUConstante" width="300" />
+    <p><b>Triangular real espectro</b></p>
+</div>
+Ccomo puede observase son muchos armonicos. Para calcular la potencia total de esta señal es necesario considerar un criterio para medir el ancho de banda y calcular la potencia en ese ancho.Sin embargo tambien es posible hacer un analisis analitico ya que al convertir una señal real añadiendo la transformada de Hilbert  desaparece la parte negativa del espectro y toda la energía queda concentrada en un solo lado de la frecuencia. Dicho de otro modo, la señal real, que antes era simétrica en frecuencia, se transforma en una señal “unilateral”, gracias a la componente en cuadratura.
 
 #### Actividad 3: Transmisión y Medición de Señales con el USRP 2920
 
 
-Lo primero que se debe hacer es configurar en GNU Radio el flujograma otorgado en la guía del informe para transmitir una señal a través del radio USRP 2920, deshabilitándose los bloques Channel Model, Throttle, UHD: USRP Sink, Virtual Sink. Después, se edita el valor de la frecuencia según se requiera en el bloque de frecuencia de muestreo (samp_rate). En cuanto al entorno físico, se debe conectar un cable ethernet para establecer la comunicación entre GNU Radio y el USRP, y para visualizar la señal, se conecta otro cable desde la terminal TX1 del USRP al analizador de espectro. Dentro del flujograma se puede encontrar uno de los parámetros clave que afectan la potencia de la señal transmitida. Se trata del bloque QT GUI Range, el cual permite variar la amplitud de la señal en tiempo real. Este ajuste influye directamente en la potencia de transmisión, lo que se refleja en la visualización de la señal en el analizador de espectro.
+Lo primero que se debe hacer es configurar en GNU Radio el flujograma otorgado en la guía del informe para transmitir una señal a través del radio USRP 2920, deshabilitándose los bloques Channel Model, Throttle, UHD: USRP Sink, Virtual Sink. Después, se edita el valor de la frecuencia según se requiera en el bloque de frecuencia de muestreo (samp_rate). En cuanto al entorno físico, se debe conectar un cable ethernet para establecer la comunicación entre GNU Radio y el USRP, y para visualizar la señal, se conecta otro cable desde la terminal TX1 del USRP al analizador de espectro. Dentro del flujograma se puede encontrar uno de los parámetros clave que afectan la potencia de la señal transmitida. Se trata del bloque QT GUI Range, el cual permite variar la amplitud de la señal portadora en tiempo real. Este ajuste influye directamente en la potencia de transmisión, lo que se refleja en la visualización de la señal en el analizador de espectro.
+
+<div style="text-align: center;">
+    <img src="./4.Evidencias_Actividad3/qam_modulator.png" alt="GNUConstante" width="300" />
+    <p><b>Esquema de como procesa la señal el radio</b></p>
+</div>
 
 Las medidas de interés para el presente laboratorio son parámetros clave como potencia, ancho de banda, piso de ruido y relación señal a ruido (SNR). Para medir el ancho de banda de la señal transmitida, se utilizan marcadores en el analizador de espectro. El Marcador 1 se coloca en el pico de la señal, mientras que los Marcadores 2 y 3 se ubican en los puntos donde la amplitud disminuye 3[dB] a cada lado respecto al pico, y es la diferencia en frecuencia entre estos dos puntos lo define el ancho de banda de la señal. Otro parámetro importante es la relación señal a ruido (SNR), la cual se calcula a partir de las mediciones de potencia de la señal y del ruido obtenidas con los marcadores del analizador de espectro. Haciendo uso de la fórmula:
 
-$\text{SNR}{[\text{dB}]} = 10 \log{10} \left( \frac{P_S}{P_N} \right) \quad \text{ó} \quad \text{SNR}_{[\text{dB}]} = P_s \, [\text{dB}] - P_n \, [\text{dB}]$
+$\text{SNR}{[\text{dB}]} = 10 \log{_{10}} \left( \frac{P_S}{P_N} \right) \quad \text{ó} \quad \text{SNR}_{[\text{dB}]} = P_s \, [\text{dB}] - P_n \, [\text{dB}]$
 
-donde $P_S$ es la potencia de la señal y $P_N$ la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción.
+Donde $P_S$ es la potencia de la señal y $P_N$ la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción.
 
 #### Caso 1. Señal constante
 
@@ -252,6 +273,9 @@ $SNR_{[dB]} = 66.73[dB]$
 
 
 Finalmente, se realizó el intento de estimar algunas de estas características utilizando un osciloscopio, ya que este instrumento permite visualizar la amplitud de la señal en el dominio del tiempo (parámetro que también es de utilidad para calcular la potencia).
+
+
+ancho de banda FM y luego ANTENA
 
 
 ##### Preguntas Orientadoras Actividad 3 //responder , no colocar xd
@@ -311,81 +335,13 @@ Por otro lado, las limitaciones de los equipos, como el ancho de banda ya mencio
 - Academia Lab. (s.f.). *Transformada de Hilbert*. Recuperado de https://academia-lab.com/enciclopedia/transformada-de-hilbert/  
 - Reyes, Ó. (s.f.). *COMMUNICATION SYSTEMS. Lesson 1-3: The dB in Communications*. Recuperado de https://lms.uis.edu.co/ava/pluginfile.php/271940/mod_folder/content/0/Lesson_1_3_The_dB_in_communications.pdf
 - NATIONAL INSTRUMENTS CORP. (2015). *How to Measure the Noise Floor of Your Signal Analyzer*. Recuperado de https://www.youtube.com/watch?v=ujce9AzrqdY
-
+-International Telecommunication Union (ITU), Spectrum Monitoring – Spectrum Occupancy Measurements, ITU-R Recommendation SM.328-11, May 2006. [Online]. Available: https://www.itu.int/rec/R-REC-SM.328-11-200605-I/en. [Accessed: (fecha de acceso)].
 
 ### Artículos de Interés
 
 - Carrick, J. (2011). *Design and Application of a Hilbert Transformer in a Digital Receiver*. [Abrir documento en el repositorio](7.ANEXOS/DESIGN_AND_APPLICATION_OF_A_HILBERT_TRANSFORMER_IN_A_DIGITAL_RECEIVER.pdf).  
 - Hasegawa, T., & Sugiura, H. (2022). *Filtered Integration Rules for Finite Weighted Hilbert Transforms*. [Abrir documento en el repositorio](7.ANEXOS/Filtered_integration_rules_for_finite_weighted_Hilbert.pdf).  
   
----
-
-# Ejemplos usando Markdown
-
-Volver al [INICIO](#laboratorio-de-comunicaciones)
-
-## Inclusión de Imágenes
-
-### Imagen de referencia dentro del repositorio
-
-![Networking](my%20file/test.png)
-
-### Imagen de fuente externa
-
-![GNU Radio logo](https://kb.ettus.com/images/thumb/5/50/gnuradio.png/600px-gnuradio.png)
-
-### Uso de html para cambiar escala de la imagen
-
-<img src="https://kb.ettus.com/images/thumb/5/50/gnuradio.png/600px-gnuradio.png" alt="GNU Radio Logo" width="300">
-
-## Creación de hipevínculos
-
-- [Aprende Markdown](https://markdown.es/)
-- [Más acerca de Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-- [Abrir documento en el repositorio](my%20file/test_file.txt). Si hay espacios en la ruta de su archivo, reemplácelos por `%20`.
-- Ir a una sección de este documento. Por ejemplo: [Ir a Contenido](#contenido) Tenga en cuenta escribir el título de la sección en minúsculas y los espacios reemplazarlos por guiones.
-
-## Uso de Expresiones Matemáticas
-
-Se pueden incluir ecuaciones en el archivo `README.md` utilizando sintaxis similar a [LaTeX](https://manualdelatex.com/tutoriales/ecuaciones):
-
-### Ecuaciones en Línea
-
-```
-La energía de una señal exponencial es $E = \int_0^\infty A^2 e^{-2t/\tau} dt$.
-```
-
-**Salida renderizada:**
-La energía de una señal exponencial es $E = \int_0^\infty A^2 e^{-2t/\tau} dt$.
-
-### Ecuaciones en Bloque
-
-```
-$$E = \int_0^\infty A^2 e^{-2t/\tau} dt = \frac{A^2 \tau}{2}$$
-```
-
-**Salida renderizada**
-$$E = \int_0^\infty A^2 e^{-2t/\tau} dt = \frac{A^2 \tau}{2}$$
-
-## Creación de Tablas
-
-**Tabla 1.** Ejemplo de tabla en Markdown.
-
-| Parámetro | Valor |
-|-----------|-------|
-| Frecuencia (Hz) | 1000 |
-| Amplitud (V) | 5 |
-| Ciclo útil (%) | 50 |
-
-## Inclusión de código
-
-```python
-def hello_world():
-    print("Hello, World!")
-```
-
-También es posible resaltar texto tipo código como `print("Hello, World!")`.
-
 ---
 
 Volver al [INICIO](#laboratorio-de-comunicaciones)
