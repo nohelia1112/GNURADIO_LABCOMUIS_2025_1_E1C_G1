@@ -194,10 +194,27 @@ $SNR_{[dB]} = P_S {[dB]} - P_N {[dB]} $
 
 Donde $P_S$ es la potencia de la señal y $P_N$ la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción.
 
-<div style="text-align: center;">
-    <img src="./Capturas_Analizador_Osciloscopio.png" alt="USTransformada_hilbert" width="250" />
-</div>
+#### Caso 1. Señal constante
 
+| ![Analizador_Constante1](./4.Evidencias_Actividad3/Capturas_Analizador_Osciloscopio/ConstanteSNR.png) | ![Analizador_Constante2](./4.Evidencias_Actividad3/Capturas_Analizador_Osciloscopio/ConstanteSNR2.png)|
+|:---:|:---:|
+| **Potencia de la señal** | **Potencia de ruido** |
+
+$SNR_{[dB]} = 19.79[dB] - (-39.38) [dB]$
+
+$SNR_{[dB]} = 59.17[dB]$
+
+#### Caso 2. Señal ventana
+
+| ![Analizador_Caja1](./4.Evidencias_Actividad3/Capturas_Analizador_Osciloscopio/SNR1_1.png) | ![Analizador_Caja2](./4.Evidencias_Actividad3/Capturas_Analizador_Osciloscopio/SNR1_2.png)|
+|:---:|:---:|
+| **Potencia de la señal** | **Potencia de ruido** |
+
+#### Caso 3. Señal cosenoidal tipo complejo
+
+| ![Analizador_Coseno1](./4.Evidencias_Actividad3/Capturas_Analizador_Osciloscopio/SNR2_1.png) | ![Analizador_Coseno2](./4.Evidencias_Actividad3/Capturas_Analizador_Osciloscopio/SNR2_2.png) |
+|:---:|:---:|
+| **Potencia de la señal** | **Potencia de ruido** |
 
 
 Finalmente, fue posible estimar algunas de estas características utilizando un osciloscopio, ya que este instrumento permite visualizar la amplitud de la señal en el dominio del tiempo, parámetro que también es de utilidad para calcular la potencia.
