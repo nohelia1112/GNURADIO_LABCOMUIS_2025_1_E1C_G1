@@ -202,9 +202,9 @@ Las medidas de interés para el presente laboratorio son parámetros clave como 
 
 $\text{SNR}{[\text{dB}]} = 10 \log{10} \left( \frac{P_S}{P_N} \right) \quad \text{ó} \quad \text{SNR}_{[\text{dB}]} = P_s \, [\text{dB}] - P_n \, [\text{dB}]$
 
-Donde $P_S$ es la potencia de la señal y $P_N$ la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción.
+donde $P_S$ es la potencia de la señal y $P_N$ la potencia de ruido, se determina la calidad de la señal en términos de su nivel respecto al ruido presente. Este cálculo es fundamental para evaluar el desempeño del sistema de transmisión y garantizar que la señal sea lo suficientemente robusta para su recepción.
 
-##### Caso 1. Señal constante
+#### Caso 1. Señal constante
 
 <div style="text-align: center;">
     <img src="./4.Evidencias_Actividad3/Constante_SNR.png" alt="GNUConstante" width="300" />
@@ -220,7 +220,7 @@ $SNR_{[dB]} = 19.79[dB] - (-39.38) [dB]$
 
 $SNR_{[dB]} = 59.17[dB]$
 
-##### Caso 2. Señal ventana
+#### Caso 2. Señal ventana
 
 <div style="text-align: center;">
     <img src="./4.Evidencias_Actividad3/Z_NS_Cajas_SNR.png" alt="GNUVentana" width="300" />
@@ -235,7 +235,7 @@ $SNR_{[dB]} = 13.64[dB] - (-48.43) [dB]$
 
 $SNR_{[dB]} = 62.07[dB]$
 
-##### Caso 3. Señal cosenoidal tipo complejo
+#### Caso 3. Señal cosenoidal tipo complejo
 
 <div style="text-align: center;">
     <img src="./4.Evidencias_Actividad3/Coseno_Complejo_SNR.png" alt="GNUCos" width="300" />
@@ -251,7 +251,7 @@ $SNR_{[dB]} = 18.8[dB] - (-47.93) [dB]$
 $SNR_{[dB]} = 66.73[dB]$
 
 
-Finalmente, fue posible estimar algunas de estas características utilizando un osciloscopio, ya que este instrumento permite visualizar la amplitud de la señal en el dominio del tiempo, parámetro que también es de utilidad para calcular la potencia.
+Finalmente, se realizó el intento de estimar algunas de estas características utilizando un osciloscopio, ya que este instrumento permite visualizar la amplitud de la señal en el dominio del tiempo (parámetro que también es de utilidad para calcular la potencia).
 
 
 ##### Preguntas Orientadoras Actividad 3 //responder , no colocar xd
@@ -264,11 +264,17 @@ Finalmente, fue posible estimar algunas de estas características utilizando un 
 - [x] 6. ¿Es posible medir o estimar la potencia de la señal observada en el osciloscopio? ¿Por qué?  
 
 #### Actividad 4: Análisis de Resultados y Conclusiones
+
+Para lograr una comunicación efectiva, es necesario equilibrar la potencia con aspectos como las interferencias causadas por el mal estado del medio de transmisión o la saturación de la señal debido a una potencia excesiva. El piso de ruido juega un papel crucial, ya que establece el límite mínimo (inferior) para la detección de señales. Una señal solo puede ser identificada si su potencia supera este umbral, de lo contrario, se confunde con el ruido propio del ambiente. Si la señal es muy débil y se aproxima al piso de ruido, la relación señal-ruido será baja, dificultando su detección. Para solucionar este problema, se pueden emplear receptores con mayor sensibilidad o técnicas de mejora que permitan distinguir la señal del ruido, lo que resalta la importancia de considerar tanto el entorno como las capacidades de los equipos utilizados.
+
+Al hacer los cálculos mencionados en la actividad 3 de la relación señal-ruido, durante esta cuarta fase del laboratorio se pudo encontrar un error humano y común entre los estudiantes. Se trata del olvido de la distribución de potencia entre todos los armónicos de las señales captadas, por lo que de los tres casos mostrados, solo para la señal constante habría un valor correcto de $P_s$. A pesar de ello, la implementación de la fórmula de SNR fue correcta.
+  
+Por otro lado, las limitaciones de los equipos, como el ancho de banda ya mencionado anteriormente del radio USRP 2920, impone restricciones en la cantidad de información que puede transmitirse o recibirse por unidad de tiempo y la imposibilidad de que este radio sea de utilidad en aplicaciones de banda ancha. Además, en entornos con alto nivel de ruido, las mediciones de una señal pueden mejorarse mediante el uso de filtros adaptados a las necesidades específicas y, en algunos casos, implementando blindajes para proteger la señal del ruido externo. Estas estrategias son esenciales para garantizar la precisión y fiabilidad de las mediciones en condiciones adversas para diferentes aplicaciones reales. Un ejemplo cotidiano es la radio FM, que opera en un ancho de banda de 87.5[MHz] a 108 [MHz], o incluso la radioastronomía, que abarca desde 300[MHz] hasta 300[GHz], dividiéndose en bandas como UHF, SHF y EHF.
+
 ##### Preguntas Orientadoras Actividad 4 //responder , no colocar xd
 
-
-
 - [x] 1. ¿Qué conclusiones se pueden obtener sobre la relación entre la potencia de la señal y la calidad de la comunicación?
+
 - [x] 2. ¿Cómo afecta el piso de ruido a la capacidad de detectar señales débiles?
 - [x] 3. ¿Qué limitaciones tienen los equipos utilizados en términos de ancho de banda y precisión en las mediciones?
 - [x] 4. ¿Cómo se pueden mejorar las mediciones de señal en un entorno con alto nivel de ruido?
@@ -278,10 +284,12 @@ Finalmente, fue posible estimar algunas de estas características utilizando un 
 ---
 ## Conclusiones
 
-  - La potencia de la señal es un factor clave en la calidad de la comunicación, pero no es el único elemento determinante. Para lograr una comunicación efectiva, es necesario equilibrar la potencia con aspectos como las interferencias causadas por el mal estado del medio de transmisión o la saturación de la señal debido a una potencia excesiva. En ese sentido, el piso de ruido juega un papel crucial, ya que establece el límite mínimo (inferior) para la detección de señales. Una señal solo puede ser identificada si su potencia supera este umbral, de lo contrario, se confunde con el ruido propio del ambiente. Si la señal es muy débil y se aproxima al piso de ruido, la relación señal-ruido será baja, dificultando su detección. Para solucionar este problema, se pueden emplear receptores con mayor sensibilidad o técnicas de mejora que permitan distinguir la señal del ruido, lo que resalta la importancia de considerar tanto el entorno como las capacidades de los equipos utilizados.
+  - La potencia de la señal es un factor clave en la calidad de la comunicación, aunque no es el único elemento determinante. Es necesario que esté en equilibrio junto con interferencias y saturaciones.
   
- - Las limitaciones de los equipos, como el ancho de banda ya mencionado anteriormente del radio USRP 2920, impone restricciones en la cantidad de información que puede transmitirse o recibirse por unidad de tiempo y la imposibilidad de que este radio sea de utilidad en aplicaciones de banda ancha. Además, en entornos con alto nivel de ruido, las mediciones de una señal pueden mejorarse mediante el uso de filtros adaptados a las necesidades específicas y, en algunos casos, implementando blindajes para proteger la señal del ruido externo. Estas estrategias son esenciales para garantizar la precisión y fiabilidad de las mediciones en condiciones adversas para diferentes aplicaciones reales. Un ejemplo cotidiano es la radio FM, que opera en un ancho de banda de 87.5[MHz] a 108 [MHz], o incluso la radioastronomía, que abarca desde 300[MHz] hasta 300[GHz], dividiéndose en bandas como UHF, SHF y EHF. Estas aplicaciones ilustran la relevancia de comprender y optimizar estos parámetros para el funcionamiento eficiente de sistemas de comunicación en diferentes contextos. 
-
+  - El piso de ruido define el umbral mínimo para la detección de señales, determinando si una señal puede ser identificada o si se perderá entre el ruido ambiental. Dicho umbral fue calculado y tiene como valor $-124,771 [dBm/Hz]$. Se resalta la importancia de evaluar tanto las condiciones del entorno como las características del equipo utilizado para garantizar una detección precisa.
+  
+ - Las restricciones en el ancho de banda pueden dificultar la detección de señales de alta frecuencia, mientras que las limitaciones en precisión pueden afectar la exactitud de las mediciones. Para mitigar estos inconvenientes, es fundamental elegir el equipo adecuado para cada aplicación y realizar su respectiva configuración según los requerimientos.
+ 
 
 ---
 ## Referencias
