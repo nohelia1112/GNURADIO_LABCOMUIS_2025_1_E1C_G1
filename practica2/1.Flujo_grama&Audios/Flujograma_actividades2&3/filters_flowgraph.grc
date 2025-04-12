@@ -612,7 +612,7 @@ blocks:
     comment: 'Recuerde usar "/" en Linux y "\" en Windows
 
       para describir la ruta del archivo'
-    file: /home/com1_E1C_G1/GNURADIO_LABCOMUIS_2025_1_E1C_G1/practica2/harvard.wav
+    file: /home/com1_E1C_G1/GNURADIO_LABCOMUIS_2025_1_E1C_G1/practica2/1.Flujo_grama&Audios/Audios/file_example_WAV_1MG.wav
     maxoutbuf: '0'
     minoutbuf: '0'
     nchan: '1'
@@ -2002,4 +2002,4 @@ connections:
 
 metadata:
   file_format: 1
-  grc_version: 3.10.10.0
+  grc_version: v3.10.11.0-89-ga17f69e7

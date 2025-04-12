@@ -1,17 +1,17 @@
 options:
   parameters:
-    author: "Oscar Reyes / Efr\xE9n Acevedo"
+    author: NOHELIA
     catch_exceptions: 'True'
-    category: '[GRC Hier Blocks]'
+    category: '[Modulos Nohelia]'
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: UIS
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: filters_flowgraph
+    id: salidaUSRP
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Flowgraph to test filters using GNU Radio
+    title: MODULADOR AM
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -33,319 +33,367 @@ options:
     state: enabled
 
 blocks:
+- name: Ac
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Amplitud portadora
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 10e-3
+    stop: 500e-3
+    value: 125e-3
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [640, 8.0]
+    rotation: 0
+    state: disabled
+- name: Ac_0
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Amplitud portadora
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 10e-3
+    stop: 500e-3
+    value: 125e-3
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1016, 688.0]
+    rotation: 0
+    state: enabled
+- name: Am
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Amplitud m(t)
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 100e-3
+    stop: '5'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [512, 8.0]
+    rotation: 0
+    state: disabled
+- name: Am_0
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Amplitud mensaje
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 10e-3
+    stop: '2'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [336, 688.0]
+    rotation: 0
+    state: enabled
+- name: B
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: '# Muestras por simbolo'
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '20'
+    value: '10'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [216, 1216.0]
+    rotation: 0
+    state: enabled
 - name: GTX
   id: variable_qtgui_range
   parameters:
-    comment: Ganancia del transmisor
-    gui_hint: tab_usrp@0:2,0
-    label: Tx gain in dB
+    comment: ''
+    gui_hint: ''
+    label: GTX
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
     stop: '30'
-    value: '30'
+    value: '12'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1600, 4.0]
+    coordinate: [344, 168.0]
     rotation: 0
-    state: enabled
-- name: amplitude
+    state: disabled
+- name: GTX_0
   id: variable_qtgui_range
   parameters:
-    comment: "Bloque ajuste de variables \nmientras se ejecuta el flujograma"
-    gui_hint: tab_source@0:1,0
-    label: Amplitude
+    comment: ''
+    gui_hint: ''
+    label: Ganancia
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
-    step: '0.1'
-    stop: '0.5'
-    value: '0.5'
+    step: '1'
+    stop: '30'
+    value: '10'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [488, 180.0]
+    coordinate: [904, 688.0]
     rotation: 0
     state: enabled
-- name: desv_freq
+- name: Ka
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: tab_channel@0:1,0
-    label: Frequency Offset
+    gui_hint: ''
+    label: Coeficiente Ka
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
-    step: '10'
-    stop: '10000'
-    value: '0'
+    step: 100e-3
+    stop: '5'
+    value: '1'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1248, 180.0]
+    coordinate: [808, 8.0]
     rotation: 0
-    state: enabled
-- name: f_max
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: tab_channel@0:4,0
-    label: High Cutoff Frequency in Hz
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '10'
-    stop: 21.05e3
-    value: '5000'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1632, 180.0]
-    rotation: 0
-    state: enabled
-- name: f_min
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: tab_channel@0:3,0
-    label: Low Cutoff Frequency in Hz
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '10'
-    step: '10'
-    stop: 5e3
-    value: '100'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1424, 180.0]
-    rotation: 0
-    state: enabled
+    state: disabled
 - name: fc
   id: variable_qtgui_range
   parameters:
-    comment: Frecuencia de portadora
-    gui_hint: tab_usrp@0:1,0
-    label: Carrier Frequency in MHz
+    comment: ''
+    gui_hint: ''
+    label: Frecuencia portadora
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '50'
-    step: '0.1'
-    stop: '2200'
-    value: '100'
+    step: '1'
+    stop: 2.2e3
+    value: '150'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1392, 4.0]
+    coordinate: [176, 168.0]
     rotation: 0
-    state: enabled
-- name: frequency
+    state: disabled
+- name: fc_0
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: tab_source@0:2,0
-    label: Frequency in Hz
+    gui_hint: ''
+    label: Frecuencia TX
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '50'
+    step: '1'
+    stop: 2.2e3
+    value: '50'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 688.0]
+    rotation: 0
+    state: enabled
+- name: fm
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Frecuencia m(t)
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: samp_rate/10
+    value: '1000'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [344, 8.0]
+    rotation: 0
+    state: disabled
+- name: fm_0
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Frecuencia mensaje
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '100'
-    stop: 1e4
-    value: 1e3
+    stop: 22.05e3
+    value: '1000'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 180.0]
+    coordinate: [488, 688.0]
     rotation: 0
     state: enabled
-- name: noise
+- name: ka
   id: variable_qtgui_range
   parameters:
-    comment: Amplitud del ruido
-    gui_hint: tab_channel@0:0,0
-    label: Noise voltage
+    comment: ''
+    gui_hint: ''
+    label: Coeficiente ka
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
-    step: '0.01'
-    stop: '0.5'
-    value: '0'
+    step: 10e-3
+    stop: '2'
+    value: '1'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1096, 180.0]
+    coordinate: [648, 688.0]
     rotation: 0
     state: enabled
-- name: offset
-  id: variable_qtgui_range
+- name: n
+  id: variable
   parameters:
     comment: ''
-    gui_hint: tab_source@0:1,1
-    label: Offset
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '-5'
-    step: '0.1'
-    stop: '5'
-    value: '0'
-    widget: counter_slider
+    value: '3'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [816, 180.0]
-    rotation: 180
-    state: enabled
-- name: phase
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: tab_source@0:2,1
-    label: Phase Rad
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '0.1'
-    stop: 2*np.pi
-    value: '0'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [952, 180.0]
+    coordinate: [88, 1216.0]
     rotation: 0
     state: enabled
 - name: samp_rate
   id: variable
   parameters:
-    comment: "Bloque usado para configurar \nvalores de variables que no se\nvan a\
-      \ actualizar durante la ejecuci\xF3n"
-    value: 96e3
+    comment: ''
+    value: 12.5e6/16
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 8.0]
+    coordinate: [176, 8.0]
+    rotation: 0
+    state: disabled
+- name: samp_rate_0
+  id: variable
+  parameters:
+    comment: ''
+    value: 25e6/32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [192, 688.0]
     rotation: 0
     state: enabled
-- name: sink_type
-  id: variable_qtgui_chooser
+- name: ModuladorAM_0
+  id: ModuladorAM
   parameters:
-    comment: "Bloque usado para habilitar \no deshabilitar la salida de \naudio del\
-      \ sistema."
-    gui_hint: tab_source@0:0,1
-    label: Output
-    label0: ''
-    label1: ''
-    label2: ''
-    label3: ''
-    label4: ''
-    labels: '["Mute", "Speaker"]'
-    num_opts: '0'
-    option0: '0'
-    option1: '1'
-    option2: '2'
-    option3: '3'
-    option4: '4'
-    options: '[0, 1]'
-    orient: Qt.QHBoxLayout
-    type: raw
-    value: '0'
-    widget: radio_buttons
+    Ac: Ac
+    Ka: Ka
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1888, 180.0]
+    coordinate: [360, 368.0]
+    rotation: 0
+    state: disabled
+- name: ModuladorAM_0_0
+  id: ModuladorAM
+  parameters:
+    Ac: Ac_0
+    Ka: ka
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [432, 1096.0]
     rotation: 0
     state: enabled
-- name: source_type
-  id: variable_qtgui_chooser
+- name: analog_random_source_x_0
+  id: analog_random_source_x
   parameters:
-    comment: "Bloque usado para cambiar \nel tipo de dato de la fuente\n(complejo\
-      \ o flotante)"
-    gui_hint: tab_source@0:0,0
-    label: Source Type
-    label0: ''
-    label1: ''
-    label2: ''
-    label3: ''
-    label4: ''
-    labels: '["Complex", "Float", "Microphone", "WAV File"]'
-    num_opts: '0'
-    option0: '0'
-    option1: '1'
-    option2: '2'
-    option3: '3'
-    option4: '4'
-    options: '[0, 1, 2, 3]'
-    orient: Qt.QVBoxLayout
-    type: raw
-    value: '1'
-    widget: combo_box
+    affinity: ''
+    alias: ''
+    comment: ''
+    max: int(math.pow(2,n))
+    maxoutbuf: '0'
+    min: '0'
+    minoutbuf: '0'
+    num_samps: '1000'
+    repeat: 'True'
+    type: byte
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [72, 148.0]
-    rotation: 0
-    state: enabled
-- name: waveform
-  id: variable_qtgui_chooser
-  parameters:
-    comment: "Bloque usado para cambiar \nlos tipos de formas de onda"
-    gui_hint: tab_source@0:0,2
-    label: Waveform
-    label0: ''
-    label1: ''
-    label2: ''
-    label3: ''
-    label4: ''
-    labels: '["Constant", "Sine", "Cosine", "Square", "Triangle", "Saw Tooth"]'
-    num_opts: '0'
-    option0: '0'
-    option1: '1'
-    option2: '2'
-    option3: '3'
-    option4: '4'
-    options: '[100, 101, 102, 103, 104, 105]'
-    orient: Qt.QVBoxLayout
-    type: raw
-    value: '104'
-    widget: combo_box
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [64, 316.0]
+    coordinate: [48, 1408.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -353,309 +401,127 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    amp: amplitude
-    comment: "Fuente virtual COMPLEJA, \ngenera diferentes formas de onda"
-    freq: frequency
+    amp: Am
+    comment: ''
+    freq: fm
     maxoutbuf: '0'
     minoutbuf: '0'
-    offset: offset
-    phase: phase
+    offset: '0'
+    phase: '0'
     samp_rate: samp_rate
     showports: 'False'
-    type: complex
-    waveform: waveform
+    type: float
+    waveform: analog.GR_COS_WAVE
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [64, 508.0]
+    coordinate: [80, 332.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: analog_sig_source_x_0_0
   id: analog_sig_source_x
   parameters:
     affinity: ''
     alias: ''
-    amp: amplitude
-    comment: "Fuente virtual REAL, \ngenera diferentes formas de onda"
-    freq: frequency
+    amp: Am_0
+    comment: ''
+    freq: fm_0
     maxoutbuf: '0'
     minoutbuf: '0'
-    offset: offset
-    phase: phase
-    samp_rate: samp_rate
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate_0
     showports: 'False'
-    type: float
-    waveform: waveform
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [56, 852.0]
-    rotation: 0
-    state: enabled
-- name: audio_sink_0
-  id: audio_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    device_name: ''
-    num_inputs: '1'
-    ok_to_block: 'True'
-    samp_rate: int(samp_rate)
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1960, 1072.0]
-    rotation: 0
-    state: enabled
-- name: audio_source_0
-  id: audio_source
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    device_name: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_outputs: '1'
-    ok_to_block: 'True'
-    samp_rate: int(samp_rate)
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [64, 1072.0]
-    rotation: 0
-    state: enabled
-- name: band_pass_filter_0
-  id: band_pass_filter
-  parameters:
-    affinity: ''
-    alias: ''
-    beta: '6.76'
-    comment: "Modela el filtro de recepci\xF3n."
-    decim: '1'
-    gain: '1'
-    high_cutoff_freq: f_max
-    interp: '1'
-    low_cutoff_freq: f_min
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samp_rate: samp_rate
-    type: interp_fir_filter_ccf
-    width: '100'
-    win: window.WIN_BLACKMAN
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1552, 608.0]
-    rotation: 0
-    state: enabled
-- name: blocks_complex_to_real_0
-  id: blocks_complex_to_real
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1680.0, 792]
-    rotation: 270
-    state: enabled
-- name: blocks_float_to_complex_0
-  id: blocks_float_to_complex
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [296.0, 720]
-    rotation: 90
-    state: enabled
-- name: blocks_float_to_complex_0_0
-  id: blocks_float_to_complex
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [352.0, 840]
-    rotation: 90
-    state: enabled
-- name: blocks_float_to_complex_0_0_0
-  id: blocks_float_to_complex
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [424.0, 904]
-    rotation: 90
-    state: enabled
-- name: blocks_null_sink_0
-  id: blocks_null_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    bus_structure_sink: '[[0,],]'
-    comment: ''
-    num_inputs: '1'
-    type: float
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1984, 888.0]
-    rotation: 0
-    state: enabled
-- name: blocks_selector_0
-  id: blocks_selector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    enabled: 'True'
-    input_index: source_type
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_inputs: '4'
-    num_outputs: '1'
-    output_index: '0'
-    showports: 'True'
     type: complex
-    vlen: '1'
+    waveform: analog.GR_COS_WAVE
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 532.0]
+    coordinate: [48, 924.0]
     rotation: 0
-    state: enabled
-- name: blocks_selector_1
-  id: blocks_selector
+    state: disabled
+- name: blocks_add_const_vxx_0
+  id: blocks_add_const_vxx
   parameters:
     affinity: ''
     alias: ''
     comment: ''
-    enabled: 'True'
-    input_index: '0'
+    const: (math.pow(2,n)-1)/2
     maxoutbuf: '0'
     minoutbuf: '0'
-    num_inputs: '1'
-    num_outputs: '2'
-    output_index: sink_type
-    showports: 'True'
     type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1744, 936.0]
+    coordinate: [696, 1424.0]
     rotation: 0
     state: enabled
-- name: blocks_throttle2_0
-  id: blocks_throttle2
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
   parameters:
     affinity: ''
     alias: ''
-    comment: "Deshabilite este bloque si usa un \nUSRP. Solo se usa en SIMULACI\xD3\
-      N \npara regular el flujo de datos."
-    ignoretag: 'True'
-    limit: auto
-    maximum: '0.1'
+    comment: ''
+    const: 2/(math.pow(2,n)-1)
     maxoutbuf: '0'
     minoutbuf: '0'
-    samples_per_second: samp_rate
-    type: complex
+    type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [984, 464.0]
+    coordinate: [944, 1424.0]
     rotation: 0
     state: enabled
-- name: blocks_wavfile_source_0
-  id: blocks_wavfile_source
+- name: blocks_repeat_0
+  id: blocks_repeat
   parameters:
     affinity: ''
     alias: ''
-    comment: 'Recuerde usar "/" en Linux y "\" en Windows
-
-      para describir la ruta del archivo'
-    file: /home/com1_E1C_G1/GNURADIO_LABCOMUIS_2025_1_E1C_G1/practica2/1.Flujo_grama&Audios/Audios/file_example_WAV_1MG.wav
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    nchan: '1'
-    repeat: 'True'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [64, 1160.0]
-    rotation: 0
-    state: enabled
-- name: channels_channel_model_0
-  id: channels_channel_model
-  parameters:
-    affinity: ''
-    alias: ''
-    block_tags: 'False'
     comment: ''
-    epsilon: '1.0'
-    freq_offset: desv_freq/samp_rate
+    interp: int(B)
     maxoutbuf: '0'
     minoutbuf: '0'
-    noise_voltage: noise
-    seed: '0'
-    taps: '1.0'
+    type: float
+    vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [680, 428.0]
+    coordinate: [496, 1424.0]
     rotation: 0
     state: enabled
-- name: import_1
+- name: blocks_uchar_to_float_0
+  id: blocks_uchar_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 1440.0]
+    rotation: 0
+    state: enabled
+- name: import_0
   id: import
   parameters:
     alias: ''
-    comment: "Usado para importar modulos \nde python adicionales"
-    imports: import numpy as np
+    comment: ''
+    imports: import math
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [456, 8.0]
+    coordinate: [48, 1296.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -690,11 +556,11 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     fc: '0'
-    fftsize: '16384'
+    fftsize: '1024'
     freqhalf: 'True'
-    grid: 'True'
-    gui_hint: tab_plots@1:0,0,6,2
-    label: Relative Gain BEFORE Filter
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
     label1: ''
     label10: ''''''
     label2: ''''''
@@ -729,16 +595,16 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: window.WIN_RECTANGULAR
+    wintype: window.WIN_BLACKMAN_hARRIS
     ymax: '10'
     ymin: '-140'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [848, 956.0]
+    coordinate: [688, 360.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_freq_sink_x_0_0
   id: qtgui_freq_sink_x
   parameters:
@@ -757,7 +623,7 @@ blocks:
     autoscale: 'False'
     average: '1.0'
     axislabels: 'True'
-    bw: samp_rate
+    bw: samp_rate_0
     color1: '"blue"'
     color10: '"dark blue"'
     color2: '"red"'
@@ -773,9 +639,9 @@ blocks:
     fc: '0'
     fftsize: '16384'
     freqhalf: 'True'
-    grid: 'True'
-    gui_hint: tab_plots@1:0,2,6,2
-    label: Relative Gain AFTER Filter
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
     label1: ''
     label10: ''''''
     label2: ''''''
@@ -810,14 +676,14 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: window.WIN_RECTANGULAR
+    wintype: window.WIN_BLACKMAN_hARRIS
     ymax: '10'
     ymin: '-140'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1288, 964.0]
+    coordinate: [800, 1016.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -850,11 +716,11 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     entags: 'True'
-    grid: 'True'
-    gui_hint: tab_plots@0:0,0,6,2
-    label1: Real
+    grid: 'False'
+    gui_hint: ''
+    label1: Signal 1
     label10: Signal 10
-    label2: Imag
+    label2: Signal 2
     label3: Signal 3
     label4: Signal 4
     label5: Signal 5
@@ -906,17 +772,17 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    ylabel: Amplitude BEFORE Filter
+    ylabel: Amplitude
     ymax: '1'
     ymin: '-1'
-    yunit: V
+    yunit: '""'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [848, 860.0]
+    coordinate: [688, 216.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_time_sink_x_0_0
   id: qtgui_time_sink_x
   parameters:
@@ -947,11 +813,11 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     entags: 'True'
-    grid: 'True'
-    gui_hint: tab_plots@0:0,2,6,2
-    label1: Real
+    grid: 'False'
+    gui_hint: ''
+    label1: Signal 1
     label10: Signal 10
-    label2: Imag
+    label2: Signal 2
     label3: Signal 3
     label4: Signal 4
     label5: Signal 5
@@ -973,7 +839,7 @@ blocks:
     name: '""'
     nconnections: '1'
     size: '1024'
-    srate: samp_rate
+    srate: samp_rate_0
     stemplot: 'False'
     style1: '1'
     style10: '1'
@@ -1003,154 +869,18 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    ylabel: Amplitude AFTER Filter
+    ylabel: Amplitude
     ymax: '1'
     ymin: '-1'
-    yunit: V
+    yunit: '""'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1288, 868.0]
+    coordinate: [808, 888.0]
     rotation: 0
     state: enabled
-- name: tab_channel
-  id: qtgui_tab_widget
-  parameters:
-    alias: ''
-    comment: ''
-    gui_hint: 0,2,3,1
-    label0: Channel Controls
-    label1: Tab 1
-    label10: Tab 10
-    label11: Tab 11
-    label12: Tab 12
-    label13: Tab 13
-    label14: Tab 14
-    label15: Tab 15
-    label16: Tab 16
-    label17: Tab 17
-    label18: Tab 18
-    label19: Tab 19
-    label2: Tab 2
-    label3: Tab 3
-    label4: Tab 4
-    label5: Tab 5
-    label6: Tab 6
-    label7: Tab 7
-    label8: Tab 8
-    label9: Tab 9
-    num_tabs: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [664, 4.0]
-    rotation: 0
-    state: enabled
-- name: tab_plots
-  id: qtgui_tab_widget
-  parameters:
-    alias: ''
-    comment: ''
-    gui_hint: 3,0,6,4
-    label0: Time Domain Plots
-    label1: Frequency Domain Plots
-    label10: Tab 10
-    label11: Tab 11
-    label12: Tab 12
-    label13: Tab 13
-    label14: Tab 14
-    label15: Tab 15
-    label16: Tab 16
-    label17: Tab 17
-    label18: Tab 18
-    label19: Tab 19
-    label2: Tab 2
-    label3: Tab 3
-    label4: Tab 4
-    label5: Tab 5
-    label6: Tab 6
-    label7: Tab 7
-    label8: Tab 8
-    label9: Tab 9
-    num_tabs: '2'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1160, 4.0]
-    rotation: 0
-    state: enabled
-- name: tab_source
-  id: qtgui_tab_widget
-  parameters:
-    alias: ''
-    comment: ''
-    gui_hint: 0,0,3,2
-    label0: Source Controls
-    label1: Tab 1
-    label10: Tab 10
-    label11: Tab 11
-    label12: Tab 12
-    label13: Tab 13
-    label14: Tab 14
-    label15: Tab 15
-    label16: Tab 16
-    label17: Tab 17
-    label18: Tab 18
-    label19: Tab 19
-    label2: Tab 2
-    label3: Tab 3
-    label4: Tab 4
-    label5: Tab 5
-    label6: Tab 6
-    label7: Tab 7
-    label8: Tab 8
-    label9: Tab 9
-    num_tabs: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [984, 4.0]
-    rotation: 0
-    state: enabled
-- name: tab_usrp
-  id: qtgui_tab_widget
-  parameters:
-    alias: ''
-    comment: ''
-    gui_hint: 0,3,3,1
-    label0: USRP Controls
-    label1: Tab 1
-    label10: Tab 10
-    label11: Tab 11
-    label12: Tab 12
-    label13: Tab 13
-    label14: Tab 14
-    label15: Tab 15
-    label16: Tab 16
-    label17: Tab 17
-    label18: Tab 18
-    label19: Tab 19
-    label2: Tab 2
-    label3: Tab 3
-    label4: Tab 4
-    label5: Tab 5
-    label6: Tab 6
-    label7: Tab 7
-    label8: Tab 8
-    label9: Tab 9
-    num_tabs: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [824, 4.0]
-    rotation: 0
-    state: enabled
-- name: uhd_usrp_sink_0_0
+- name: uhd_usrp_sink_0
   id: uhd_usrp_sink
   parameters:
     affinity: ''
@@ -1260,8 +990,7 @@ blocks:
     clock_source5: ''
     clock_source6: ''
     clock_source7: ''
-    comment: "Deshabilite este bloque si \nno hace uso del USRP. \nEste es el transmisor\
-      \ del sistema."
+    comment: ''
     dev_addr: '""'
     dev_args: ''
     gain0: GTX
@@ -1425,46 +1154,46 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [848, 1060.0]
+    coordinate: [688, 496.0]
     rotation: 0
     state: disabled
-- name: uhd_usrp_source_0
-  id: uhd_usrp_source
+- name: uhd_usrp_sink_0_0
+  id: uhd_usrp_sink
   parameters:
     affinity: ''
     alias: ''
-    ant0: '"RX2"'
-    ant1: '"RX2"'
-    ant10: '"RX2"'
-    ant11: '"RX2"'
-    ant12: '"RX2"'
-    ant13: '"RX2"'
-    ant14: '"RX2"'
-    ant15: '"RX2"'
-    ant16: '"RX2"'
-    ant17: '"RX2"'
-    ant18: '"RX2"'
-    ant19: '"RX2"'
-    ant2: '"RX2"'
-    ant20: '"RX2"'
-    ant21: '"RX2"'
-    ant22: '"RX2"'
-    ant23: '"RX2"'
-    ant24: '"RX2"'
-    ant25: '"RX2"'
-    ant26: '"RX2"'
-    ant27: '"RX2"'
-    ant28: '"RX2"'
-    ant29: '"RX2"'
-    ant3: '"RX2"'
-    ant30: '"RX2"'
-    ant31: '"RX2"'
-    ant4: '"RX2"'
-    ant5: '"RX2"'
-    ant6: '"RX2"'
-    ant7: '"RX2"'
-    ant8: '"RX2"'
-    ant9: '"RX2"'
+    ant0: '"TX/RX"'
+    ant1: '"TX/RX"'
+    ant10: '"TX/RX"'
+    ant11: '"TX/RX"'
+    ant12: '"TX/RX"'
+    ant13: '"TX/RX"'
+    ant14: '"TX/RX"'
+    ant15: '"TX/RX"'
+    ant16: '"TX/RX"'
+    ant17: '"TX/RX"'
+    ant18: '"TX/RX"'
+    ant19: '"TX/RX"'
+    ant2: '"TX/RX"'
+    ant20: '"TX/RX"'
+    ant21: '"TX/RX"'
+    ant22: '"TX/RX"'
+    ant23: '"TX/RX"'
+    ant24: '"TX/RX"'
+    ant25: '"TX/RX"'
+    ant26: '"TX/RX"'
+    ant27: '"TX/RX"'
+    ant28: '"TX/RX"'
+    ant29: '"TX/RX"'
+    ant3: '"TX/RX"'
+    ant30: '"TX/RX"'
+    ant31: '"TX/RX"'
+    ant4: '"TX/RX"'
+    ant5: '"TX/RX"'
+    ant6: '"TX/RX"'
+    ant7: '"TX/RX"'
+    ant8: '"TX/RX"'
+    ant9: '"TX/RX"'
     bw0: '0'
     bw1: '0'
     bw10: '0'
@@ -1497,7 +1226,7 @@ blocks:
     bw7: '0'
     bw8: '0'
     bw9: '0'
-    center_freq0: fc*1e6
+    center_freq0: fc_0
     center_freq1: '0'
     center_freq10: '0'
     center_freq11: '0'
@@ -1538,75 +1267,10 @@ blocks:
     clock_source5: ''
     clock_source6: ''
     clock_source7: ''
-    comment: "Deshabilite este bloque si \nno hace uso del receptor USRP. \nEste es\
-      \ el receptor del sistema."
-    dc_offs0: 0+0j
-    dc_offs1: 0+0j
-    dc_offs10: 0+0j
-    dc_offs11: 0+0j
-    dc_offs12: 0+0j
-    dc_offs13: 0+0j
-    dc_offs14: 0+0j
-    dc_offs15: 0+0j
-    dc_offs16: 0+0j
-    dc_offs17: 0+0j
-    dc_offs18: 0+0j
-    dc_offs19: 0+0j
-    dc_offs2: 0+0j
-    dc_offs20: 0+0j
-    dc_offs21: 0+0j
-    dc_offs22: 0+0j
-    dc_offs23: 0+0j
-    dc_offs24: 0+0j
-    dc_offs25: 0+0j
-    dc_offs26: 0+0j
-    dc_offs27: 0+0j
-    dc_offs28: 0+0j
-    dc_offs29: 0+0j
-    dc_offs3: 0+0j
-    dc_offs30: 0+0j
-    dc_offs31: 0+0j
-    dc_offs4: 0+0j
-    dc_offs5: 0+0j
-    dc_offs6: 0+0j
-    dc_offs7: 0+0j
-    dc_offs8: 0+0j
-    dc_offs9: 0+0j
-    dc_offs_enb0: default
-    dc_offs_enb1: default
-    dc_offs_enb10: default
-    dc_offs_enb11: default
-    dc_offs_enb12: default
-    dc_offs_enb13: default
-    dc_offs_enb14: default
-    dc_offs_enb15: default
-    dc_offs_enb16: default
-    dc_offs_enb17: default
-    dc_offs_enb18: default
-    dc_offs_enb19: default
-    dc_offs_enb2: default
-    dc_offs_enb20: default
-    dc_offs_enb21: default
-    dc_offs_enb22: default
-    dc_offs_enb23: default
-    dc_offs_enb24: default
-    dc_offs_enb25: default
-    dc_offs_enb26: default
-    dc_offs_enb27: default
-    dc_offs_enb28: default
-    dc_offs_enb29: default
-    dc_offs_enb3: default
-    dc_offs_enb30: default
-    dc_offs_enb31: default
-    dc_offs_enb4: default
-    dc_offs_enb5: default
-    dc_offs_enb6: default
-    dc_offs_enb7: default
-    dc_offs_enb8: default
-    dc_offs_enb9: default
+    comment: ''
     dev_addr: '""'
     dev_args: ''
-    gain0: '0'
+    gain0: GTX_0
     gain1: '0'
     gain10: '0'
     gain11: '0'
@@ -1670,70 +1334,7 @@ blocks:
     gain_type7: default
     gain_type8: default
     gain_type9: default
-    iq_imbal0: 0+0j
-    iq_imbal1: 0+0j
-    iq_imbal10: 0+0j
-    iq_imbal11: 0+0j
-    iq_imbal12: 0+0j
-    iq_imbal13: 0+0j
-    iq_imbal14: 0+0j
-    iq_imbal15: 0+0j
-    iq_imbal16: 0+0j
-    iq_imbal17: 0+0j
-    iq_imbal18: 0+0j
-    iq_imbal19: 0+0j
-    iq_imbal2: 0+0j
-    iq_imbal20: 0+0j
-    iq_imbal21: 0+0j
-    iq_imbal22: 0+0j
-    iq_imbal23: 0+0j
-    iq_imbal24: 0+0j
-    iq_imbal25: 0+0j
-    iq_imbal26: 0+0j
-    iq_imbal27: 0+0j
-    iq_imbal28: 0+0j
-    iq_imbal29: 0+0j
-    iq_imbal3: 0+0j
-    iq_imbal30: 0+0j
-    iq_imbal31: 0+0j
-    iq_imbal4: 0+0j
-    iq_imbal5: 0+0j
-    iq_imbal6: 0+0j
-    iq_imbal7: 0+0j
-    iq_imbal8: 0+0j
-    iq_imbal9: 0+0j
-    iq_imbal_enb0: default
-    iq_imbal_enb1: default
-    iq_imbal_enb10: default
-    iq_imbal_enb11: default
-    iq_imbal_enb12: default
-    iq_imbal_enb13: default
-    iq_imbal_enb14: default
-    iq_imbal_enb15: default
-    iq_imbal_enb16: default
-    iq_imbal_enb17: default
-    iq_imbal_enb18: default
-    iq_imbal_enb19: default
-    iq_imbal_enb2: default
-    iq_imbal_enb20: default
-    iq_imbal_enb21: default
-    iq_imbal_enb22: default
-    iq_imbal_enb23: default
-    iq_imbal_enb24: default
-    iq_imbal_enb25: default
-    iq_imbal_enb26: default
-    iq_imbal_enb27: default
-    iq_imbal_enb28: default
-    iq_imbal_enb29: default
-    iq_imbal_enb3: default
-    iq_imbal_enb30: default
-    iq_imbal_enb31: default
-    iq_imbal_enb4: default
-    iq_imbal_enb5: default
-    iq_imbal_enb6: default
-    iq_imbal_enb7: default
-    iq_imbal_enb8: default
-    iq_imbal_enb9: default
+    len_tag_name: '""'
     lo_export0: 'False'
     lo_export1: 'False'
     lo_export10: 'False'
@@ -1803,39 +1404,7 @@ blocks:
     nchan: '1'
     num_mboards: '1'
     otw: ''
-    rx_agc0: Enabled
-    rx_agc1: Default
-    rx_agc10: Default
-    rx_agc11: Default
-    rx_agc12: Default
-    rx_agc13: Default
-    rx_agc14: Default
-    rx_agc15: Default
-    rx_agc16: Default
-    rx_agc17: Default
-    rx_agc18: Default
-    rx_agc19: Default
-    rx_agc2: Default
-    rx_agc20: Default
-    rx_agc21: Default
-    rx_agc22: Default
-    rx_agc23: Default
-    rx_agc24: Default
-    rx_agc25: Default
-    rx_agc26: Default
-    rx_agc27: Default
-    rx_agc28: Default
-    rx_agc29: Default
-    rx_agc3: Default
-    rx_agc30: Default
-    rx_agc31: Default
-    rx_agc4: Default
-    rx_agc5: Default
-    rx_agc6: Default
-    rx_agc7: Default
-    rx_agc8: Default
-    rx_agc9: Default
-    samp_rate: samp_rate
+    samp_rate: samp_rate_0
     sd_spec0: ''
     sd_spec1: ''
     sd_spec2: ''
@@ -1862,143 +1431,51 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1288, 1068.0]
+    coordinate: [800, 1144.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: virtual_sink_0
   id: virtual_sink
   parameters:
     alias: ''
-    comment: Source + Channel model
-    stream_id: after_filter
+    comment: ''
+    stream_id: m_t
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1864, 672.0]
+    coordinate: [1232, 1424.0]
     rotation: 0
     state: enabled
-- name: virtual_sink_0_0
-  id: virtual_sink
-  parameters:
-    alias: ''
-    comment: "Fuente + Efectos de \nmodelo de canal"
-    stream_id: source
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1064, 672.0]
-    rotation: 0
-    state: enabled
-- name: virtual_sink_1
-  id: virtual_sink
-  parameters:
-    alias: ''
-    comment: "Deshabilite este bloque si usa un \nUSRP. Solo se usa en SIMULACI\xD3\
-      N \npara conectar la se\xF1al proveniente\ndel modelo de canal inal\xE1mbrico."
-    stream_id: before_filter
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1240, 472.0]
-    rotation: 0
-    state: enabled
-- name: virtual_sink_1_0
-  id: virtual_sink
-  parameters:
-    alias: ''
-    comment: "Deshabilite este bloque si \nno hace uso del USRP (ni como \nTX, ni\
-      \ como RX). \nEste bloque le pasa la se\xF1al \nrecibida por el USRP al filtro."
-    stream_id: before_filter
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1648, 1128.0]
-    rotation: 0
-    state: disabled
 - name: virtual_source_0
   id: virtual_source
   parameters:
     alias: ''
     comment: ''
-    stream_id: source
+    stream_id: m_t
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [576, 896.0]
-    rotation: 0
-    state: enabled
-- name: virtual_source_0_0
-  id: virtual_source
-  parameters:
-    alias: ''
-    comment: 'Deshabilite este bloque
-
-      si usa el RX USRP'
-    stream_id: source
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1352, 1288.0]
-    rotation: 0
-    state: disabled
-- name: virtual_source_1
-  id: virtual_source
-  parameters:
-    alias: ''
-    comment: ''
-    stream_id: before_filter
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1312, 672.0]
-    rotation: 0
-    state: enabled
-- name: virtual_source_1_0
-  id: virtual_source
-  parameters:
-    alias: ''
-    comment: ''
-    stream_id: after_filter
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1048, 888.0]
+    coordinate: [128, 1104.0]
     rotation: 0
     state: enabled
 
 connections:
-- [analog_sig_source_x_0, '0', blocks_selector_0, '0']
-- [analog_sig_source_x_0_0, '0', blocks_float_to_complex_0, '0']
-- [audio_source_0, '0', blocks_float_to_complex_0_0, '0']
-- [band_pass_filter_0, '0', blocks_complex_to_real_0, '0']
-- [band_pass_filter_0, '0', virtual_sink_0, '0']
-- [blocks_complex_to_real_0, '0', blocks_selector_1, '0']
-- [blocks_float_to_complex_0, '0', blocks_selector_0, '1']
-- [blocks_float_to_complex_0_0, '0', blocks_selector_0, '2']
-- [blocks_float_to_complex_0_0_0, '0', blocks_selector_0, '3']
-- [blocks_selector_0, '0', channels_channel_model_0, '0']
-- [blocks_selector_1, '0', blocks_null_sink_0, '0']
-- [blocks_selector_1, '1', audio_sink_0, '0']
-- [blocks_throttle2_0, '0', virtual_sink_1, '0']
-- [blocks_wavfile_source_0, '0', blocks_float_to_complex_0_0_0, '0']
-- [channels_channel_model_0, '0', blocks_throttle2_0, '0']
-- [channels_channel_model_0, '0', virtual_sink_0_0, '0']
-- [uhd_usrp_source_0, '0', virtual_sink_1_0, '0']
-- [virtual_source_0, '0', qtgui_freq_sink_x_0, '0']
-- [virtual_source_0, '0', qtgui_time_sink_x_0, '0']
-- [virtual_source_0, '0', uhd_usrp_sink_0_0, '0']
-- [virtual_source_0_0, '0', virtual_sink_1_0, '0']
-- [virtual_source_1, '0', band_pass_filter_0, '0']
-- [virtual_source_1_0, '0', qtgui_freq_sink_x_0_0, '0']
-- [virtual_source_1_0, '0', qtgui_time_sink_x_0_0, '0']
+- [ModuladorAM_0, '0', qtgui_freq_sink_x_0, '0']
+- [ModuladorAM_0, '0', qtgui_time_sink_x_0, '0']
+- [ModuladorAM_0, '0', uhd_usrp_sink_0, '0']
+- [ModuladorAM_0_0, '0', qtgui_freq_sink_x_0_0, '0']
+- [ModuladorAM_0_0, '0', qtgui_time_sink_x_0_0, '0']
+- [ModuladorAM_0_0, '0', uhd_usrp_sink_0_0, '0']
+- [analog_random_source_x_0, '0', blocks_uchar_to_float_0, '0']
+- [analog_sig_source_x_0, '0', ModuladorAM_0, '0']
+- [analog_sig_source_x_0_0, '0', ModuladorAM_0_0, '0']
+- [blocks_add_const_vxx_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_multiply_const_vxx_0, '0', virtual_sink_0, '0']
+- [blocks_repeat_0, '0', blocks_add_const_vxx_0, '0']
+- [blocks_uchar_to_float_0, '0', blocks_repeat_0, '0']
+- [virtual_source_0, '0', ModuladorAM_0_0, '0']
 
 metadata:
   file_format: 1

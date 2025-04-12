@@ -5,9 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: MODULADOR AM
-# Author: NOHELIA
-# Copyright: UIS
+# Title: Modulacion Amplitud
 # GNU Radio version: v3.10.11.0-89-ga17f69e7
 
 from PyQt5 import Qt
@@ -51,7 +49,8 @@ sys.path.append(os.environ.get('GRC_HIER_PATH', get_state_directory()))
 
 from ModuladorAM import ModuladorAM  # grc-generated hier_block
 from PyQt5 import QtCore
-from gnuradio import analog
+from gnuradio import blocks
+import numpy
 from gnuradio import gr
 from gnuradio.filter import firdes
 from gnuradio.fft import window
@@ -62,17 +61,18 @@ from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
 from gnuradio import uhd
 import time
+import math
 import sip
 import threading
 
 
 
-class salidaUSRP(gr.top_block, Qt.QWidget):
+class Practica3(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "MODULADOR AM", catch_exceptions=True)
+        gr.top_block.__init__(self, "Modulacion Amplitud", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("MODULADOR AM")
+        self.setWindowTitle("Modulacion Amplitud")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -90,7 +90,7 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("gnuradio/flowgraphs", "salidaUSRP")
+        self.settings = Qt.QSettings("gnuradio/flowgraphs", "Practica3")
 
         try:
             geometry = self.settings.value("geometry")
@@ -103,11 +103,13 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 12.5e6/16
+        self.samp_rate = samp_rate = 25e6/32
+        self.n = n = 3
+        self.ka = ka = 1
         self.fm = fm = 1000
-        self.fc = fc = 150
-        self.Ka = Ka = 1
-        self.GTX = GTX = 12
+        self.fc = fc = 50
+        self.GTX = GTX = 10
+        self.B = B = 10
         self.Am = Am = 1
         self.Ac = Ac = 125e-3
 
@@ -115,21 +117,18 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
 
-        self._fm_range = qtgui.Range(0, samp_rate/10, 1, 1000, 200)
-        self._fm_win = qtgui.RangeWidget(self._fm_range, self.set_fm, "Frecuencia m(t)", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_layout.addWidget(self._fm_win)
-        self._fc_range = qtgui.Range(50, 2.2e3, 1, 150, 200)
-        self._fc_win = qtgui.RangeWidget(self._fc_range, self.set_fc, "Frecuencia portadora", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._ka_range = qtgui.Range(0, 2, 10e-3, 1, 200)
+        self._ka_win = qtgui.RangeWidget(self._ka_range, self.set_ka, "Coeficiente ka", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._ka_win)
+        self._fc_range = qtgui.Range(50, 2.2e3, 1, 50, 200)
+        self._fc_win = qtgui.RangeWidget(self._fc_range, self.set_fc, "Frecuencia TX", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._fc_win)
-        self._Ka_range = qtgui.Range(0, 5, 100e-3, 1, 200)
-        self._Ka_win = qtgui.RangeWidget(self._Ka_range, self.set_Ka, "Coeficiente Ka", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_layout.addWidget(self._Ka_win)
-        self._GTX_range = qtgui.Range(0, 30, 1, 12, 200)
-        self._GTX_win = qtgui.RangeWidget(self._GTX_range, self.set_GTX, "GTX", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._GTX_range = qtgui.Range(0, 30, 1, 10, 200)
+        self._GTX_win = qtgui.RangeWidget(self._GTX_range, self.set_GTX, "Ganancia", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._GTX_win)
-        self._Am_range = qtgui.Range(0, 5, 100e-3, 1, 200)
-        self._Am_win = qtgui.RangeWidget(self._Am_range, self.set_Am, "Amplitud m(t)", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_layout.addWidget(self._Am_win)
+        self._B_range = qtgui.Range(0, 20, 1, 10, 200)
+        self._B_win = qtgui.RangeWidget(self._B_range, self.set_B, "# Muestras por simbolo", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._B_win)
         self._Ac_range = qtgui.Range(0, 500e-3, 10e-3, 125e-3, 200)
         self._Ac_win = qtgui.RangeWidget(self._Ac_range, self.set_Ac, "Amplitud portadora", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._Ac_win)
@@ -145,7 +144,7 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
         self.uhd_usrp_sink_0.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
 
-        self.uhd_usrp_sink_0.set_center_freq(fc*1e6, 0)
+        self.uhd_usrp_sink_0.set_center_freq(fc, 0)
         self.uhd_usrp_sink_0.set_antenna("TX/RX", 0)
         self.uhd_usrp_sink_0.set_gain(GTX, 0)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_c(
@@ -200,7 +199,7 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
-            1024, #size
+            16384, #size
             window.WIN_BLACKMAN_hARRIS, #wintype
             0, #fc
             samp_rate, #bw
@@ -241,11 +240,21 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
-        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, fm, Am, 0, 0)
+        self._fm_range = qtgui.Range(0, 22.05e3, 100, 1000, 200)
+        self._fm_win = qtgui.RangeWidget(self._fm_range, self.set_fm, "Frecuencia mensaje", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._fm_win)
+        self.blocks_uchar_to_float_0 = blocks.uchar_to_float()
+        self.blocks_repeat_0 = blocks.repeat(gr.sizeof_float*1, int(B))
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff((2/(math.pow(2,n)-1)))
+        self.blocks_add_const_vxx_0 = blocks.add_const_ff(((math.pow(2,n)-1)/2))
+        self.analog_random_source_x_0 = blocks.vector_source_b(list(map(int, numpy.random.randint(0, int(math.pow(2,n)), 1000))), True)
         self.ModuladorAM_0 = ModuladorAM(
             Ac=Ac,
-            Ka=Ka,
+            Ka=ka,
         )
+        self._Am_range = qtgui.Range(0, 2, 10e-3, 1, 200)
+        self._Am_win = qtgui.RangeWidget(self._Am_range, self.set_Am, "Amplitud mensaje", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._Am_win)
 
 
         ##################################################
@@ -254,11 +263,15 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
         self.connect((self.ModuladorAM_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.ModuladorAM_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.ModuladorAM_0, 0), (self.uhd_usrp_sink_0, 0))
-        self.connect((self.analog_sig_source_x_0, 0), (self.ModuladorAM_0, 0))
+        self.connect((self.analog_random_source_x_0, 0), (self.blocks_uchar_to_float_0, 0))
+        self.connect((self.blocks_add_const_vxx_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.ModuladorAM_0, 0))
+        self.connect((self.blocks_repeat_0, 0), (self.blocks_add_const_vxx_0, 0))
+        self.connect((self.blocks_uchar_to_float_0, 0), (self.blocks_repeat_0, 0))
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("gnuradio/flowgraphs", "salidaUSRP")
+        self.settings = Qt.QSettings("gnuradio/flowgraphs", "Practica3")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -270,31 +283,37 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
+
+    def get_n(self):
+        return self.n
+
+    def set_n(self, n):
+        self.n = n
+        self.blocks_add_const_vxx_0.set_k(((math.pow(2,self.n)-1)/2))
+        self.blocks_multiply_const_vxx_0.set_k((2/(math.pow(2,self.n)-1)))
+
+    def get_ka(self):
+        return self.ka
+
+    def set_ka(self, ka):
+        self.ka = ka
+        self.ModuladorAM_0.set_Ka(self.ka)
 
     def get_fm(self):
         return self.fm
 
     def set_fm(self, fm):
         self.fm = fm
-        self.analog_sig_source_x_0.set_frequency(self.fm)
 
     def get_fc(self):
         return self.fc
 
     def set_fc(self, fc):
         self.fc = fc
-        self.uhd_usrp_sink_0.set_center_freq(self.fc*1e6, 0)
-
-    def get_Ka(self):
-        return self.Ka
-
-    def set_Ka(self, Ka):
-        self.Ka = Ka
-        self.ModuladorAM_0.set_Ka(self.Ka)
+        self.uhd_usrp_sink_0.set_center_freq(self.fc, 0)
 
     def get_GTX(self):
         return self.GTX
@@ -303,12 +322,18 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
         self.GTX = GTX
         self.uhd_usrp_sink_0.set_gain(self.GTX, 0)
 
+    def get_B(self):
+        return self.B
+
+    def set_B(self, B):
+        self.B = B
+        self.blocks_repeat_0.set_interpolation(int(self.B))
+
     def get_Am(self):
         return self.Am
 
     def set_Am(self, Am):
         self.Am = Am
-        self.analog_sig_source_x_0.set_amplitude(self.Am)
 
     def get_Ac(self):
         return self.Ac
@@ -320,7 +345,7 @@ class salidaUSRP(gr.top_block, Qt.QWidget):
 
 
 
-def main(top_block_cls=salidaUSRP, options=None):
+def main(top_block_cls=Practica3, options=None):
 
     qapp = Qt.QApplication(sys.argv)
 

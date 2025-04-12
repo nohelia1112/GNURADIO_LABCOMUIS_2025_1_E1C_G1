@@ -400,7 +400,7 @@ class filters_flowgraph(gr.top_block, Qt.QWidget):
             taps=[1.0],
             noise_seed=0,
             block_tags=False)
-        self.blocks_wavfile_source_0 = blocks.wavfile_source('/home/com1_E1C_G1/GNURADIO_LABCOMUIS_2025_1_E1C_G1/practica2/harvard.wav', True)
+        self.blocks_wavfile_source_0 = blocks.wavfile_source('/home/com1_E1C_G1/GNURADIO_LABCOMUIS_2025_1_E1C_G1/practica2/1.Flujo_grama&Audios/Audios/file_example_WAV_1MG.wav', True)
         self.blocks_selector_0 = blocks.selector(gr.sizeof_gr_complex*1,source_type,0)
         self.blocks_selector_0.set_enabled(True)
         self.blocks_float_to_complex_0_0_0 = blocks.float_to_complex(1)

@@ -7,7 +7,7 @@
 # GNU Radio Python Flow Graph
 # Title: Flowgraph to test filters using GNU Radio
 # Author: Oscar Reyes / Efrén Acevedo
-# GNU Radio version: 3.10.10.0
+# GNU Radio version: v3.10.11.0-89-ga17f69e7
 
 from PyQt5 import Qt
 from gnuradio import qtgui
@@ -29,6 +29,7 @@ from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
 import numpy as np
 import sip
+import threading
 
 
 
@@ -55,7 +56,7 @@ class filters_flowgraph(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "filters_flowgraph")
+        self.settings = Qt.QSettings("gnuradio/flowgraphs", "filters_flowgraph")
 
         try:
             geometry = self.settings.value("geometry")
@@ -63,6 +64,7 @@ class filters_flowgraph(gr.top_block, Qt.QWidget):
                 self.restoreGeometry(geometry)
         except BaseException as exc:
             print(f"Qt GUI: Could not restore geometry: {str(exc)}", file=sys.stderr)
+        self.flowgraph_started = threading.Event()
 
         ##################################################
         # Variables
@@ -476,7 +478,7 @@ class filters_flowgraph(gr.top_block, Qt.QWidget):
             taps=[1.0],
             noise_seed=0,
             block_tags=False)
-        self.blocks_wavfile_source_0 = blocks.wavfile_source('C:\\Users\\Usuario\\Documents\\GitHub\\GNURADIO_LABCOMUIS_2025_1_E1C_G1\\practica2\\1.Flujo_grama&Audios\\Audios\\file_example_WAV_1MG.wav', True)
+        self.blocks_wavfile_source_0 = blocks.wavfile_source('/home/com1_E1C_G1/GNURADIO_LABCOMUIS_2025_1_E1C_G1/practica2/1.Flujo_grama&Audios/Audios/file_example_WAV_1MG.wav', True)
         self.blocks_throttle2_0 = blocks.throttle( gr.sizeof_gr_complex*1, samp_rate, True, 0 if "auto" == "auto" else max( int(float(0.1) * samp_rate) if "auto" == "time" else int(0.1), 1) )
         self.blocks_selector_1 = blocks.selector(gr.sizeof_float*1,0,sink_type)
         self.blocks_selector_1.set_enabled(True)
@@ -534,7 +536,7 @@ class filters_flowgraph(gr.top_block, Qt.QWidget):
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "filters_flowgraph")
+        self.settings = Qt.QSettings("gnuradio/flowgraphs", "filters_flowgraph")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -663,6 +665,7 @@ def main(top_block_cls=filters_flowgraph, options=None):
     tb = top_block_cls()
 
     tb.start()
+    tb.flowgraph_started.set()
 
     tb.show()
 
