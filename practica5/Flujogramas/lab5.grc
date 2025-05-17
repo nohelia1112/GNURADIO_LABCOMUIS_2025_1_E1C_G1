@@ -144,7 +144,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 160.0]
+    coordinate: [360, 152.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -162,12 +162,12 @@ blocks:
     samp_rate: samp_rate
     showports: 'False'
     type: float
-    waveform: analog.GR_COS_WAVE
+    waveform: analog.GR_SAW_WAVE
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [32, 204.0]
+    coordinate: [48, 292.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -221,7 +221,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     name: '""'
-    nconnections: '1'
+    nconnections: '3'
     norm_window: 'False'
     showports: 'False'
     tr_chan: '0'
@@ -248,7 +248,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [680, 376.0]
+    coordinate: [880, 336.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -305,7 +305,7 @@ blocks:
     marker8: '-1'
     marker9: '-1'
     name: '""'
-    nconnections: '2'
+    nconnections: '3'
     size: '1024'
     srate: samp_rate
     stemplot: 'False'
@@ -345,14 +345,17 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [752, 216.0]
+    coordinate: [864, 176.0]
     rotation: 0
     state: enabled
 
 connections:
 - [ModuladorPAM_0, '0', qtgui_freq_sink_x_0, '0']
 - [ModuladorPAM_0, '0', qtgui_time_sink_x_0, '0']
+- [ModuladorPAM_0, '1', qtgui_freq_sink_x_0, '2']
+- [ModuladorPAM_0, '1', qtgui_time_sink_x_0, '2']
 - [analog_sig_source_x_0, '0', ModuladorPAM_0, '0']
+- [analog_sig_source_x_0, '0', qtgui_freq_sink_x_0, '1']
 - [analog_sig_source_x_0, '0', qtgui_time_sink_x_0, '1']
 
 metadata:

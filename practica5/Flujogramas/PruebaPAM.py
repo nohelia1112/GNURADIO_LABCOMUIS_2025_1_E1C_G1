@@ -100,8 +100,8 @@ class PruebaPAM(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 100e3
-        self.fs = fs = 1e3
+        self.samp_rate = samp_rate = 200e3
+        self.fs = fs = 2e3
         self.fm = fm = 100
         self.D = D = 10
         self.Am = Am = 1
@@ -110,7 +110,7 @@ class PruebaPAM(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
 
-        self._fs_range = qtgui.Range(0, 10e3, 1, 1e3, 200)
+        self._fs_range = qtgui.Range(0, 10e3, 1, 2e3, 200)
         self._fs_win = qtgui.RangeWidget(self._fs_range, self.set_fs, "Frecuencia Pulsos", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._fs_win)
         self._fm_range = qtgui.Range(0, 10e3, 10, 100, 200)
@@ -126,7 +126,7 @@ class PruebaPAM(gr.top_block, Qt.QWidget):
             1024, #size
             samp_rate, #samp_rate
             "", #name
-            2, #number of inputs
+            3, #number of inputs
             None # parent
         )
         self.qtgui_time_sink_x_0.set_update_time(0.10)
@@ -157,7 +157,7 @@ class PruebaPAM(gr.top_block, Qt.QWidget):
             -1, -1, -1, -1, -1]
 
 
-        for i in range(2):
+        for i in range(3):
             if len(labels[i]) == 0:
                 self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
             else:
@@ -176,7 +176,7 @@ class PruebaPAM(gr.top_block, Qt.QWidget):
             0, #fc
             samp_rate, #bw
             "", #name
-            1,
+            3,
             None # parent
         )
         self.qtgui_freq_sink_x_0.set_update_time(0.10)
@@ -202,7 +202,7 @@ class PruebaPAM(gr.top_block, Qt.QWidget):
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0]
 
-        for i in range(1):
+        for i in range(3):
             if len(labels[i]) == 0:
                 self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
             else:
@@ -213,7 +213,7 @@ class PruebaPAM(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
-        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, fm, Am, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_SAW_WAVE, fm, Am, 0, 0)
         self.ModuladorPAM_0 = ModuladorPAM(
             D=D,
             fs=fs,
@@ -224,9 +224,12 @@ class PruebaPAM(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
+        self.connect((self.ModuladorPAM_0, 1), (self.qtgui_freq_sink_x_0, 2))
         self.connect((self.ModuladorPAM_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.ModuladorPAM_0, 1), (self.qtgui_time_sink_x_0, 2))
         self.connect((self.ModuladorPAM_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.analog_sig_source_x_0, 0), (self.ModuladorPAM_0, 0))
+        self.connect((self.analog_sig_source_x_0, 0), (self.qtgui_freq_sink_x_0, 1))
         self.connect((self.analog_sig_source_x_0, 0), (self.qtgui_time_sink_x_0, 1))
 
 

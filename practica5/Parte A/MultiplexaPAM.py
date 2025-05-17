@@ -48,7 +48,7 @@ def get_state_directory() -> str:
 
 sys.path.append(os.environ.get('GRC_HIER_PATH', get_state_directory()))
 
-from ModuladorPAM import ModuladorPAM  # grc-generated hier_block
+from ModuladorPulsos import ModuladorPulsos  # grc-generated hier_block
 from PyQt5 import QtCore
 from gnuradio import analog
 from gnuradio import blocks
@@ -104,47 +104,51 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.fs = fs = 1000
-        self.samp_rate = samp_rate = 100000
+        self.samp_rate = samp_rate = 25e6/128
+        self.fs = fs = samp_rate/100
         self.fm = fm = 100
-        self.fc_LPF = fc_LPF = fs/2
+        self.fc_LPF = fc_LPF = 100
+        self.W = W = 25
         self.D4 = D4 = 0
-        self.D3 = D3 = 0
-        self.D2 = D2 = 0
-        self.D1 = D1 = 0
-        self.D = D = 10
+        self.D3 = D3 = 75
+        self.D2 = D2 = 50
+        self.D1 = D1 = 25
+        self.D = D = 25
         self.Am = Am = 1
 
         ##################################################
         # Blocks
         ##################################################
 
-        self._fs_range = qtgui.Range(0, 10000, 1, 1000, 200)
-        self._fs_win = qtgui.RangeWidget(self._fs_range, self.set_fs, "Frecuencia Pulsos", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._fs_range = qtgui.Range(0, 100e3, 1, samp_rate/100, 200)
+        self._fs_win = qtgui.RangeWidget(self._fs_range, self.set_fs, "Frecuencia pulsos", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._fs_win)
-        self._fm_range = qtgui.Range(0, 10000, 10, 100, 200)
-        self._fm_win = qtgui.RangeWidget(self._fm_range, self.set_fm, "Frecuencia mensaje", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._fm_range = qtgui.Range(0, 10e3, 10, 100, 200)
+        self._fm_win = qtgui.RangeWidget(self._fm_range, self.set_fm, "frecuencia mensaje", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._fm_win)
-        self._fc_LPF_range = qtgui.Range(0, 10000, 10, fs/2, 200)
-        self._fc_LPF_win = qtgui.RangeWidget(self._fc_LPF_range, self.set_fc_LPF, "Cutoff Freq", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._fc_LPF_range = qtgui.Range(0, 10e3, 1, 100, 200)
+        self._fc_LPF_win = qtgui.RangeWidget(self._fc_LPF_range, self.set_fc_LPF, "frecuencia filtro", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._fc_LPF_win)
+        self._W_range = qtgui.Range(0, 50, 1, 25, 200)
+        self._W_win = qtgui.RangeWidget(self._W_range, self.set_W, "ancho de pulso selector", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._W_win)
         self._D4_range = qtgui.Range(0, 100, 1, 0, 200)
-        self._D4_win = qtgui.RangeWidget(self._D4_range, self.set_D4, "Selección Señal RX", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._D4_win = qtgui.RangeWidget(self._D4_range, self.set_D4, "Selector ", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._D4_win)
-        self._D3_range = qtgui.Range(0, 100, 1, 0, 200)
-        self._D3_win = qtgui.RangeWidget(self._D3_range, self.set_D3, "Retardo 3", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._D3_range = qtgui.Range(0, 100, 1, 75, 200)
+        self._D3_win = qtgui.RangeWidget(self._D3_range, self.set_D3, "retardo 3", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._D3_win)
-        self._D2_range = qtgui.Range(0, 100, 1, 0, 200)
-        self._D2_win = qtgui.RangeWidget(self._D2_range, self.set_D2, "Retardo 2", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._D2_range = qtgui.Range(0, 100, 1, 50, 200)
+        self._D2_win = qtgui.RangeWidget(self._D2_range, self.set_D2, "retardo 2", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._D2_win)
-        self._D1_range = qtgui.Range(0, 100, 1, 0, 200)
-        self._D1_win = qtgui.RangeWidget(self._D1_range, self.set_D1, "Retardo 1", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._D1_range = qtgui.Range(0, 100, 1, 25, 200)
+        self._D1_win = qtgui.RangeWidget(self._D1_range, self.set_D1, "retardo 1", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._D1_win)
-        self._D_range = qtgui.Range(0, 50, 1, 10, 200)
-        self._D_win = qtgui.RangeWidget(self._D_range, self.set_D, "Ancho pulso", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._D_range = qtgui.Range(0, 50, 1, 25, 200)
+        self._D_win = qtgui.RangeWidget(self._D_range, self.set_D, "Ancho Pulso", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._D_win)
         self._Am_range = qtgui.Range(0, 10, 100e-3, 1, 200)
-        self._Am_win = qtgui.RangeWidget(self._Am_range, self.set_Am, "Amplitud mensaje", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._Am_win = qtgui.RangeWidget(self._Am_range, self.set_Am, "Amplitud del mesanaje", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._Am_win)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
             ",".join(("", '')),
@@ -158,14 +162,14 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
         self.uhd_usrp_sink_0.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
 
-        self.uhd_usrp_sink_0.set_center_freq(samp_rate, 0)
+        self.uhd_usrp_sink_0.set_center_freq(200e6, 0)
         self.uhd_usrp_sink_0.set_antenna("TX/RX", 0)
         self.uhd_usrp_sink_0.set_gain(10, 0)
         self.qtgui_time_sink_x_1 = qtgui.time_sink_f(
             (1024*8), #size
             samp_rate, #samp_rate
             "", #name
-            3, #number of inputs
+            2, #number of inputs
             None # parent
         )
         self.qtgui_time_sink_x_1.set_update_time(0.10)
@@ -196,7 +200,7 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
             -1, -1, -1, -1, -1]
 
 
-        for i in range(3):
+        for i in range(2):
             if len(labels[i]) == 0:
                 self.qtgui_time_sink_x_1.set_line_label(i, "Data {0}".format(i))
             else:
@@ -210,7 +214,7 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_1_win = sip.wrapinstance(self.qtgui_time_sink_x_1.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_1_win)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
-            1024, #size
+            (1024*4), #size
             samp_rate, #samp_rate
             "", #name
             5, #number of inputs
@@ -258,8 +262,8 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_f(
-            16384, #size
-            window.WIN_BLACKMAN_hARRIS, #wintype
+            1024, #size
+            window.WIN_RECTANGULAR, #wintype
             0, #fc
             samp_rate, #bw
             "", #name
@@ -278,7 +282,7 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0.set_fft_window_normalized(False)
 
 
-        self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
+        self.qtgui_freq_sink_x_0.set_plot_pos_half(not False)
 
         labels = ['', '', '', '', '',
             '', '', '', '', '']
@@ -300,46 +304,38 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
-        self.low_pass_filter_0 = filter.interp_fir_filter_fff(
-            1,
-            firdes.low_pass(
-                4,
-                samp_rate,
-                fc_LPF,
-                50,
-                window.WIN_HAMMING,
-                6.76))
+        self.filter_fft_low_pass_filter_0 = filter.fft_filter_fff(1, firdes.low_pass(4, samp_rate, fc_LPF, 100, window.WIN_HAMMING, 6.76), 1)
+        self.blocks_wavfile_source_0 = blocks.wavfile_source('/home/com1_E1C_G1/GNURADIO_LABCOMUIS_2025_1_E1C_G1/practica5/Parte A/file_example_WAV_1MG.wav', True)
         self.blocks_float_to_complex_0 = blocks.float_to_complex(1)
-        self.blocks_delay_0_1_0 = blocks.delay(gr.sizeof_float*1, D4)
         self.blocks_delay_0_1 = blocks.delay(gr.sizeof_float*1, D3)
+        self.blocks_delay_0_0_0 = blocks.delay(gr.sizeof_float*1, D4)
         self.blocks_delay_0_0 = blocks.delay(gr.sizeof_float*1, D2)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_float*1, D1)
         self.blocks_add_xx_0 = blocks.add_vff(1)
-        self.analog_sig_source_x_0_0_0_0 = analog.sig_source_f(samp_rate, analog.GR_SAW_WAVE, fm, Am, 0, 0)
-        self.analog_sig_source_x_0_0_0 = analog.sig_source_f(samp_rate, analog.GR_SQR_WAVE, fm, Am, 0, 0)
-        self.analog_sig_source_x_0_0 = analog.sig_source_f(samp_rate, analog.GR_TRI_WAVE, fm, Am, 0, 0)
-        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, fm, Am, 0, 0)
-        self.ModuladorPAM_0_2_0 = ModuladorPAM(
+        self.analog_sig_source_x_0_2 = analog.sig_source_f(samp_rate, analog.GR_SAW_WAVE, fm, Am, 0, 0)
+        self.analog_sig_source_x_0_1 = analog.sig_source_f(samp_rate, analog.GR_SQR_WAVE, fm, Am, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_TRI_WAVE, fm, Am, 0, 0)
+        self.ModuladorPulsos_0_2_0 = ModuladorPulsos(
+            D=W,
+            fs=fs,
+            samp_rate=samp_rate,
+        )
+        self.ModuladorPulsos_0_2 = ModuladorPulsos(
             D=D,
             fs=fs,
             samp_rate=samp_rate,
         )
-        self.ModuladorPAM_0_2 = ModuladorPAM(
+        self.ModuladorPulsos_0_1 = ModuladorPulsos(
             D=D,
             fs=fs,
             samp_rate=samp_rate,
         )
-        self.ModuladorPAM_0_1 = ModuladorPAM(
+        self.ModuladorPulsos_0_0 = ModuladorPulsos(
             D=D,
             fs=fs,
             samp_rate=samp_rate,
         )
-        self.ModuladorPAM_0_0 = ModuladorPAM(
-            D=D,
-            fs=fs,
-            samp_rate=samp_rate,
-        )
-        self.ModuladorPAM_0 = ModuladorPAM(
+        self.ModuladorPulsos_0 = ModuladorPulsos(
             D=D,
             fs=fs,
             samp_rate=samp_rate,
@@ -349,32 +345,31 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.ModuladorPAM_0, 0), (self.blocks_add_xx_0, 0))
-        self.connect((self.ModuladorPAM_0, 0), (self.qtgui_time_sink_x_0, 0))
-        self.connect((self.ModuladorPAM_0_0, 0), (self.blocks_delay_0, 0))
-        self.connect((self.ModuladorPAM_0_1, 0), (self.blocks_delay_0_0, 0))
-        self.connect((self.ModuladorPAM_0_2, 0), (self.blocks_delay_0_1, 0))
-        self.connect((self.ModuladorPAM_0_2_0, 0), (self.blocks_float_to_complex_0, 0))
-        self.connect((self.ModuladorPAM_0_2_0, 0), (self.low_pass_filter_0, 0))
-        self.connect((self.ModuladorPAM_0_2_0, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.ModuladorPAM_0_2_0, 0), (self.qtgui_time_sink_x_1, 0))
-        self.connect((self.analog_sig_source_x_0, 0), (self.ModuladorPAM_0, 0))
-        self.connect((self.analog_sig_source_x_0_0, 0), (self.ModuladorPAM_0_0, 0))
-        self.connect((self.analog_sig_source_x_0_0_0, 0), (self.ModuladorPAM_0_1, 0))
-        self.connect((self.analog_sig_source_x_0_0_0_0, 0), (self.ModuladorPAM_0_2, 0))
-        self.connect((self.blocks_add_xx_0, 0), (self.blocks_delay_0_1_0, 0))
+        self.connect((self.ModuladorPulsos_0, 0), (self.blocks_add_xx_0, 0))
+        self.connect((self.ModuladorPulsos_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.ModuladorPulsos_0_0, 0), (self.blocks_delay_0, 0))
+        self.connect((self.ModuladorPulsos_0_1, 0), (self.blocks_delay_0_0, 0))
+        self.connect((self.ModuladorPulsos_0_2, 0), (self.blocks_delay_0_1, 0))
+        self.connect((self.ModuladorPulsos_0_2_0, 0), (self.blocks_float_to_complex_0, 0))
+        self.connect((self.ModuladorPulsos_0_2_0, 0), (self.filter_fft_low_pass_filter_0, 0))
+        self.connect((self.ModuladorPulsos_0_2_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.ModuladorPulsos_0_2_0, 0), (self.qtgui_time_sink_x_1, 0))
+        self.connect((self.analog_sig_source_x_0, 0), (self.ModuladorPulsos_0_0, 0))
+        self.connect((self.analog_sig_source_x_0_1, 0), (self.ModuladorPulsos_0_1, 0))
+        self.connect((self.analog_sig_source_x_0_2, 0), (self.ModuladorPulsos_0_2, 0))
+        self.connect((self.blocks_add_xx_0, 0), (self.blocks_delay_0_0_0, 0))
         self.connect((self.blocks_add_xx_0, 0), (self.qtgui_time_sink_x_0, 4))
         self.connect((self.blocks_delay_0, 0), (self.blocks_add_xx_0, 1))
         self.connect((self.blocks_delay_0, 0), (self.qtgui_time_sink_x_0, 1))
         self.connect((self.blocks_delay_0_0, 0), (self.blocks_add_xx_0, 2))
         self.connect((self.blocks_delay_0_0, 0), (self.qtgui_time_sink_x_0, 2))
+        self.connect((self.blocks_delay_0_0_0, 0), (self.ModuladorPulsos_0_2_0, 0))
         self.connect((self.blocks_delay_0_1, 0), (self.blocks_add_xx_0, 3))
         self.connect((self.blocks_delay_0_1, 0), (self.qtgui_time_sink_x_0, 3))
-        self.connect((self.blocks_delay_0_1_0, 0), (self.ModuladorPAM_0_2_0, 0))
-        self.connect((self.blocks_delay_0_1_0, 0), (self.qtgui_time_sink_x_1, 2))
         self.connect((self.blocks_float_to_complex_0, 0), (self.uhd_usrp_sink_0, 0))
-        self.connect((self.low_pass_filter_0, 0), (self.qtgui_freq_sink_x_0, 1))
-        self.connect((self.low_pass_filter_0, 0), (self.qtgui_time_sink_x_1, 1))
+        self.connect((self.blocks_wavfile_source_0, 0), (self.ModuladorPulsos_0, 0))
+        self.connect((self.filter_fft_low_pass_filter_0, 0), (self.qtgui_freq_sink_x_0, 1))
+        self.connect((self.filter_fft_low_pass_filter_0, 0), (self.qtgui_time_sink_x_1, 1))
 
 
     def closeEvent(self, event):
@@ -385,38 +380,36 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
 
         event.accept()
 
-    def get_fs(self):
-        return self.fs
-
-    def set_fs(self, fs):
-        self.fs = fs
-        self.set_fc_LPF(self.fs/2)
-        self.ModuladorPAM_0.set_fs(self.fs)
-        self.ModuladorPAM_0_0.set_fs(self.fs)
-        self.ModuladorPAM_0_1.set_fs(self.fs)
-        self.ModuladorPAM_0_2.set_fs(self.fs)
-        self.ModuladorPAM_0_2_0.set_fs(self.fs)
-
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.ModuladorPAM_0.set_samp_rate(self.samp_rate)
-        self.ModuladorPAM_0_0.set_samp_rate(self.samp_rate)
-        self.ModuladorPAM_0_1.set_samp_rate(self.samp_rate)
-        self.ModuladorPAM_0_2.set_samp_rate(self.samp_rate)
-        self.ModuladorPAM_0_2_0.set_samp_rate(self.samp_rate)
+        self.set_fs(self.samp_rate/100)
+        self.ModuladorPulsos_0.set_samp_rate(self.samp_rate)
+        self.ModuladorPulsos_0_0.set_samp_rate(self.samp_rate)
+        self.ModuladorPulsos_0_1.set_samp_rate(self.samp_rate)
+        self.ModuladorPulsos_0_2.set_samp_rate(self.samp_rate)
+        self.ModuladorPulsos_0_2_0.set_samp_rate(self.samp_rate)
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
-        self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
-        self.analog_sig_source_x_0_0_0.set_sampling_freq(self.samp_rate)
-        self.analog_sig_source_x_0_0_0_0.set_sampling_freq(self.samp_rate)
-        self.low_pass_filter_0.set_taps(firdes.low_pass(4, self.samp_rate, self.fc_LPF, 50, window.WIN_HAMMING, 6.76))
+        self.analog_sig_source_x_0_1.set_sampling_freq(self.samp_rate)
+        self.analog_sig_source_x_0_2.set_sampling_freq(self.samp_rate)
+        self.filter_fft_low_pass_filter_0.set_taps(firdes.low_pass(4, self.samp_rate, self.fc_LPF, 100, window.WIN_HAMMING, 6.76))
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
-        self.uhd_usrp_sink_0.set_center_freq(self.samp_rate, 0)
+
+    def get_fs(self):
+        return self.fs
+
+    def set_fs(self, fs):
+        self.fs = fs
+        self.ModuladorPulsos_0.set_fs(self.fs)
+        self.ModuladorPulsos_0_0.set_fs(self.fs)
+        self.ModuladorPulsos_0_1.set_fs(self.fs)
+        self.ModuladorPulsos_0_2.set_fs(self.fs)
+        self.ModuladorPulsos_0_2_0.set_fs(self.fs)
 
     def get_fm(self):
         return self.fm
@@ -424,23 +417,29 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
     def set_fm(self, fm):
         self.fm = fm
         self.analog_sig_source_x_0.set_frequency(self.fm)
-        self.analog_sig_source_x_0_0.set_frequency(self.fm)
-        self.analog_sig_source_x_0_0_0.set_frequency(self.fm)
-        self.analog_sig_source_x_0_0_0_0.set_frequency(self.fm)
+        self.analog_sig_source_x_0_1.set_frequency(self.fm)
+        self.analog_sig_source_x_0_2.set_frequency(self.fm)
 
     def get_fc_LPF(self):
         return self.fc_LPF
 
     def set_fc_LPF(self, fc_LPF):
         self.fc_LPF = fc_LPF
-        self.low_pass_filter_0.set_taps(firdes.low_pass(4, self.samp_rate, self.fc_LPF, 50, window.WIN_HAMMING, 6.76))
+        self.filter_fft_low_pass_filter_0.set_taps(firdes.low_pass(4, self.samp_rate, self.fc_LPF, 100, window.WIN_HAMMING, 6.76))
+
+    def get_W(self):
+        return self.W
+
+    def set_W(self, W):
+        self.W = W
+        self.ModuladorPulsos_0_2_0.set_D(self.W)
 
     def get_D4(self):
         return self.D4
 
     def set_D4(self, D4):
         self.D4 = D4
-        self.blocks_delay_0_1_0.set_dly(int(self.D4))
+        self.blocks_delay_0_0_0.set_dly(int(self.D4))
 
     def get_D3(self):
         return self.D3
@@ -468,11 +467,10 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
 
     def set_D(self, D):
         self.D = D
-        self.ModuladorPAM_0.set_D(self.D)
-        self.ModuladorPAM_0_0.set_D(self.D)
-        self.ModuladorPAM_0_1.set_D(self.D)
-        self.ModuladorPAM_0_2.set_D(self.D)
-        self.ModuladorPAM_0_2_0.set_D(self.D)
+        self.ModuladorPulsos_0.set_D(self.D)
+        self.ModuladorPulsos_0_0.set_D(self.D)
+        self.ModuladorPulsos_0_1.set_D(self.D)
+        self.ModuladorPulsos_0_2.set_D(self.D)
 
     def get_Am(self):
         return self.Am
@@ -480,9 +478,8 @@ class MultiplexaPAM(gr.top_block, Qt.QWidget):
     def set_Am(self, Am):
         self.Am = Am
         self.analog_sig_source_x_0.set_amplitude(self.Am)
-        self.analog_sig_source_x_0_0.set_amplitude(self.Am)
-        self.analog_sig_source_x_0_0_0.set_amplitude(self.Am)
-        self.analog_sig_source_x_0_0_0_0.set_amplitude(self.Am)
+        self.analog_sig_source_x_0_1.set_amplitude(self.Am)
+        self.analog_sig_source_x_0_2.set_amplitude(self.Am)
 
 
 

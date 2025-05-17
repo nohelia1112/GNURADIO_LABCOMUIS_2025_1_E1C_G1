@@ -38,7 +38,7 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Amplitud mensaje
+    label: Amplitud del mesanaje
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -51,7 +51,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [536, 8.0]
+    coordinate: [584, 24.0]
     rotation: 0
     state: enabled
 - name: D
@@ -59,20 +59,20 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Ancho pulso
+    label: Ancho Pulso
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
     stop: '50'
-    value: '10'
+    value: '25'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [416, 8.0]
+    coordinate: [456, 24.0]
     rotation: 0
     state: enabled
 - name: D1
@@ -80,20 +80,20 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Retardo 1
+    label: retardo 1
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
     stop: '100'
-    value: '0'
+    value: '25'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [848, 8.0]
+    coordinate: [456, 168.0]
     rotation: 0
     state: enabled
 - name: D2
@@ -101,20 +101,20 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Retardo 2
+    label: retardo 2
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
     stop: '100'
-    value: '0'
+    value: '50'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [960, 8.0]
+    coordinate: [584, 168.0]
     rotation: 0
     state: enabled
 - name: D3
@@ -122,20 +122,20 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Retardo 3
+    label: retardo 3
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
     stop: '100'
-    value: '0'
+    value: '75'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1072, 8.0]
+    coordinate: [752, 176.0]
     rotation: 0
     state: enabled
 - name: D4
@@ -143,7 +143,7 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: "Selecci\xF3n Se\xF1al RX"
+    label: 'Selector '
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -156,7 +156,28 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 8.0]
+    coordinate: [872, 176.0]
+    rotation: 0
+    state: enabled
+- name: W
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ancho de pulso selector
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '50'
+    value: '25'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [960, 24.0]
     rotation: 0
     state: enabled
 - name: fc_LPF
@@ -164,20 +185,20 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Cutoff Freq
+    label: frecuencia filtro
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
-    step: '10'
-    stop: '10000'
-    value: fs/2
+    step: '1'
+    stop: 10e3
+    value: '100'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1336, 8.0]
+    coordinate: [992, 176.0]
     rotation: 0
     state: enabled
 - name: fm
@@ -185,20 +206,20 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Frecuencia mensaje
+    label: frecuencia mensaje
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '10'
-    stop: '10000'
+    stop: 10e3
     value: '100'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 8.0]
+    coordinate: [776, 24.0]
     rotation: 0
     state: enabled
 - name: fs
@@ -206,36 +227,36 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Frecuencia Pulsos
+    label: Frecuencia pulsos
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
-    stop: '10000'
-    value: '1000'
+    stop: 100e3
+    value: samp_rate/100
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [264, 8.0]
+    coordinate: [312, 24.0]
     rotation: 0
     state: enabled
 - name: samp_rate
   id: variable
   parameters:
     comment: ''
-    value: '100000'
+    value: 25e6/128
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [168, 8.0]
+    coordinate: [160, 40.0]
     rotation: 0
     state: enabled
-- name: ModuladorPAM_0
-  id: ModuladorPAM
+- name: ModuladorPulsos_0
+  id: ModuladorPulsos
   parameters:
     D: D
     affinity: ''
@@ -249,11 +270,11 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 224.0]
+    coordinate: [368, 328.0]
     rotation: 0
     state: enabled
-- name: ModuladorPAM_0_0
-  id: ModuladorPAM
+- name: ModuladorPulsos_0_0
+  id: ModuladorPulsos
   parameters:
     D: D
     affinity: ''
@@ -267,11 +288,11 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 400.0]
+    coordinate: [368, 480.0]
     rotation: 0
     state: enabled
-- name: ModuladorPAM_0_1
-  id: ModuladorPAM
+- name: ModuladorPulsos_0_1
+  id: ModuladorPulsos
   parameters:
     D: D
     affinity: ''
@@ -285,11 +306,11 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 576.0]
+    coordinate: [368, 632.0]
     rotation: 0
     state: enabled
-- name: ModuladorPAM_0_2
-  id: ModuladorPAM
+- name: ModuladorPulsos_0_2
+  id: ModuladorPulsos
   parameters:
     D: D
     affinity: ''
@@ -303,13 +324,13 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 752.0]
+    coordinate: [368, 792.0]
     rotation: 0
     state: enabled
-- name: ModuladorPAM_0_2_0
-  id: ModuladorPAM
+- name: ModuladorPulsos_0_2_0
+  id: ModuladorPulsos
   parameters:
-    D: D
+    D: W
     affinity: ''
     alias: ''
     comment: ''
@@ -321,33 +342,10 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1512, 736.0]
+    coordinate: [1296, 608.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
-  id: analog_sig_source_x
-  parameters:
-    affinity: ''
-    alias: ''
-    amp: Am
-    comment: ''
-    freq: fm
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    offset: '0'
-    phase: '0'
-    samp_rate: samp_rate
-    showports: 'False'
-    type: float
-    waveform: analog.GR_COS_WAVE
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [72, 196.0]
-    rotation: 0
-    state: enabled
-- name: analog_sig_source_x_0_0
   id: analog_sig_source_x
   parameters:
     affinity: ''
@@ -367,10 +365,33 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [72, 372.0]
+    coordinate: [48, 452.0]
     rotation: 0
     state: enabled
-- name: analog_sig_source_x_0_0_0
+- name: analog_sig_source_x_0_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: Am
+    comment: ''
+    freq: fm
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    showports: 'False'
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 292.0]
+    rotation: 0
+    state: disabled
+- name: analog_sig_source_x_0_1
   id: analog_sig_source_x
   parameters:
     affinity: ''
@@ -390,10 +411,10 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [72, 548.0]
+    coordinate: [48, 612.0]
     rotation: 0
     state: enabled
-- name: analog_sig_source_x_0_0_0_0
+- name: analog_sig_source_x_0_2
   id: analog_sig_source_x
   parameters:
     affinity: ''
@@ -413,7 +434,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [56, 724.0]
+    coordinate: [48, 772.0]
     rotation: 0
     state: enabled
 - name: blocks_add_xx_0
@@ -431,7 +452,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1080, 720.0]
+    coordinate: [936, 592.0]
     rotation: 0
     state: enabled
 - name: blocks_delay_0
@@ -451,7 +472,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [736, 416.0]
+    coordinate: [584, 496.0]
     rotation: 0
     state: enabled
 - name: blocks_delay_0_0
@@ -471,7 +492,27 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [736, 592.0]
+    coordinate: [576, 648.0]
+    rotation: 0
+    state: enabled
+- name: blocks_delay_0_0_0
+  id: blocks_delay
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    delay: D4
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    showports: 'False'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1120, 624.0]
     rotation: 0
     state: enabled
 - name: blocks_delay_0_1
@@ -491,27 +532,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [736, 768.0]
-    rotation: 0
-    state: enabled
-- name: blocks_delay_0_1_0
-  id: blocks_delay
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    delay: D4
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_ports: '1'
-    showports: 'False'
-    type: float
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1288, 752.0]
+    coordinate: [576, 808.0]
     rotation: 0
     state: enabled
 - name: blocks_float_to_complex_0
@@ -527,11 +548,29 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1848, 888.0]
+    coordinate: [1392, 896.0]
     rotation: 0
     state: enabled
-- name: low_pass_filter_0
-  id: low_pass_filter
+- name: blocks_wavfile_source_0
+  id: blocks_wavfile_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    file: /home/com1_E1C_G1/GNURADIO_LABCOMUIS_2025_1_E1C_G1/practica5/Parte A/file_example_WAV_1MG.wav
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nchan: '1'
+    repeat: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 936.0]
+    rotation: 0
+    state: enabled
+- name: filter_fft_low_pass_filter_0
+  id: filter_fft_low_pass_filter
   parameters:
     affinity: ''
     alias: ''
@@ -540,18 +579,18 @@ blocks:
     cutoff_freq: fc_LPF
     decim: '1'
     gain: '4'
-    interp: '1'
     maxoutbuf: '0'
     minoutbuf: '0'
+    nthreads: '1'
     samp_rate: samp_rate
-    type: interp_fir_filter_fff
-    width: '50'
+    type: fff
+    width: '100'
     win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1872, 700.0]
+    coordinate: [1496, 652.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -586,8 +625,8 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     fc: '0'
-    fftsize: '16384'
-    freqhalf: 'True'
+    fftsize: '1024'
+    freqhalf: 'False'
     grid: 'False'
     gui_hint: ''
     label: Relative Gain
@@ -625,15 +664,15 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: window.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_RECTANGULAR
     ymax: '10'
     ymin: '-140'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2120, 648.0]
-    rotation: 0
+    coordinate: [1584.0, 312]
+    rotation: 90
     state: enabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
@@ -690,7 +729,7 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '5'
-    size: '1024'
+    size: 1024*4
     srate: samp_rate
     stemplot: 'False'
     style1: '1'
@@ -729,7 +768,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1104, 312.0]
+    coordinate: [936, 320.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_1
@@ -786,7 +825,7 @@ blocks:
     marker8: '-1'
     marker9: '-1'
     name: '""'
-    nconnections: '3'
+    nconnections: '2'
     size: 1024*8
     srate: samp_rate
     stemplot: 'False'
@@ -826,8 +865,8 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1992, 424.0]
-    rotation: 0
+    coordinate: [1784.0, 312]
+    rotation: 90
     state: enabled
 - name: uhd_usrp_sink_0
   id: uhd_usrp_sink
@@ -898,7 +937,7 @@ blocks:
     bw7: '0'
     bw8: '0'
     bw9: '0'
-    center_freq0: samp_rate
+    center_freq0: 200e6
     center_freq1: '0'
     center_freq10: '0'
     center_freq11: '0'
@@ -1103,37 +1142,37 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2120, 840.0]
+    coordinate: [1792, 848.0]
     rotation: 0
     state: enabled
 
 connections:
-- [ModuladorPAM_0, '0', blocks_add_xx_0, '0']
-- [ModuladorPAM_0, '0', qtgui_time_sink_x_0, '0']
-- [ModuladorPAM_0_0, '0', blocks_delay_0, '0']
-- [ModuladorPAM_0_1, '0', blocks_delay_0_0, '0']
-- [ModuladorPAM_0_2, '0', blocks_delay_0_1, '0']
-- [ModuladorPAM_0_2_0, '0', blocks_float_to_complex_0, '0']
-- [ModuladorPAM_0_2_0, '0', low_pass_filter_0, '0']
-- [ModuladorPAM_0_2_0, '0', qtgui_freq_sink_x_0, '0']
-- [ModuladorPAM_0_2_0, '0', qtgui_time_sink_x_1, '0']
-- [analog_sig_source_x_0, '0', ModuladorPAM_0, '0']
-- [analog_sig_source_x_0_0, '0', ModuladorPAM_0_0, '0']
-- [analog_sig_source_x_0_0_0, '0', ModuladorPAM_0_1, '0']
-- [analog_sig_source_x_0_0_0_0, '0', ModuladorPAM_0_2, '0']
-- [blocks_add_xx_0, '0', blocks_delay_0_1_0, '0']
+- [ModuladorPulsos_0, '0', blocks_add_xx_0, '0']
+- [ModuladorPulsos_0, '0', qtgui_time_sink_x_0, '0']
+- [ModuladorPulsos_0_0, '0', blocks_delay_0, '0']
+- [ModuladorPulsos_0_1, '0', blocks_delay_0_0, '0']
+- [ModuladorPulsos_0_2, '0', blocks_delay_0_1, '0']
+- [ModuladorPulsos_0_2_0, '0', blocks_float_to_complex_0, '0']
+- [ModuladorPulsos_0_2_0, '0', filter_fft_low_pass_filter_0, '0']
+- [ModuladorPulsos_0_2_0, '0', qtgui_freq_sink_x_0, '0']
+- [ModuladorPulsos_0_2_0, '0', qtgui_time_sink_x_1, '0']
+- [analog_sig_source_x_0, '0', ModuladorPulsos_0_0, '0']
+- [analog_sig_source_x_0_0, '0', ModuladorPulsos_0, '0']
+- [analog_sig_source_x_0_1, '0', ModuladorPulsos_0_1, '0']
+- [analog_sig_source_x_0_2, '0', ModuladorPulsos_0_2, '0']
+- [blocks_add_xx_0, '0', blocks_delay_0_0_0, '0']
 - [blocks_add_xx_0, '0', qtgui_time_sink_x_0, '4']
 - [blocks_delay_0, '0', blocks_add_xx_0, '1']
 - [blocks_delay_0, '0', qtgui_time_sink_x_0, '1']
 - [blocks_delay_0_0, '0', blocks_add_xx_0, '2']
 - [blocks_delay_0_0, '0', qtgui_time_sink_x_0, '2']
+- [blocks_delay_0_0_0, '0', ModuladorPulsos_0_2_0, '0']
 - [blocks_delay_0_1, '0', blocks_add_xx_0, '3']
 - [blocks_delay_0_1, '0', qtgui_time_sink_x_0, '3']
-- [blocks_delay_0_1_0, '0', ModuladorPAM_0_2_0, '0']
-- [blocks_delay_0_1_0, '0', qtgui_time_sink_x_1, '2']
 - [blocks_float_to_complex_0, '0', uhd_usrp_sink_0, '0']
-- [low_pass_filter_0, '0', qtgui_freq_sink_x_0, '1']
-- [low_pass_filter_0, '0', qtgui_time_sink_x_1, '1']
+- [blocks_wavfile_source_0, '0', ModuladorPulsos_0, '0']
+- [filter_fft_low_pass_filter_0, '0', qtgui_freq_sink_x_0, '1']
+- [filter_fft_low_pass_filter_0, '0', qtgui_time_sink_x_1, '1']
 
 metadata:
   file_format: 1
