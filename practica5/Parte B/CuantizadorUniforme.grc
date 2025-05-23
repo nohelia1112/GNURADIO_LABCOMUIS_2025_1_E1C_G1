@@ -253,7 +253,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1448, 592.0]
+    coordinate: [1112, 1208.0]
     rotation: 0
     state: enabled
 - name: blocks_float_to_short_0
@@ -307,6 +307,24 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [984, 604.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0_0_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: amplitude/math.pow(2,n)
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [800, 1040.0]
     rotation: 0
     state: enabled
 - name: blocks_short_to_float_0
@@ -415,6 +433,30 @@ blocks:
     coordinate: [1288, 244.0]
     rotation: 0
     state: enabled
+- name: low_pass_filter_0_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: fcut
+    decim: '1'
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: interp_fir_filter_fff
+    width: '1000'
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1688, 436.0]
+    rotation: 0
+    state: disabled
 - name: qtgui_freq_sink_x_0
   id: qtgui_freq_sink_x
   parameters:
@@ -1109,7 +1151,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1776, 528.0]
+    coordinate: [1432, 1160.0]
     rotation: 0
     state: enabled
 - name: virtual_sink_0
@@ -1151,6 +1193,19 @@ blocks:
     coordinate: [1552, 300.0]
     rotation: 0
     state: enabled
+- name: virtual_sink_0_0_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: channel
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1952, 480.0]
+    rotation: 0
+    state: disabled
 - name: virtual_sink_0_0_1
   id: virtual_sink
   parameters:
@@ -1190,6 +1245,19 @@ blocks:
     coordinate: [888, 252.0]
     rotation: 0
     state: enabled
+- name: virtual_source_0_0_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: source
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1456, 480.0]
+    rotation: 0
+    state: disabled
 - name: virtual_source_0_1
   id: virtual_source
   parameters:
@@ -1226,7 +1294,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [528, 748.0]
+    coordinate: [528, 768.0]
     rotation: 0
     state: enabled
 - name: virtual_source_0_2
@@ -1239,7 +1307,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [528, 820.0]
+    coordinate: [528, 840.0]
     rotation: 0
     state: enabled
 - name: virtual_source_0_2_0
@@ -1252,7 +1320,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [536, 876.0]
+    coordinate: [528, 912.0]
     rotation: 0
     state: enabled
 - name: virtual_source_0_2_0_0
@@ -1291,7 +1359,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [536, 676.0]
+    coordinate: [528, 696.0]
     rotation: 0
     state: enabled
 - name: virtual_source_110_0
@@ -1315,18 +1383,21 @@ connections:
 - [blocks_float_to_complex_1, '0', uhd_usrp_sink_0, '0']
 - [blocks_float_to_short_0, '0', blocks_short_to_float_0, '0']
 - [blocks_multiply_const_vxx_0, '0', blocks_float_to_short_0, '0']
-- [blocks_multiply_const_vxx_0_0, '0', blocks_float_to_complex_1, '0']
 - [blocks_multiply_const_vxx_0_0, '0', virtual_sink_0_0, '0']
+- [blocks_multiply_const_vxx_0_0_0, '0', blocks_float_to_complex_1, '0']
 - [blocks_short_to_float_0, '0', blocks_multiply_const_vxx_0_0, '0']
 - [blocks_sub_xx_0, '0', virtual_sink_0_0_1, '0']
 - [blocks_throttle2_0, '0', virtual_sink_0, '0']
 - [low_pass_filter_0, '0', virtual_sink_0_0_0, '0']
+- [low_pass_filter_0_0, '0', virtual_sink_0_0_0_0, '0']
 - [virtual_source_0, '0', blocks_sub_xx_0, '0']
 - [virtual_source_0_0, '0', blocks_add_xx_0, '0']
+- [virtual_source_0_0_0, '0', low_pass_filter_0_0, '0']
 - [virtual_source_0_1, '0', blocks_sub_xx_0, '1']
 - [virtual_source_0_1_0, '0', qtgui_histogram_sink_x_0_0, '1']
 - [virtual_source_0_1_0_0, '0', qtgui_freq_sink_x_0, '1']
 - [virtual_source_0_1_0_0, '0', qtgui_time_sink_x_0, '1']
+- [virtual_source_0_2, '0', blocks_multiply_const_vxx_0_0_0, '0']
 - [virtual_source_0_2, '0', qtgui_freq_sink_x_0, '2']
 - [virtual_source_0_2, '0', qtgui_time_sink_x_0, '2']
 - [virtual_source_0_2_0, '0', qtgui_freq_sink_x_0, '3']
