@@ -27,6 +27,8 @@ Uso de IA: Se utilizó ChatGPT para reformular secciones del texto y verificar g
 ---
 ## Contenido
 ### Resumen
+Este laboratorio simula fenómenos de canal con GNU Radio para analizar cómo afectan la transmisión de señales. Se exploran el uso de filtros para trabajar con problemas de canal comunes como distorsiones ,atenuación, el desvanecimiento, el retardo y la dispersión. Usando el osciloscopio y el analizador de espectro, se observa el impacto de estos fenómenos en el tiempo y la frecuencia. Además, se evalúa cómo las imperfecciones del canal influyen en la conversión de frecuencia y la integridad de la señal. El objetivo es entender la importancia de los efectos del canal al diseñar sistemas de comunicación.
+
 **Palabras clave:**
 ### Introducción
 > [!NOTE]
@@ -55,6 +57,8 @@ Este enfoque permitirá no solo verificar la teoría, sino también desarrollar 
 - Tenga en cuenta que existen instrumentos de visualización en dominio tiempo y frecuencia tanto para la señal ANTES como DESPUÉS del filtro.
 ---
 ### PROCEDIMIENTO:
+
+
 ## Actividad 1: Actividades de simulación de canal en GNU Radio
 
 ### Objetivo
@@ -74,17 +78,90 @@ Familiarizarse con algunos fenómenos de canal en un ambiente simulado.
 ### Preguntas Orientadoras
 
 - ¿Cuál es el efecto de filtrar las frecuencias altas de una señal?
+
+La consecuencia dependera directamente de las caracteristicas de la señal, su frecuencia , su espectro y de los efectos de canal.
+
+Desglosando de lo mencionado previamente en software con señales ciclicas podemos observar siguiente
+
+ **Caso 1. Triangular con filtro cerca de los coeficientes espectrales**
+
+| ![Analizador_Constante1](./2.Actividad%201%20GNURADIO/Triangular_filtrada.png/) | ![Analizador_Constante2](./2.Actividad%201%20GNURADIO/Triangular_E_filtrada.png)|
+|:---:|:---:|
+| **Señal Filtrada** | **Espectro filtrado** |
+
+ **Caso 2. Triangular con filtro que borra los coeficientes espectales**
+| ![Analizador_Constante3](./2.Actividad%201%20GNURADIO/Triangular_Highfrec_filtrada.png/) | ![Analizador_Constante2](./2.Actividad%201%20GNURADIO/Triangular_E_Highfrec_filtrada.png)|
+|:---:|:---:|
+| **Señal Filtrada** | **Espectro filtrado** |
+
+
+Al filtrar las frecuencias altas de una señal es muy importante considerar su espectro ya que hay coeficientes de la serie de fourier de la señal que tienen mas potencia que otros, como resultado esos coeficientes son los que mas llevan informacion de la forma de la señal y al eliminarlos por consecuencia se logra observar un impacto radical en su forma de onda. Como se observa en el caso 2.
+
 - ¿Qué sucede al filtrar muy cerca de la frecuencia fundamental de la señal?
+
+Al filtrar cerca de frecuencias fundamentales se puede observar atenuaciones en la potencia de la señal ya que el filtro no es ideal por lo que tendra una pendiente asociada y de esa forma conseguira una atenuacion en la señal en dicha pendiente. Esto se observar en el caso 1 donde se ve una disminucion en potencia en el tiempo del 28 % de la señal original Amplitud : 0.25 ; Señal filtrada : 0.18 
+
 - ¿Cuál es el efecto de filtrar las frecuencias bajas de una señal?
+
+Es analogo a lo mencionado con el caso de las frecuencias altas. Aunque puede ser util ya que la mayoria de ruido producido en los dispositivos como el ruido termico, ruido flicker se producen a bajas frecuencias.
+
 - ¿Qué ocurre al eliminar armónicos de una señal?
+
+Al eliminar los coeficientes o armonicos principales de la señal se pierde la forma de onda y gran parte de la potencia de la señal.
+
 - ¿Qué efecto tiene la desviación de frecuencia en la señal recibida? ¿Qué efecto(s) produce el filtro cuando la señal recibida se ve afectada por desviación de frecuencia?
+
+
+<div style="text-align: center;">
+    <img src="./2.Actividad 1 GNURADIO/Desviacion.png" alt="GNUConstante" width="300" />
+    <p><b>Desviacion de frecuencia</b></p>
+</div>
+
+**Efecto de desviacion estandar**
+| ![Analizador_Constante3](./2.Actividad%201%20GNURADIO/Efectodesviacion%20de%20frecuencia_normal.png/) | ![Analizador_Constante2](./2.Actividad%201%20GNURADIO/Efectodesviacion%20de%20frecuencia.png)|
+|:---:|:---:|
+| **Espectro** | **Espectro con desviacion de frecuencia** |
+
+La desviacion de frecuencia desplaza los componentes espectrales en la frecuencia ensanchando el espectro, se  desplaza kf en direccion contraria a la frecuencia 0.
+
 - ¿Cómo cuantificar la degradación de la señal al aumentar los niveles de ruido?
+Mediante la relacion señal a ruido SNR ya que esta medida es la relacion directa en cuanto se ve afectada la amplitud de señal respecto el ruido de la misma
 - ¿Cómo se puede mejorar la relación señal a ruido en una señal?
+
+Utilizando filtros muy cerca de los armonicos de la señal para obtener el menor ruido posible y mejorar la relacion SNR de la señal
+
+<table>
+<tr>
+<td align="center">
+  <img src="./2.Actividad 1 GNURADIO/Triangularconruido.png" width="400"><br><strong>Ruido en el tiempo</strong>
+</td>
+<td align="center">
+  <img src="./2.Actividad 1 GNURADIO/Triangularconruido_E.png" width="400"><br><strong>Ruido en el espectro</strong>
+</td>
+</tr>
+</table>
+Se puede observar que con una potencia del ruido del 50% de la amplitud de la señal transmitida aun puede recuperarse la señal original.
+
 - ¿Cómo podría cuantificar la calidad de la señal recibida? Considere el caso de señales analógicas y digitales.
 
-### Evidencia
+La calidad de una señal recibida se cuantifica de forma distinta según sea analógica o digital. En señales analógicas, se considera viable si la relación señal a ruido (SNR) es suficientemente alta, generalmente superior a 20 dB, lo que indica que la información útil predomina sobre el ruido; también pueden evaluarse métricas como SINAD o SINR si hay distorsión o interferencia. En señales digitales, la viabilidad depende principalmente de la tasa de error de bit (BER): una señal es confiable si la BER es lo bastante baja, típicamente menor a 10⁻³ o incluso 10⁻⁶ según el sistema, lo cual garantiza una recepción correcta de los datos.
 
-*(Adjuntar las evidencias de la práctica en el Aula Virtual: capturas de pantalla, observaciones, cálculos o mediciones preliminares)*
+
+ **Contraste entre SNR y BER**
+
+<table>
+<tr>
+<td align="center">
+  <img src="./2.Actividad 1 GNURADIO/SNR.png" width="400"><br><strong>Relacion señal a ruido</strong>
+</td>
+<td align="center">
+  <img src="./2.Actividad 1 GNURADIO/BER2.png" width="300"><br><strong>BER VS SNR </strong>
+</td>
+</tr>
+</table>
+
+
+
 
 ---
 
