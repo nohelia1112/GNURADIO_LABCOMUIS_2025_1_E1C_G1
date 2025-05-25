@@ -185,19 +185,50 @@ Familiarizarse con los fenómenos de un canal alámbrico real en el dominio del 
 ### Preguntas Orientadoras
 
 - ¿Cuál es el efecto del ruido sobre la amplitud de las señales medidas en el osciloscopio? ¿Conservan las mismas relaciones que se evidencian en la simulación?
+
+No son iguales debido a efectos de canal producida por la impedacia de los cables , de las entradas de los equipos  y ruido producido por la manipulacion de los equipos los cuales producen fuertes atenuaciones en la potencia de la señal.
+
+<div style="text-align: center;">
+    <img src="./3.Actividad 2 Osciloscopio/Señalnoise.PNG" alt="GNUConstante" width="300" />
+    <p><b>Senosoidal con ruido</b></p>
+</div>
+
 - ¿La relación señal a ruido creada intencionalmente en el computador se amplifica o se reduce en la señal observada en el osciloscopio?
-- Demuestre ¿cómo se puede mejorar la relación señal a ruido en una señal?
-- ¿Cómo se evidencia el fenómeno de desviación de frecuencia en el osciloscopio? Evidenciar al menos con dos formas de onda.
+
+La relacion señal a ruido disminuye en el osciloscopio debido a que la potencia de la señal transmitida se atenua por efectos de canal mas la potencia del ruido no.
+
+
+- ¿Cómo se evidencia el fenómeno de desviación de frecuencia en el osciloscopio? 
+
+**Efecto de desviacion estandar**
+| ![Analizador_Constante3](./3.Actividad%202%20Osciloscopio/SCR05.PNG) |  ![Analizador_Constante3](./3.Actividad%202%20Osciloscopio/SCR07.PNG) 
+|:---:|:---:|
+| **Desviación de frecuencia** | **Señal original** |
+
+
 - Determine la afectación de un medio de transmisión coaxial (usar cables largos) sobre una señal periódica operando a las capacidades máximas de muestreo del USRP.
 - 
   - **NOTA:** La frecuencia de transmisión no debe superar los 500 MHz para ser observada en el osciloscopio. Para el experimento, considere las relaciones de muestreo correspondientes.
-- Usando cables coaxiales de diferentes longitudes, ¿cómo afecta la distancia entre el transmisor y el receptor a la amplitud de la señal medida?
+
+**Efecto de desviacion estandar**
+| ![Analizador_Constante3](./3.Actividad%202%20Osciloscopio/SCR01.PNG) |  ![Analizador_Constante3](./3.Actividad%202%20Osciloscopio/SCR02.PNG) 
+|:---:|:---:|
+| **Cable corto** | **Cable largo** |
+
 - Usando antenas, ¿cómo afecta la distancia entre el transmisor y el receptor a la amplitud de la señal medida? ¿Es posible compensar el fenómeno?
+
+La potencia de la señal recibida es inversamente proporcional a la distancia entre las antenas de los medios como se puede evidenciar en la ecuacion de Friss
+
+<div style="text-align: center;">
+    <img src="./3.Actividad 2 Osciloscopio/Ecuaciondefriss.jpg" alt="GNUConstante" width="300" />
+    <p><b>Ecuacion de friss</b></p>
+</div>
+
+Ademas otros efectos de canal como la transmision en la misma banda de frecuencias , manipulacion de los equipos, antenas sin linea de vista pueden afectar directamente a esta misma, donde ademas se pueden producir entre otras degradaciones en la trasnmision del canal.
+
 - ¿Qué modelo de canal básico describe mejor las mediciones obtenidas en la práctica?
 
-### Evidencia
-
-*(Adjuntar las evidencias de la práctica en el Aula Virtual: capturas de pantalla, observaciones, cálculos o mediciones preliminares)*
+Un modelo que considere las degradaciones de canal dependiendo del medio de transmision, en caso de usar transmision por linea considerar las atenuaciones dadas por la longitud del cable, impedacia en las entradas de los equipos y ruido gausiano. En caso de usar transmision inalambria considerar los efectos como la ecuacion de friss, la importancia de tener una linea de vista y de considerar efectos climatológicos
 
 ---
 
@@ -220,18 +251,20 @@ Familiarizarse con los fenómenos de un canal alámbrico real en el dominio de l
 ### Preguntas Orientadoras
 
 - ¿Cuál es el efecto del ruido sobre la respuesta en frecuencia de las señales medidas en el analizador de espectro? ¿Conservan las mismas relaciones que se evidencian en la simulación?
-- ¿La relación señal a ruido creada intencionalmente desde el computador se amplifica o se reduce en la señal observada en el analizador de espectro?
-- Adjunte la evidencia de la medición de la relación señal a ruido de dos formas de onda distintas.
-- ¿Cómo se evidencia el fenómeno de desviación de frecuencia en el analizador de espectro? Evidenciar al menos con dos formas de onda.
-- Determine la afectación de un medio de transmisión coaxial (usar cables largos) sobre una señal periódica operando a las capacidades máximas de muestreo del USRP.
-  - **NOTA:** La frecuencia de transmisión no debe superar los 1000 MHz para ser observada en el analizador. Para el experimento, considere las relaciones de muestreo correspondientes.
+
+Se observa una diferencia en la medida de potencia en los equipos dada por la diferencia entre la impedancia de entrada de entrada para su funcionalidad.  El osciloscopio R&S®RTB2000 tiene una impedancia de entrada alta (1 MΩ) para no cargar el circuito y medir voltajes sin alterar la señal, ideal para observar formas de onda. En cambio, el analizador de espectro R&S®FPC1000 usa 50 Ω para adaptarse a sistemas de RF y medir potencia de forma precisa. Cada uno es mejor en su función: el osciloscopio para medir tensión en el tiempo y el analizador para medir potencia y espectro en frecuencia.
+
+
+
+
+
 - Usando cables coaxiales de diferentes longitudes, ¿cómo afecta la distancia entre el transmisor y el receptor a la amplitud de la señal medida?
+
+Con cables largos, la señal experimenta una mayor atenuación, lo que reduce su amplitud significativamente y provoca una variación mínima en su frecuencia central, además de introducir un ligero retardo en la transmisión. Por el contrario, al usar cables cortos, la atenuación es menor, permitiendo que la señal mantenga una mejor amplitud y su fidelidad, sin que su frecuencia se vea afectada de forma considerable ni se introduzcan retardos perceptibles.
 - Usando antenas, ¿cómo afecta la distancia entre el transmisor y el receptor a la amplitud de la señal medida? ¿Es posible compensar el fenómeno?
-- ¿Qué modelo de canal básico describe mejor las mediciones obtenidas en la práctica?
 
-### Evidencia
+Cuando el transmisor y el receptor están cerca, la señal se amplifica porque hay menos dispersión y atenuación. A medida que la distancia aumenta, la amplitud de la señal disminuye debido a las pérdidas inherentes a la propagación en el espacio libre. Además, cualquier perturbación en el medio, como la presencia de una mano cerca de la antena, puede absorber parte de la energía y afectar la señal. Para mitigar estos efectos, se puede ajustar la potencia de transmisión, usar antenas direccionales o añadir amplificadores de señal.
 
-*(Adjuntar las evidencias de la práctica en el Aula Virtual: capturas de pantalla, observaciones, cálculos o mediciones preliminares)*
 
 ## Actividad 4: Efectos de los fenómenos de canal en la conversión de frecuencia
 
@@ -250,8 +283,8 @@ Familiarizarse con los efectos de los fenómenos de un canal alámbrico e inalá
 ### Preguntas Orientadoras
 
 - ¿Cómo se evidencian los diferentes fenómenos de canal en la señal recibida?
+
+Los fenómenos de canal se manifiestan en la señal recibida principalmente como atenuación, la cual reduce su amplitud debido a las pérdidas inherentes al medio de transmisión. También se observa el desvanecimiento, que causa fluctuaciones en la potencia de la señal, y la presencia de ruido, que introduce componentes no deseados y afecta la claridad de la comunicación.
+
 - ¿Cómo se pueden mitigar los efectos del canal en la señal recibida?
-
-### Evidencia
-
-*(Adjuntar las evidencias de la práctica en el Aula Virtual: capturas de pantalla, observaciones, cálculos o mediciones preliminares)*
+Estos problemas se pueden mitigar utilizando filtros (pasa banda o pasa bajos) para reducir el ruido, y amplificadores para contrarrestar la atenuación. Además, tecnologías modernas como Wi-Fi o 5G tienen la capacidad de ajustar dinámicamente la transmisión, lo que les permite optimizar el rendimiento de la señal en diferentes entornos.
