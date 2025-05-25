@@ -29,10 +29,12 @@ Uso de IA: Se utilizó ChatGPT para reformular secciones del texto y verificar g
 ### Resumen
 Este laboratorio simula fenómenos de canal con GNU Radio para analizar cómo afectan la transmisión de señales. Se exploran el uso de filtros para trabajar con problemas de canal comunes como distorsiones ,atenuación, el desvanecimiento, el retardo y la dispersión. Usando el osciloscopio y el analizador de espectro, se observa el impacto de estos fenómenos en el tiempo y la frecuencia. Además, se evalúa cómo las imperfecciones del canal influyen en la conversión de frecuencia y la integridad de la señal. El objetivo es entender la importancia de los efectos del canal al diseñar sistemas de comunicación.
 
-**Palabras clave:**
+**Palabras clave:** *Fenómenos de canal, GNU Radio, Calidad de señal, Atenuación, Análisis espectral, Sistemas de comunicación*
+
 ### Introducción
-> [!NOTE]
-> Revisar al culminar las actividades  y borrar objetivos.
+En los sistemas de comunicación inalámbrica, la señal sufre diversas alteraciones mientras se propaga por el canal. Estos fenómenos de canal, como la atenuación, el desvanecimiento, el retardo y la dispersión, pueden reducir drásticamente la calidad e integridad de la señal recibida. Por eso, entenderlos es crucial para diseñar sistemas de comunicación robustos y eficientes.
+
+Esta práctica utiliza GNU Radio como herramienta de simulación para modelar y analizar cómo una señal se comporta bajo distintas condiciones de canal. Para observar estos efectos, se emplean un osciloscopio y un analizador de espectros, permitiendo estudiar la señal tanto en el dominio del tiempo como en el de la frecuencia. Además, se investiga cómo los fenómenos de canal impactan la conversión de frecuencia, un proceso esencial en la modulación y demodulación de señales de radiofrecuencia. El objetivo final es ofrecer una comprensión completa de la influencia de estos fenómenos en el rendimiento de los sistemas de comunicación y subrayar su importancia al diseñar y analizar dichos sistemas.
 
 ## Objetivos
 - Observar cómo el canal puede afectar la calidad de la señal transmitida y cómo  mitigar sus efectos.
