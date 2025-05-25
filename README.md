@@ -9,7 +9,18 @@
   
 Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones  
 Universidad Industrial de Santander
-<div style="text-align: center;">
-    <img src="./practica0/Logo-uis.png" alt="GNUConstante" width="500" />
-    <p><b></b></p>
-</div>
+
+
+
+
+
+<table>
+<tr>
+<td align="center">
+  <img src="./Equipos_de_laboratorio/Logo-uis.png" width="400"><br><strong></strong>
+</td>
+<td align="center">
+  <img src="./practica2/logo-E3T.png" width="300"><br><strong> </strong>
+</td>
+</tr>
+</table>
